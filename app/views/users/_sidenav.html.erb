@@ -1,0 +1,42 @@
+<div class="panel-group" id="accordion">
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-user">
+                    </span> 用户管理</a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse <%= "in" if params[:controller]=="users" %>">
+      <ul class="list-group">
+
+        <li class="list-group-item">
+          <%= link_to users_path do %>
+              <span class="glyphicon glyphicon-chevron-right"></span> 用户列表
+              <span class="label label-info pull-right"><%= User.all.length %></span>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><span class="glyphicon glyphicon-folder-close">
+                    </span> 数据管理</a>
+      </h4>
+    </div>
+    <div id="collapseFour" class="panel-collapse collapse <%= "in" if ["score_excels"].include?(params[:controller]) %>">
+      <div class="list-group">
+
+        <li class="list-group-item">
+          <%= link_to score_excels_path do %>
+              <span class="glyphicon glyphicon-chevron-right"></span> 成绩数据管理
+          <% end %>
+        </li>
+
+      </div>
+    </div>
+  </div>
+</div>

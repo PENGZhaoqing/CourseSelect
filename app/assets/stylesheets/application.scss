@@ -1,0 +1,88 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ */
+
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'bootstrap/theme';
+@import 'homes';
+@import 'tabel_db';
+
+.table{
+  margin-bottom: 10px;
+}
+
+.table-striped > tbody > tr:hover >td.has_hover {
+  background-color: #C0C0C0;
+}
+
+
+//.dropdown-menu {
+//  min-width: 0px !important;
+//}
+
+footer {
+  background-color: #555;
+  color: white;
+  padding: 10px;
+}
+
+body{
+  background-image: image-url("background.jpg");
+  //background-color: ghostwhite;
+  //background-repeat: no-repeat;
+  //background-size: 100% 100%;
+}
+
+body {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+html {
+  height: 100%;
+}
+
+//.navbar-header > a > img {
+//  padding-top:10px
+//}
+
+.navbar-inverse .navbar-nav>li>a {
+  color: #DADADA;
+}
+
+.navbar-inverse .navbar-header>a {
+  color: #DADADA;
+}
+
+//.nav >li>a {
+//  padding-top:20px
+//}
+
+//.navbar-text{
+//  padding-top:5px
+//}
+
+.button_to {
+  display: inline;
+}
+
+.verticalLine {
+  border-right-width: 2px;
+  border-right-style: solid;
+  border-right-color: #CCCCCC;
+}
+
+
+
+

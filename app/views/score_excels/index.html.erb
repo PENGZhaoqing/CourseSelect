@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3 col-md-3">
+      <%= render "users/sidenav" %>
+    </div>
+    <div class="col-sm-9 col-md-9">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">控制面板</h3>
+        </div>
+        <div class="panel-body" style="min-height: 600px">
+
+          <h4 class="text-muted">上传历史</h4>
+          <hr>
+
+          <div class="alert alert-warning pull-right">
+            目前数据的行数: <%= Score.all.size %>行
+            <%= link_to clean_score_excels_path, :data => {confirm: '确定清空数据?'}, class: 'btn-sm btn-danger' do %>
+                <span class="glyphicon glyphicon-trash"></span> 清空数据
+            <% end %>
+          </div>
+
+          <%= form_for ScoreExcel.new, url: score_excels_path, method: 'post', html: {multipart: true} do |f| %>
+              <%= f.file_field :file, title: "选择文件", accept: 'application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' %>
+              <%= button_tag(type: "submit", class: "btn btn-info") do %>
+                  <span class="glyphicon glyphicon-cloud-upload"></span> 上传
+              <% end %>
+          <% end %>
+
+          <br>
+
+          <table class="table table-responsive table-condensed table-hover">
+
+            <tr>
+              <th>文件</th>
+              <th>上传时间</th>
+              <th>文件大小</th>
+              <th></th>
+              <th></th>
+              <th></th>
+
+            </tr>
+            <tbody>
+            <% @score_excels.each do |excel| %>
+                <tr>
+                  <td><span class="	glyphicon glyphicon-link"></span>
+                    <%= excel.file_file_name %>
+                  </td>
+                  <td>
+                    <%= excel.file_updated_at.strftime("%Y/%m/%d %H:%M") if !excel.file_updated_at.nil? %>
+                  </td>
+
+                  <td>
+                    <%= number_to_human_size(excel.file_file_size) %>
+                  </td>
+
+                  <td><%= link_to '下载', excel.file.url(:original, false), class: 'btn-xs btn-success pull-right' %></td>
+                  <td><%= link_to '解析', parse_score_excel_path(excel), class: 'btn-xs btn-primary pull-right' %></td>
+                  <td><%= link_to '删除', score_excel_path(excel), :method => :delete, :data => {confirm: '确定删除?'}, class: 'btn-xs btn-danger pull-right' %></td>
+
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+
+          <%= will_paginate @score_excels, :param_name => 'page',
+                            :previous_label => t("前一页"), :next_label => t("后一页"), :inner_window => 1 %>
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $('input[type=file]').bootstrapFileInput();
+  $('.file-inputs').bootstrapFileInput();
+</script>
+

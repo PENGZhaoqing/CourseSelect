@@ -1,0 +1,7 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "worksheet") do |sheet|
+  sheet.add_row ["姓名", "学号","课程","课程编号","成绩"]
+  @scores.each do |db|
+    sheet.add_row [db.student_name, db.student_num,db.class_name,db.class_num,db.grade]
+  end
+end

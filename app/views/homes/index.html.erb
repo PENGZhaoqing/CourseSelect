@@ -1,0 +1,47 @@
+<div class="col-sm-offset-2 col-sm-6">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <text class="lead">成绩数据</text>
+      <%= button_to '详细', scores_path, :method => :get, class: 'btn-sm btn-success pull-right' %>
+      <% if admin?(current_user) %>
+          <%= button_to '管理', score_excels_path, :method => :get, class: 'btn-sm btn-info pull-right' %>
+      <% end %>
+    </div>
+    <div class="panel-body" style="min-height:500px;max-height: 500px;overflow: scroll;">
+      <table class='table table-responsive table-condensed table-hover' style="margin-top: 5px">
+
+        <tr>
+          <th>姓名</th>
+          <th>课程</th>
+          <th>成绩</th>
+        </tr>
+
+        <tbody>
+        <% @scores.each do |score| %>
+            <tr>
+              <td>
+                <%= score.student_name %>
+              </td>
+
+              <td>
+                <%= score.class_name %>
+              </td>
+
+              <td>
+                <%= score.grade %>
+              </td>
+
+            </tr>
+        <% end %>
+        </tbody>
+
+      </table>
+
+      <%= will_paginate @scores, :param_name => 'page',
+                        :previous_label => t("前一页"), :next_label => t("后一页"), :inner_window => 1 %>
+
+    </div>
+  </div>
+</div>
+
+

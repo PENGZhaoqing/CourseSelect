@@ -1,0 +1,132 @@
+<div class="container">
+  <div class="panel panel-primary filterable">
+    <div class="panel-heading">
+      <h3 class="panel-title">成绩数据</h3>
+      <div class="pull-right">
+        <div class="row">
+          <div class="col-sm-5">
+            <%= form_tag export_scores_path, :method => :get do %>
+                <%= hidden_field_tag :product, params[:product] %>
+                <%= hidden_field_tag :supplier, params[:supplier] %>
+                <%= button_tag(type: "submit", class: "btn btn-default btn-xs") do %>
+                    <span class="glyphicon glyphicon-floppy-save"></span> 导出
+                <% end %>
+            <% end %>
+          </div>
+          <div class="col-sm-5">
+            <button id="filter" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-filter"></span>
+              筛选
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-body" style="min-height:750px">
+      <table class="table table-responsive table-condensed table-hover">
+        <thead>
+        <tr>
+          <th>姓名</th>
+          <th>学号</th>
+          <th>课程</th>
+          <th>课程编号</th>
+          <th>成绩</th>
+        </tr>
+
+        <tbody>
+        <% @scores.each do |score| %>
+            <tr>
+              <td>
+                <%= score.student_name %>
+              </td>
+
+              <td>
+                <%= score.student_num %>
+              </td>
+
+              <td>
+                <%= score.class_name %>
+              </td>
+
+              <td>
+                <%= score.class_num %>
+              </td>
+
+              <td>
+                <%= score.grade %>
+              </td>
+
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+      <%= will_paginate @supplier_dbs, :param_name => 'page',
+                        :previous_label => t("前一页"), :next_label => t("后一页"), :inner_window => 1 %>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="filter_modal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div id="filter-header">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-filter"></span> 筛选</h4>
+        </div>
+      </div>
+      <div class="modal-body" style="padding:30px 50px;">
+
+        <%= form_tag scores_path, :method => 'get', role: 'form', class: "form-horizontal" do %>
+            <div class="form-group">
+              <%= label_tag :student_name, "姓名", class: "control-label col-sm-2" %>
+              <div class="col-sm-10">
+                <%= text_field_tag :student_name, params[:student_name], placeholder: "姓名", class: 'form-control' %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= label_tag :student_num, "学号", class: "control-label col-sm-2" %>
+              <div class="col-sm-10">
+                <%= text_field_tag :student_num, params[:student_num], placeholder: "学号", class: 'form-control' %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= label_tag :class, "课程", class: "control-label col-sm-2" %>
+              <div class="col-sm-10">
+                <%= text_field_tag :class, params[:class], placeholder: "课程", class: 'form-control' %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= label_tag :class_num, "课程编号", class: "control-label col-sm-2" %>
+              <div class="col-sm-10">
+                <%= text_field_tag :class_num, params[:class_num], placeholder: "课程编号", class: 'form-control' %>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <%= button_tag(type: "submit", class: "btn btn-default btn-block") do %>
+                  <span class="glyphicon glyphicon-search"></span>查找
+              <% end %>
+            </div>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    $("#filter").click(function () {
+      $("#filter_modal").modal();
+    });
+  });
+</script>
