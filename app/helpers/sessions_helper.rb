@@ -8,6 +8,18 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  def student_logged_in?
+    !current_user.nil? && !current_user.teacher && !current_user.admin
+  end
+
+  def teacher_logged_in?
+    !current_user.nil? && current_user.teacher
+  end
+
+  def admin_logged_in?
+    !current_user.nil? &&current_user.admin
+  end
+
   # 点击log_out,安全退出.只关闭浏览器时会保存cookie,安全退出后就没有了
   def log_out
     forget_user(current_user)
@@ -15,13 +27,7 @@ module SessionsHelper
     @current_visit = nil
   end
 
-  def admin?(user)
-    if user.nil?
-      return false
-    else
-      user.admin
-    end
-  end
+
 
   # Returns the user corresponding to the remember token cookie.
   def current_user
@@ -54,29 +60,6 @@ module SessionsHelper
   def current_user?(user)
     user == current_user
   end
-
-
-  def login_visit(mappingdb)
-    session[:visit_id]=mappingdb.id
-  end
-
-  def current_visit
-    if session[:visit_id]
-      @current_visit||= MappingDb.find_by(id: session[:visit_id])
-    end
-  end
-
-  def log_out_visit
-    session.delete(:visit_id)
-    @current_visit = nil
-  end
-
-  def logged_in_visit?
-    !current_visit.nil?
-  end
-
-
-
 
 
 end

@@ -11,34 +11,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160826015110) do
+ActiveRecord::Schema.define(version: 20160909105514) do
 
-  create_table "score_excels", force: :cascade do |t|
-    t.string   "file_file_name"
-    t.string   "file_content_type"
-    t.integer  "file_file_size"
-    t.datetime "file_updated_at"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+  create_table "courses", force: :cascade do |t|
+    t.string   "name"
+    t.string   "course_code"
+    t.string   "course_type"
+    t.string   "teaching_type"
+    t.string   "exam_type"
+    t.string   "credit"
+    t.integer  "limit_num"
+    t.integer  "student_num",   default: 0
+    t.string   "class_room"
+    t.string   "course_time"
+    t.string   "course_week"
+    t.integer  "teacher_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
-  create_table "scores", force: :cascade do |t|
-    t.string   "student_name"
-    t.string   "student_num"
-    t.string   "class_name"
-    t.string   "class_num"
+  create_table "grades", force: :cascade do |t|
+    t.integer  "course_id"
+    t.integer  "user_id"
     t.integer  "grade"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
+  add_index "grades", ["course_id"], name: "index_grades_on_course_id"
+  add_index "grades", ["user_id"], name: "index_grades_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
+    t.string   "num"
+    t.string   "major"
     t.string   "department"
     t.string   "password_digest"
     t.string   "remember_digest"
     t.boolean  "admin",           default: false
+    t.boolean  "teacher",         default: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
   end

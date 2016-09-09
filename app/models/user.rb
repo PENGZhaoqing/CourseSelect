@@ -1,8 +1,14 @@
 class User < ActiveRecord::Base
 
-  before_save   :downcase_email
+  before_save :downcase_email
   attr_accessor :remember_token
   validates :name, presence: true, length: {maximum: 50}
+  validates :password, presence: true, length: {minimum: 6}, allow_nil: true
+
+  has_many :grades
+  has_many :courses, through: :grades
+
+  has_many :teaching_courses, class_name: "Course", foreign_key: :teacher_id
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: {maximum: 255},
@@ -15,8 +21,6 @@ class User < ActiveRecord::Base
   has_secure_password
   # has_secure_password automatically adds an authenticate method to the corresponding model objects.
   # This method determines if a given password is valid for a particular user by computing its digest and comparing the result to password_digest in the database.
-
-  validates :password, presence: true, length: {minimum: 6}, allow_nil: true
 
   # Returns the hash digest of the given string.
   def User.digest(string)

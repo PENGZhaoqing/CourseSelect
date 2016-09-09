@@ -15,8 +15,6 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 @import 'bootstrap/theme';
-@import 'homes';
-@import 'tabel_db';
 
 .table{
   margin-bottom: 10px;
@@ -27,10 +25,6 @@
 }
 
 
-//.dropdown-menu {
-//  min-width: 0px !important;
-//}
-
 footer {
   background-color: #555;
   color: white;
@@ -38,50 +32,28 @@ footer {
 }
 
 body{
-  background-image: image-url("background.jpg");
-  //background-color: ghostwhite;
+  //background-image: image-url("background.jpg");
+  //background-color: #18BC9C;
   //background-repeat: no-repeat;
   //background-size: 100% 100%;
 }
 
 body {
   padding-top: 50px;
-  padding-bottom: 50px;
+  padding-bottom: 100px;
 }
 
 html {
   height: 100%;
 }
 
-//.navbar-header > a > img {
-//  padding-top:10px
-//}
 
-.navbar-inverse .navbar-nav>li>a {
-  color: #DADADA;
+.pagination {
+  font-size: 11px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
-.navbar-inverse .navbar-header>a {
-  color: #DADADA;
-}
-
-//.nav >li>a {
-//  padding-top:20px
-//}
-
-//.navbar-text{
-//  padding-top:5px
-//}
-
-.button_to {
-  display: inline;
-}
-
-.verticalLine {
-  border-right-width: 2px;
-  border-right-style: solid;
-  border-right-color: #CCCCCC;
-}
 
 
 

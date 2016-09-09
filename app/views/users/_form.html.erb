@@ -22,11 +22,22 @@
     </div>
 
     <div class="form-group">
-      <%= f.label "公司名", class: 'col-sm-3 control-label' %>
+      <%= f.label "专业", class: 'col-sm-3 control-label' %>
       <div class="col-sm-9">
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-home"></span></div>
-          <%= f.text_field :company, class: 'form-control', placeholder: "输入公司全称" %>
+          <%= f.text_field :major, class: 'form-control', placeholder: "输入专业全称" %>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <%= f.label "培养单位", class: 'col-sm-3 control-label' %>
+      <div class="col-sm-9">
+        <div class="input-group">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-home"></span></div>
+          <%= f.text_field :department, class: 'form-control', placeholder: "输入培养单位全称" %>
         </div>
       </div>
     </div>

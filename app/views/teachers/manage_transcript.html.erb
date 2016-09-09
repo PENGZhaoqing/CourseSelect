@@ -1,0 +1,60 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2">
+      <%= render "courses/sidenav" %>
+
+    </div>
+    <div class="col-sm-10">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">控制面板</h3>
+        </div>
+        <div class="panel-body" style="min-height: 450px">
+          <h4 class="text-muted">用户管理</h4>
+          <hr>
+
+          <table class="table table-striped table-hover">
+            <thead>
+
+            <tr>
+              <th>学号</th>
+              <th>名字</th>
+              <th>专业</th>
+              <th>培养单位</th>
+              <th>课程</th>
+              <th>目前分数</th>
+              <th>更新</th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+
+            <% @users.each do |user| %>
+                <tr>
+
+                  <td><%= user.num %></td>
+                  <td><%= user.name %></td>
+                  <td><%= user.major %></td>
+                  <td><%= user.department %></td>
+                  <td><%= @course.name %></td>
+
+                  <% grade= user.grades.find_by(course_id: @course.id) %>
+                  <td><%= grade.grade %></td>
+
+                  <%= form_for grade, url: upload_grade_teacher_path(id: grade.id, course_id: @course.id), method: "post" do |f| %>
+                      <td><%= f.text_field :grade %></td>
+                      <td>  <%= f.submit "提交", class: "btn btn-success btn-xs" %></td>
+                  <% end %>
+
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

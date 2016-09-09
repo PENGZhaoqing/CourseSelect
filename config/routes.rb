@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'homes#index'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -14,27 +14,34 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-  resources :score_excels, only: [:index, :destroy, :create] do
-    collection do
-      get :clean
-    end
-    member do
-      get :parse
-    end
-  end
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  root 'homes#index'
 
-  resources :scores, only: :index do
-    collection do
-      get :export
+  resources :courses do
+    member do
+      get :select
+      get :quit
     end
   end
 
   resources :users do
     member do
-      patch :admin_update
+      get :course
+      get :new_course
+      get :transcript
     end
   end
 
+  resources :teachers, only: [] do
+    member do
+      get :course
+      get :manage_transcript
+      post :upload_grade
+    end
+  end
+
+
+  resources :admins
   get 'sessions/login' => 'sessions#new'
   post 'sessions/login' => 'sessions#create'
   delete 'sessions/logout' => 'sessions#destroy'

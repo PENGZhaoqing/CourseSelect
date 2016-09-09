@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-offset-4 col-sm-4">
-    <div class="panel panel-primary">
+    <div class="panel panel-info">
       <div class="panel-heading">
         <h4>编辑个人信息</h4>
       </div>
@@ -8,43 +8,53 @@
 
         <%= form_for current_user, html: {role: 'form'} do |f| %>
             <%= render 'shared/error_messages', :object => current_user %>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                <%= f.text_field :name, class: 'form-control' %>
+              </div>
+            </div>
 
-            <%= content_tag :div, class: "form-group#{' has-error' if current_user.errors[:name].present?}" do %>
-                <div class="input-group">
-                  <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-                  <%= f.text_field :name, class: 'form-control' %>
-                </div>
-            <% end %>
+            <div class="form-group">
 
-            <%= content_tag :div, class: "form-group#{' has-error' if current_user.errors[:email].present?}" do %>
-                <div class="input-group">
-                  <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
-                  <%= f.text_field :email, class: 'form-control' %>
-                </div>
-            <% end %>
+              <div class="input-group">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+                <%= f.text_field :email, class: 'form-control' %>
+              </div>
+            </div>
 
-            <%= content_tag :div, class: "form-group#{' has-error' if current_user.errors[:company].present?}" do %>
-                <div class="input-group">
-                  <div class="input-group-addon"><span class="glyphicon glyphicon-home"></span></div>
-                  <%= f.text_field :department, class: 'form-control' %>
-                </div>
-            <% end %>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-home"></span></div>
+                <%= f.text_field :major, class: 'form-control' %>
+              </div>
+            </div>
 
-            <%= content_tag :div, class: "form-group#{' has-error' if current_user.errors[:password].present?}" do %>
-                <div class="input-group">
-                  <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
-                  <%= f.password_field :password, class: 'form-control', placeholder: "输入新密码" %>
-                </div>
-            <% end %>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-check"></span></div>
+                <%= f.text_field :department, class: 'form-control' %>
+              </div>
+            </div>
 
-            <%= content_tag :div, class: "form-group#{' has-error' if current_user.errors[:password_confirmation].present?}" do %>
-                <div class="input-group">
-                  <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
-                  <%= f.password_field :password_confirmation, class: 'form-control', placeholder: "再次输入密码" %>
-                </div>
-            <% end %>
 
-            <%= f.submit '更新', class: "btn btn-primary btn-block" %>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                <%= f.password_field :password, class: 'form-control', placeholder: "输入新密码" %>
+              </div>
+            </div>
+
+            <div>
+              <div class="input-group">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                <%= f.password_field :password_confirmation, class: 'form-control', placeholder: "再次输入密码" %>
+              </div>
+            </div>
+
+            <br>
+
+            <%= f.submit '更新', class: "btn btn-info btn-block" %>
             <%= link_to '取消', root_path, :class => "btn btn-default btn-block" %>
 
             <br>

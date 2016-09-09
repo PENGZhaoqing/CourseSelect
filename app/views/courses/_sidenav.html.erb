@@ -4,45 +4,47 @@
     <div class="panel-heading">
       <h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-user">
-                    </span> 选修课程</a>
+                    </span> 课程管理</a>
       </h4>
     </div>
 
-    <div id="collapseOne" class="panel-collapse collapse <%= "in" if ["new_course","course"].include?(params[:action])  %>">
+    <div id="collapseOne" class="panel-collapse collapse <%= "in" if ["index", "new"].include?(params[:action]) %>">
       <ul class="list-group">
         <li class="list-group-item">
-          <%= link_to new_course_user_path(current_user) do %>
-              <span class="glyphicon glyphicon-chevron-right"></span> 选修课程
-              <span class="label label-info pull-right"><%= Course.all.length %></span>
+          <%= link_to course_teacher_path(current_user) do %>
+              <span class="glyphicon glyphicon-chevron-right"></span> 已授课程
+              <span class="label label-info pull-right"><%= current_user.teaching_courses.length %></span>
           <% end %>
         </li>
 
         <li class="list-group-item">
-          <%= link_to course_user_url(current_user) do %>
-              <span class="glyphicon glyphicon-chevron-right"></span> 已选课程
-              <span class="label label-info pull-right"><%= Course.all.length %></span>
+          <%= link_to new_course_path do %>
+              <span class="glyphicon glyphicon-chevron-right"></span> 创建新课程
           <% end %>
         </li>
-
       </ul>
     </div>
   </div>
+
 
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><span class="glyphicon glyphicon-folder-close">
-                    </span>查询成绩</a>
+                    </span> 成绩管理</a>
       </h4>
     </div>
 
+
     <div id="collapseFour" class="panel-collapse collapse <%= "in" if ["transcript"].include?(params[:action]) %>">
       <div class="list-group">
-        <li class="list-group-item">
-          <%= link_to transcript_user_path(current_user) do %>
-              <span class="glyphicon glyphicon-chevron-right"></span> 所有成绩
-          <% end %>
-        </li>
+        <% current_user.teaching_courses.each do |course| %>
+            <li class="list-group-item">
+              <%= link_to manage_transcript_teacher_path(course) do %>
+                  <span class="glyphicon glyphicon-chevron-right"></span> <%= course.name %>
+              <% end %>
+            </li>
+        <% end %>
       </div>
     </div>
   </div>

@@ -1,0 +1,98 @@
+<%= form_for @course, html: {class: 'form-horizontal', role: 'form'} do |f| %>
+    <%= render 'shared/error_messages', :object => @course %>
+
+    <div class="form-group">
+      <%= f.label "课程名", class: 'col-sm-3 control-label' %>
+      <div class="col-sm-9">
+        <div class="input-group">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
+          <%= f.text_field :name, class: 'form-control', placeholder: "输入课程名" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "课程属性", class: 'col-sm-3 control-label' %>
+      <div class="col-sm-9">
+        <div class="input-group">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
+          <%= f.text_field :course_type, class: 'form-control', placeholder: "输入课程属性" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "授课方式", class: 'col-sm-3 control-label' %>
+      <div class="col-sm-9">
+        <div class="input-group">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
+          <%= f.text_field :teaching_type, class: 'form-control', placeholder: "输入授课方式" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "考试方式", class: 'col-sm-3 control-label' %>
+      <div class="col-sm-9">
+        <div class="input-group">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
+          <%= f.text_field :exam_type, class: 'form-control', placeholder: "输入考试方式" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "限选人数", class: 'col-sm-3 control-label' %>
+      <div class="col-sm-9">
+        <div class="input-group">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
+          <%= f.text_field :limit_num, class: 'form-control', placeholder: "输入限选人数" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "课时学分", class: 'col-sm-3 control-label' %>
+      <div class="col-sm-9">
+        <div class="input-group">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
+          <%= f.text_field :credit, class: 'form-control', placeholder: "输入课时学分" %>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <%= f.label "教室", class: 'col-sm-3 control-label' %>
+      <div class="col-sm-9">
+        <div class="input-group">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
+          <%= f.text_field :class_room, class: 'form-control', placeholder: "输入教室" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "上课周数", class: 'col-sm-3 control-label' %>
+      <div class="col-sm-9">
+        <div class="input-group">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
+          <%= f.text_field :course_week, class: 'form-control', placeholder: "输入课时学分" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "上课时间", class: 'col-sm-3 control-label' %>
+      <div class="col-sm-9">
+        <div class="input-group">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
+          <%= f.text_field :course_time, class: 'form-control', placeholder: "输入课时学分" %>
+        </div>
+      </div>
+    </div>
+
+    <%= f.submit '提交', class: "btn btn-success btn-block" %>
+    <%= link_to '取消', course_teacher_path(current_user), :class => "btn btn-default btn-block" %>
+
+<% end %>
