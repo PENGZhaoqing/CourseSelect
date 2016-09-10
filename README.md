@@ -12,8 +12,12 @@
 
 ## 说明
 
+目前使用的库：
+
 * 使用[Bootstrap](http://getbootstrap.com/)作为前端库
 * 使用[Rails_admin Gem](https://github.com/sferik/rails_admin)作为后台管理
+
+使用需要安装Bundler，Gem，Ruby，Rails等依赖环境
 
 ## 安装
 
@@ -28,10 +32,29 @@ $ rake db:seed
 $ rails s 
 ```
 
-在浏览器中输入'localhost:3000'访问主页
+在浏览器中输入`localhost:3000`访问主页
 
 ##使用
 
+###登陆
+
+1.学生登陆：
+
+账号：`student1@test.com`
+密码：`password`
+
+2.老师登陆：
+
+账号：`teacher1@test.com`
+密码：`password`
+
+
+3.管理员登陆：
+
+账号：`admin@test.com`
+密码：`password`
+
+账号中数字都可以替换成2,3...等等
 
 
 
