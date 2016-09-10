@@ -46,22 +46,23 @@ $ rails s
 
 ##使用
 
-###登陆
-
 1.学生登陆：
 
 账号：`student1@test.com`
+
 密码：`password`
 
 2.老师登陆：
 
 账号：`teacher1@test.com`
+
 密码：`password`
 
 
 3.管理员登陆：
 
 账号：`admin@test.com`
+
 密码：`password`
 
 账号中数字都可以替换成2,3...等等
