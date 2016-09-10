@@ -9,7 +9,8 @@
 
       <div class="panel panel-primary filterable">
         <div class="panel-heading">
-          <h3 class="panel-title">已选择课程</h3>
+          <% if teacher_logged_in? %><h3 class="panel-title">授课列表</h3><% end %>
+          <% if student_logged_in? %><h3 class="panel-title">已选课程</h3><% end %>
         </div>
 
         <div class="panel-body">
@@ -36,7 +37,7 @@
                   <% if teacher_logged_in? %>
                       <td><%= link_to "编辑", edit_course_url(course), class: 'btn btn-xs btn-info' %></td>
                       <td><%= link_to "删除", course_path(course), :method => "delete", class: 'btn btn-xs btn-danger', :data => {confirm: '确定要删除此课程?'} %></td>
-                  <% else %>
+                  <% elsif student_logged_in? %>
                       <td><%= link_to "删除", quit_course_path(course), class: 'btn-sm btn-danger' %></td>
                   <% end %>
                 </tr>

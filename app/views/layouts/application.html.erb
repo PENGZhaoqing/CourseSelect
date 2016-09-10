@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>信息数据管理系统</title>
+  <title>CourseSelect</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <meta>
@@ -10,7 +10,7 @@
   <%= csrf_meta_tags %>
 </head>
 
-<body>
+<body class="<%= "body-background" if params[:controller]!="homes" %>">
 
 <%= render partial: 'layouts/header' %>
 <%= render partial: 'layouts/content' %>

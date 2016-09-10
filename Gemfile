@@ -1,18 +1,18 @@
 source 'https://gems.ruby-china.org'
 
 
+gem 'bootstrap-sass','~> 3.3.7'
+gem 'bcrypt','~> 3.1.11'
+gem 'faker','~> 1.6.3'
+gem 'rails_admin','~> 0.8.1'
+
 # gem 'carrierwave'
 # gem 'paperclip'
-gem 'bootstrap-sass'
 # gem 'will_paginate'
-gem 'bootstrap-will_paginate'
+# gem 'bootstrap-will_paginate'
 # gem 'roo'
 # gem 'roo-xls'
-gem 'bcrypt'
-gem 'faker'
-gem 'rails_admin'
 # gem 'paper_trail'
-
 # gem 'rubyzip', '~> 1.1.0'
 # gem 'axlsx', '2.1.0.pre'
 # gem 'axlsx_rails'

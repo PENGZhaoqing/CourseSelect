@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       log_in user
       params[:session][:remember_me] == '1' ? remember_user(user) : forget_user(user)
-      flash= {:info => "欢迎登录: #{user.name} :)"}
+      flash= {:info => "欢迎回来: #{user.name} :)"}
     else
       flash= {:danger => '账号或密码错误'}
     end

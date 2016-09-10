@@ -5,7 +5,7 @@ class GradesController < ApplicationController
   def update
     @grade=Grade.find_by_id(params[:id])
     if @grade.update_attributes!(:grade => params[:grade][:grade])
-      flash={:success => "成绩上传成功"}
+      flash={:success => "#{@grade.user.name} #{@grade.course.name}的成绩已成功修改为 #{@grade.grade}"}
     else
       flash={:danger => "上传失败.请重试"}
     end

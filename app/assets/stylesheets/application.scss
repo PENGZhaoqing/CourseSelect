@@ -24,21 +24,20 @@
   background-color: #C0C0C0;
 }
 
-
 footer {
   background-color: #555;
   color: white;
   padding: 10px;
 }
 
-body{
-  //background-image: image-url("background.jpg");
-  //background-color: #18BC9C;
+.body-background{
+  background-image: image-url('background.jpg');
+  //background-color: #DADADA;
   //background-repeat: no-repeat;
   //background-size: 100% 100%;
 }
 
-body {
+body{
   padding-top: 50px;
   padding-bottom: 100px;
 }
@@ -47,12 +46,6 @@ html {
   height: 100%;
 }
 
-
-.pagination {
-  font-size: 11px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
 
 
 

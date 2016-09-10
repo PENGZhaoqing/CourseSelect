@@ -74,7 +74,7 @@
         <% if teacher_logged_in? %>
             <% current_user.teaching_courses.each do |course| %>
                 <li class="list-group-item">
-                  <%= link_to grades_path(course_id: course.id) do %>
+                  <%= link_to grades_path(course_id: course.id), :method => :get do %>
                       <span class="glyphicon glyphicon-chevron-right"></span> <%= course.name %>
                       <span class="label label-info pull-right"><%= course.users.length %></span>
                   <% end %>
