@@ -83,10 +83,16 @@ $ rails s
 项目可直接在Heroku上免费部署
 
 1.fork此项目到自己Github账号下
+
 2.创建Heroku账号以及Heroku app
+
 3.将Heroku app与自己Github下的fork的项目进行连接
+
 4.下载配置[Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)命令行工具
-5. 运行`heroku login`在终端登陆，检查与heroku app的远程连接情况`git config --list | grep heroku`，若未检查到相应的app，请看[这里]()
+
+5. 运行`heroku login`在终端登陆，检查与heroku app的远程连接情况`git config --list | grep heroku`，若未检查到相应的app，请看[这里](http://stackoverflow.com/questions/5129598/how-to-link-a-folder-with-an-existing-heroku-app)
+
+6. 运行部署，详情[请戳这里](https://devcenter.heroku.com/articles/getting-started-with-rails4#rails-asset-pipeline)
 
 
 ## 测试
