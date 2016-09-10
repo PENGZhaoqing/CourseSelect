@@ -21,11 +21,13 @@
 
 ### 截图
 
-![Alt text](/lib/screenshot1.png?raw=true "主页")
-![Alt text](/lib/screenshot2.png?raw=true "登陆界面")
-![Alt text](/lib/screenshot3.png?raw=true "控制面板－Rails_admin")
-![Alt text](/lib/screenshot4.png?raw=true "我的课程")
+<img src="/lib/screenshot1.png" width="700">  
 
+<img src="/lib/screenshot2.png" width="700">
+
+<img src="/lib/screenshot3.png" width="700">   
+
+<img src="/lib/screenshot4.png" width="700">
 
 ## 说明
 
