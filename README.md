@@ -2,7 +2,7 @@
 
 这个样本系统是基于国科大研究生课程 (高级软件工程) 开发的项目,目的是帮助入门者学习RoR (Ruby on Rails) 
 
-适合新学者的入手的第一个项目[Demo](https://courseselect.herokuapp.com/ )，入门者可以在这个样本系统上增加更多的功能:
+适合新学者的入手的第一个项目 ([演示Demo戳这里](https://courseselect.herokuapp.com/ ))，入门者可以在这个样本系统上增加更多的功能:
 
 * 处理选课冲突、控制选课人数
 * 统计选课学分，学位课等
