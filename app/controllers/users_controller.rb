@@ -1,12 +1,10 @@
 class UsersController < ApplicationController
   before_action :logged_in, only: :update
   before_action :correct_user, only: [:update, :destroy]
-  before_action :teacher_logged_in, only: :manage_transcript
 
   def new
     @user=User.new
   end
-
 
   def create
     @user = User.new(user_params)
@@ -18,25 +16,8 @@ class UsersController < ApplicationController
     end
   end
 
-  def new_course
-    @user=User.find_by(params[:id])
-    @course=Course.all
-    @course=@course-@user.courses
-  end
-
-  def course
-    @user=User.find_by(params[:id])
-    @course=@user.courses
-  end
-
-  def transcript
+  def edit
     @user=User.find_by_id(params[:id])
-    @course=@user.courses
-  end
-
-  def manage_transcript
-    @user=User.find_by_id(params[:id])
-    @course=@user.teaching_courses.users
   end
 
   def update
@@ -55,9 +36,10 @@ class UsersController < ApplicationController
     redirect_to users_path(new: false), flash: {success: "用户删除"}
   end
 
-  def edit
-    @user=User.find_by(:id => params[:id])
-  end
+
+#----------------------------------- students function--------------------
+
+
 
   private
 

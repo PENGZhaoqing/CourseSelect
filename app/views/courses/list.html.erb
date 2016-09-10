@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-2">
-      <%= render "courses/sidenav" %>
+      <%= render "shared/sidenav" %>
 
     </div>
     <div class="col-sm-10">
@@ -17,14 +17,15 @@
             <thead>
 
             <tr>
-              <th>课程编码</th>
+              <th>课程编号</th>
               <th>课程名称</th>
-              <th>课时学分</th>
-              <th>限选人数</th>
-              <th>已选人数</th>
-              <th>授课老师</th>
-
-              <th></th>
+              <th>课时/学分</th>
+              <th>限选</th>
+              <th>已选</th>
+              <th>课程属性</th>
+              <th>授课方式</th>
+              <th>考试方式</th>
+              <th>主讲教师</th>
 
             </tr>
             </thead>
@@ -38,11 +39,11 @@
                   <td><%= course.credit %></td>
                   <td><%= course.limit_num %></td>
                   <td><%= course.student_num %></td>
+                  <td><%= course.course_type %></td>
+                  <td><%= course.teaching_type %></td>
+                  <td><%= course.exam_type %></td>
                   <td><%= course.teacher.name %></td>
-
-                  <td><%= link_to "编辑", edit_course_url(course), class: 'btn btn-xs btn-info'%></td>
-
-                  <td><%= link_to "删除", course_path(course), :method => "delete", class: 'btn btn-xs btn-danger',:data => {confirm: '确定要删除此课程?'} %></td>
+                  <td><%= link_to "加入课程", select_course_path(course), class: 'btn-sm btn-info' %></td>
 
                 </tr>
             <% end %>

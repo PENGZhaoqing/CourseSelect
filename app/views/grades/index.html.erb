@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-2">
-      <%= render "courses/sidenav" %>
+      <%= render "shared/sidenav" %>
 
     </div>
     <div class="col-sm-10">
@@ -30,21 +30,20 @@
             </thead>
             <tbody>
 
-            <% @users.each do |user| %>
+            <% @grades.each do |grade| %>
                 <tr>
-
-                  <td><%= user.num %></td>
-                  <td><%= user.name %></td>
-                  <td><%= user.major %></td>
-                  <td><%= user.department %></td>
-                  <td><%= @course.name %></td>
-
-                  <% grade= user.grades.find_by(course_id: @course.id) %>
+                  <td><%= grade.user.num %></td>
+                  <td><%= grade.user.name %></td>
+                  <td><%= grade.user.major %></td>
+                  <td><%= grade.user.department %></td>
+                  <td><%= grade.course.name %></td>
                   <td><%= grade.grade %></td>
 
-                  <%= form_for grade, url: upload_grade_teacher_path(id: grade.id, course_id: @course.id), method: "post" do |f| %>
-                      <td><%= f.text_field :grade %></td>
-                      <td>  <%= f.submit "提交", class: "btn btn-success btn-xs" %></td>
+                  <% if teacher_logged_in? %>
+                      <%= form_for grade, url: grade_path(id: grade.id, course_id: grade.course.id), method: "patch" do |f| %>
+                          <td><%= f.text_field :grade %></td>
+                          <td><%= f.submit "提交", class: "btn btn-success btn-xs" %></td>
+                      <% end %>
                   <% end %>
 
                 </tr>

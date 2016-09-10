@@ -47,8 +47,8 @@ module SessionsHelper
     # Because it places the id as plain text, this method exposes the form of the application’s cookies
     # and makes it easier for an attacker to compromise user accounts. To avoid this problem,
     # we’ll use a signed cookie, which securely encrypts the cookie before placing it on the browser:
-    cookies.signed[:user_id] = {value: user.id, expires: 1.years.from_now.utc}
-    cookies[:remember_token] = {value: user.remember_token, expires: 1.years.from_now.utc}
+    cookies.signed[:user_id] = {value: user.id, expires: 5.minutes.from_now.utc}
+    cookies[:remember_token] = {value: user.remember_token, expires: 5.minutes.from_now.utc}
   end
 
   def forget_user(user)

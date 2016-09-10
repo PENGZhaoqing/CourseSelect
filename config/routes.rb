@@ -22,26 +22,14 @@ Rails.application.routes.draw do
       get :select
       get :quit
     end
-  end
-
-  resources :users do
-    member do
-      get :course
-      get :new_course
-      get :transcript
+    collection do
+      get :list
     end
   end
 
-  resources :teachers, only: [] do
-    member do
-      get :course
-      get :manage_transcript
-      post :upload_grade
-    end
-  end
+  resources :grades, only: [:index, :update]
+  resources :users
 
-
-  resources :admins
   get 'sessions/login' => 'sessions#new'
   post 'sessions/login' => 'sessions#create'
   delete 'sessions/logout' => 'sessions#destroy'
