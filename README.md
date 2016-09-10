@@ -76,6 +76,12 @@ $ rails s
 
 账号中数字都可以替换成2,3...等等
 
+## How to Contribute
 
+先fork此项目，在分支修改后，pull request到主分支
+
+提问请到issues里创建，欢迎contributor！
+
+如果觉得好，给项目点颗星吧～
 
 
