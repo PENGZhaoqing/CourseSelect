@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class RepertoryDbTest < ActiveSupport::TestCase
+class GradesControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end
