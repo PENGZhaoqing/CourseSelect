@@ -1,6 +1,6 @@
 language: ruby
-ruby:
-  - 2.2.0
+rvm:
+  - 2.2
 env:
   -DB=sqlite
 script:
