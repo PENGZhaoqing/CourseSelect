@@ -2,7 +2,9 @@ source 'https://gems.ruby-china.org'
 
 
 gem 'bootstrap-sass','~> 3.3.7'
+# Use ActiveModel has_secure_password
 gem 'bcrypt','~> 3.1.11'
+
 gem 'faker','~> 1.6.3'
 gem 'rails_admin','~> 0.8.1'
 
@@ -37,7 +39,8 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-# Use ActiveModel has_secure_password
+gem 'pg'
+
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
@@ -50,7 +53,6 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
 end
 
 group :development do
@@ -61,7 +63,7 @@ group :development do
 end
 
 group :production do
-  gem 'pg'
+  gem 'rails_12factor'
 end
 
 
