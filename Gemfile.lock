@@ -195,7 +195,7 @@ DEPENDENCIES
   faker (~> 1.6.3)
   jbuilder (~> 2.0)
   jquery-rails
-  pg
+  pg (~> 0.18.4)
   rails (= 4.2.5.2)
   rails_12factor
   rails_admin (~> 0.8.1)
