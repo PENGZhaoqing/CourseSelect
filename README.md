@@ -37,7 +37,10 @@
 * 使用[Rails_admin Gem](https://github.com/sferik/rails_admin)作为后台管理
 * 使用[Postgresql](http://postgresapp.com/)作为数据库
 
-使用前需要安装Bundler，Gem，Ruby，Rails等依赖环境，请根据本地系统下载安装[postgresql](https://devcenter.heroku.com/articles/heroku-postgresql#local-setup)数据库，并运行`psql -h localhost`检查安装情况。
+使用前需要安装Bundler，Gem，Ruby，Rails等依赖环境。
+
+请根据本地系统下载安装[postgresql](https://devcenter.heroku.com/articles/heroku-postgresql#local-setup)数据库，并运行`psql -h localhost`检查安装情况。
+
 
 ## 安装
 
@@ -78,7 +81,7 @@ $ rails s
 账号中数字都可以替换成2,3...等等
 
 
-## 云部署
+## Heroku云部署
 
 项目可直接在Heroku上免费部署
 
@@ -90,9 +93,9 @@ $ rails s
 
 4.下载配置[Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)命令行工具
 
-5. 运行`heroku login`在终端登陆，检查与heroku app的远程连接情况`git config --list | grep heroku`，若未检查到相应的app，请看[这里](http://stackoverflow.com/questions/5129598/how-to-link-a-folder-with-an-existing-heroku-app)
+5.运行`heroku login`在终端登陆，检查与heroku app的远程连接情况`git config --list | grep heroku`，若未检查到相应的app，请看[这里](http://stackoverflow.com/questions/5129598/how-to-link-a-folder-with-an-existing-heroku-app)
 
-6. 运行部署，详情[请戳这里](https://devcenter.heroku.com/articles/getting-started-with-rails4#rails-asset-pipeline)
+6.运行部署，详情[请戳这里](https://devcenter.heroku.com/articles/getting-started-with-rails4#rails-asset-pipeline)
 
 
 ## 测试
