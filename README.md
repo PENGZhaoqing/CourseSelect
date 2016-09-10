@@ -11,7 +11,6 @@
 * 基于OAuth的授权登陆
 * Excel格式的数据导入
 
-
 ### 目前功能：
 
 * 多角色登陆（学生，老师，管理员）
@@ -20,6 +19,15 @@
 * 老师对课程下的学生添加、修改成绩
 * 权限控制：老师和学生只能看到自己相关课程信息
 
+### 截图
+
+<img src="/lib/screenshot1.png" width="700">  
+
+<img src="/lib/screenshot2.png" width="700">
+
+<img src="/lib/screenshot3.png" width="700">   
+
+<img src="/lib/screenshot4.png" width="700">
 
 ## 说明
 
@@ -68,6 +76,12 @@ $ rails s
 
 账号中数字都可以替换成2,3...等等
 
+## How to Contribute
 
+先fork此项目，在分支修改后，pull request到主分支
+
+提问请到issues里创建，欢迎contributor！
+
+如果觉得好，给项目点颗星吧～
 
 
