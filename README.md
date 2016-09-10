@@ -31,12 +31,13 @@
 
 ## 说明
 
-目前使用的库：
+目前使用的库和数据库：
 
 * 使用[Bootstrap](http://getbootstrap.com/)作为前端库
 * 使用[Rails_admin Gem](https://github.com/sferik/rails_admin)作为后台管理
+* 使用[Postgresql](http://postgresapp.com/)作为数据库
 
-使用需要安装Bundler，Gem，Ruby，Rails等依赖环境
+使用前需要安装Bundler，Gem，Ruby，Rails等依赖环境，请根据本地系统下载安装[postgresql](https://devcenter.heroku.com/articles/heroku-postgresql#local-setup)数据库，并运行`psql -h localhost`检查安装情况。
 
 ## 安装
 
@@ -75,6 +76,35 @@ $ rails s
 密码：`password`
 
 账号中数字都可以替换成2,3...等等
+
+
+## 云部署
+
+项目可直接在Heroku上免费部署
+
+1.fork此项目到自己Github账号下
+2.创建Heroku账号以及Heroku app
+3.将Heroku app与自己Github下的fork的项目进行连接
+4.下载配置[Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)命令行工具
+5. 运行`heroku login`在终端登陆，检查与heroku app的远程连接情况`git config --list | grep heroku`，若未检查到相应的app，请看[这里]()
+
+
+## 测试
+
+本项目包含了部分的测试（integration/fixture/model test），测试文件位于/test目录下。运行测试：
+
+```
+PENG-MacBook-Pro:IMS_sample PENG-mac$ rake test
+Run options: --seed 15794
+
+# Running:
+.........
+
+Finished in 1.202169s, 7.4865 runs/s, 16.6366 assertions/s.
+
+9 runs, 20 assertions, 0 failures, 0 errors, 0 skips
+```
+
 
 ## How to Contribute
 
