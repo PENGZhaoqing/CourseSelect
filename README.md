@@ -11,7 +11,6 @@
 * 基于OAuth的授权登陆
 * Excel格式的数据导入
 
-
 ### 目前功能：
 
 * 多角色登陆（学生，老师，管理员）
@@ -19,6 +18,13 @@
 * 老师动态增加，删除课程
 * 老师对课程下的学生添加、修改成绩
 * 权限控制：老师和学生只能看到自己相关课程信息
+
+### 截图
+
+![Alt text](/lib/screenshot1.png?raw=true "主页")
+![Alt text](/lib/screenshot2.png?raw=true "登陆界面")
+![Alt text](/lib/screenshot3.png?raw=true "控制面板－Rails_admin")
+![Alt text](/lib/screenshot4.png?raw=true "我的课程")
 
 
 ## 说明
