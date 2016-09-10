@@ -3,6 +3,9 @@ language: ruby
 rvm:
   - 2.2
 
+env:
+  - DB=pgsql
+
 services:
   - postgresql
 
