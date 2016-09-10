@@ -1,0 +1,9 @@
+language: ruby
+ruby:
+  - 2.2.4
+env:
+  -DB=sqlite
+script:
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare
+  - bundle exec rake
