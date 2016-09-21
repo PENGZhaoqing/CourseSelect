@@ -1,0 +1,15 @@
+{
+  "name": "CourseSelect",
+  "scripts": {
+  },
+  "env": {
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+
+  ]
+}
