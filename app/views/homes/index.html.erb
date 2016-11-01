@@ -1,39 +1,35 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-8" style="background-color: #18BC9C;padding-bottom: 10px;padding-top: 10px">
-      <div style="font-size: 50px; padding-left: 50px">
-        <%= image_tag "profile.png" %>
-        Learning RoR!
+
+  <div id="myCarousel" class="carousel slide">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <!-- 轮播（Carousel）项目 -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <%= link_to detail_course_path(@course1) do %>
+        <%= image_tag "profile.png" %><% end %>
       </div>
-
+      <div class="item">
+        <img src="/wp-content/uploads/2014/07/slide2.png" alt="Second slide">
+      </div>
+      <div class="item">
+        <img src="/wp-content/uploads/2014/07/slide3.png" alt="Third slide">
+      </div>
     </div>
-
-    <div class="col-md-4">
-      <h1>在线选课系统样本</h1>
-      <p>这个样本系统是基于国科大研究生课程(高级软件工程)开发的项目,目的是帮助入门者学习RoR(Ruby on Rails),这是适合新学者的入手的第一个项目</p>
-      <p>入门者可以在这个样本系统上增加更多的功能:</p>
-      <ul>
-
-        <li class="text-danger">
-          处理选课冲突、控制选课人数
-        </li>
-        <li class="text-danger">
-          统计选课学分,增加选课的开放、关闭功能
-        </li>
-        <li class="text-danger">
-          自定义管理员后台
-        </li>
-        <li class="text-danger">
-          基于OAuth的授权登陆
-        </li>
-        <li class="text-danger">
-          Excel格式的数据导入
-        </li>
-      </ul>
-
-    </div>
-
+    <!-- 轮播（Carousel）导航 -->
+    <a class="carousel-control left" href="#myCarousel"
+       data-slide="prev">&lsaquo;
+    </a>
+    <a class="carousel-control right" href="#myCarousel"
+       data-slide="next">&rsaquo;
+    </a>
   </div>
+
+
+
 
   <hr>
 
