@@ -32,7 +32,7 @@
                 <tr>
 
                   <td><%= course.course_code %></td>
-                  <td><%= course.name %></td>
+                  <td><%= link_to course.name, detail_course_path(course), class: 'btn-sm' %></td>
                   <td><%= course.credit %></td>
                   <td><%= course.limit_num %></td>
                   <td><%= course.student_num %></td>

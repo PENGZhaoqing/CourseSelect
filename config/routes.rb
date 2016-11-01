@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     member do
       get :select
       get :quit
+      get :detail
     end
     collection do
       get :list

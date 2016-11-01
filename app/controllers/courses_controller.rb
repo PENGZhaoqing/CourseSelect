@@ -2,7 +2,8 @@ class CoursesController < ApplicationController
 
   before_action :student_logged_in, only: [:select, :quit, :list]
   before_action :teacher_logged_in, only: [:new, :create, :edit, :destroy, :update]
-  before_action :logged_in, only: :index
+  before_action :logged_in, only: [:index]
+
 
   #-------------------------for teachers----------------------
 
@@ -73,6 +74,11 @@ class CoursesController < ApplicationController
   end
 
 
+  def detail
+    @course=Course.find_by_id(params[:id])
+  end
+
+
   private
 
   # Confirms a student logged-in user.
@@ -96,10 +102,12 @@ class CoursesController < ApplicationController
     end
   end
 
+
   def course_params
     params.require(:course).permit(:course_code, :name, :course_type, :teaching_type, :exam_type,
                                    :credit, :limit_num, :class_room, :course_time, :course_week)
   end
+
 
 
 end
