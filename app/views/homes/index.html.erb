@@ -13,10 +13,12 @@
         <%= image_tag "profile.png" %><% end %>
       </div>
       <div class="item">
-        <img src="/wp-content/uploads/2014/07/slide2.png" alt="Second slide">
+        <%= link_to detail_course_path(@course1) do %>
+            <%= image_tag "profile.png" %><% end %>
       </div>
       <div class="item">
-        <img src="/wp-content/uploads/2014/07/slide3.png" alt="Third slide">
+        <%= link_to detail_course_path(@course1) do %>
+            <%= image_tag "profile.png" %><% end %>
       </div>
     </div>
     <!-- 轮播（Carousel）导航 -->
@@ -50,6 +52,9 @@
             <th>授课方式</th>
             <th>考试方式</th>
             <th>主讲教师</th>
+            <th>time</th>
+            <th>week</th>
+            <th>room</th>
 
           </tr>
           </thead>
@@ -67,6 +72,9 @@
                 <td><%= course.teaching_type %></td>
                 <td><%= course.exam_type %></td>
                 <td><%= course.teacher.name %></td>
+                <td><%= course.course_time %></td>
+                <td><%= course.course_week %></td>
+                <td><%= course.class_room %></td>
 
               </tr>
           <% end %>

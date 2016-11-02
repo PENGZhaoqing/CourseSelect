@@ -77,7 +77,7 @@
       <div class="col-sm-9">
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
-          <%= f.text_field :course_week, class: 'form-control', placeholder: "输入课时学分" %>
+          <%= f.text_field :course_week, class: 'form-control', placeholder: "输入上课周数" %>
         </div>
       </div>
     </div>
@@ -87,12 +87,26 @@
       <div class="col-sm-9">
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
-          <%= f.text_field :course_time, class: 'form-control', placeholder: "输入课时学分" %>
+          <%= f.text_field :course_time, class: 'form-control', placeholder: "输入上课时间" %>
         </div>
       </div>
     </div>
+
+    <div class="form-group">
+      <%= f.label "课程介绍", class: 'col-sm-3 control-label' %>
+      <div class="col-sm-9">
+        <div class="input-group">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
+          <%= f.text_field :course_introduction, class: 'form-control', placeholder: "输入上课时间" %>
+        </div>
+      </div>
+    </div>
+
+
 
     <%= f.submit '提交', class: "btn btn-success btn-block" %>
     <%= link_to '取消', courses_path, :class => "btn btn-default btn-block" %>
 
 <% end %>
+
+
