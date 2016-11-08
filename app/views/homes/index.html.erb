@@ -10,7 +10,7 @@
     <div class="carousel-inner">
       <div class="item active">
         <%= link_to detail_course_path(@course1) do %>
-        <%= image_tag "profile.png" %><% end %>
+        <%= image_tag image_tag @course1.avatar.to_s %><% end %>
       </div>
       <div class="item">
         <%= link_to detail_course_path(@course1) do %>
@@ -29,7 +29,6 @@
        data-slide="next">&rsaquo;
     </a>
   </div>
-
 
 
 

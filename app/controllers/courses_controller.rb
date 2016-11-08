@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
 
+
   before_action :student_logged_in, only: [:select, :quit, :list]
   before_action :teacher_logged_in, only: [:new, :create, :edit, :destroy, :update]
   before_action :logged_in, only: [:index]
@@ -104,7 +105,7 @@ class CoursesController < ApplicationController
 
 
   def course_params
-    params.require(:course).permit(:course_code, :name, :course_type, :teaching_type, :exam_type,
+    params.require(:course).permit(:course_code, :avatar, :name, :course_type, :teaching_type, :exam_type,
                                    :credit, :limit_num, :class_room, :course_time, :course_week, :course_introduction)
   end
 
