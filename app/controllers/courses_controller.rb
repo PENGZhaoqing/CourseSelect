@@ -53,7 +53,7 @@ class CoursesController < ApplicationController
   def select
     @course=Course.find_by_id(params[:id])
     current_user.courses<<@course
-    flash={:success => "成功选择课程: #{@course.name}"}
+    flash={:suceess => "成功选择课程: #{@course.name}"}
     redirect_to courses_path, flash: flash
   end
 

@@ -9,6 +9,7 @@
       <ul class="nav navbar-nav">
 
         <li class=<%= "active" if params[:controller]=="homes" %>> <%= link_to "主页", root_path %></li>
+
         <% if student_logged_in? %>
             <li class=<%= "active" if params[:controller]=="courses" %>> <%= link_to "我的课程", courses_path %></li>
         <% elsif teacher_logged_in? %>
