@@ -88,7 +88,7 @@ teacher_map={
 }
 
 course_map={
-    1 => {course_code: "091M4001H", name: "计算机体系结构", course_type: "专业核心课", credit: "60/3.0", limit_num: "", course_week: "第2-20周", course_time: "周一(9-11)", class_room: "教1-107", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试"},
+    1 => {course_code: "091M4001H", name: "计算机体系结构", course_type: "专业核心课", credit: "60/3.0", limit_num: "2", course_week: "第2-20周", course_time: "周一(9-11)", class_room: "教1-107", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试"},
     2 => {course_code: "091M4002H", name: "计算机网络", course_type: "专业核心课", credit: "60/3.0", limit_num: "", course_week: "第2-20周	", course_time: "周五(2-4)", class_room: "教1-107", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试"},
     3 => {course_code: "091M4021H-1", name: "高级软件工程", course_type: "一级学科核心课", credit: "60/3.0", limit_num: "", course_week: "第2-20周	", course_time: "周四(9-11)", class_room: "教1-109", teaching_type: "授课、讨论	", exam_type: "闭卷笔试"},
     4 => {course_code: "091M4021H-2", name: "高级软件工程", course_type: "一级学科核心课", credit: "60/3.0", limit_num: "", course_week: "第2-20周	", course_time: "周三(9-11)", class_room: "教1-109", teaching_type: "授课、讨论	", exam_type: "闭卷笔试"},
