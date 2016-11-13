@@ -22,6 +22,8 @@ Rails.application.routes.draw do
       get :select
       get :quit
       get :detail
+      get :open
+      get :close
     end
     collection do
       get :list

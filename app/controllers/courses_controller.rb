@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
 
 
   before_action :student_logged_in, only: [:select, :quit, :list]
-  before_action :teacher_logged_in, only: [:new, :create, :edit, :destroy, :update]
+  before_action :teacher_logged_in, only: [:new, :create, :edit, :destroy, :update, :open, :close]
   before_action :logged_in, only: [:index]
 
 
@@ -45,11 +45,24 @@ class CoursesController < ApplicationController
     redirect_to courses_path, flash: flash
   end
 
+  def open
+    @course=Course.find_by_id(params[:id])
+    @course.update_attributes(open:true)
+    redirect_to courses_path, flash: {:success => "已经成功开启该课程:#{ @course.name}"}
+  end
+
+  def close
+    @course=Course.find_by_id(params[:id])
+    @course.update_attributes(open:false)
+    redirect_to courses_path, flash: {:success => "已经成功关闭该课程:#{ @course.name}"}
+  end
+
   #-------------------------for students----------------------
 
   def list
     @course=Course.all
-    @course=@course-current_user.courses
+    @course_open=Course.where("open = ?", true)
+    @course_open=@course_open-current_user.courses
   end
 
   def select
