@@ -9,7 +9,7 @@
       <div class="item active" %>
         <%= link_to detail_course_path(@course_play.find(1)) do %>
             <%= image_tag(@course_play.find(1).avatar_url(:thumb)) if !@course_play.find(1).avatar.blank? %>
-            <%= image_tag(@course_play.find(1).avatar) if @course_play.find(1).avatar.blank? %>
+            <%= image_tag "fallback/default.jpg" if @course_play.find(1).avatar.blank? %>
             <div class="carousel-caption"><%= @course_play.find(1).name %></div>
         <% end %>
       </div>
