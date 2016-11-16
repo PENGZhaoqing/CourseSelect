@@ -19,7 +19,7 @@
               <% @course.select(:credit).distinct.each do |ct| %>
                   <option value=<%= ct.credit %>><%= ct.credit %></option>
               <% end %>
-            </select>git
+            </select>
 
             <select name="course_type" id="course_type">
               <option value="">所有课程属性</option>
