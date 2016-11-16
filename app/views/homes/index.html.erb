@@ -8,24 +8,25 @@
     </ol>
     <!-- 轮播（Carousel）项目 -->
     <div class="carousel-inner">
+
       <div class="item active" >
-        <%= link_to detail_course_path(@course1) do %>
-            <%= image_tag(@course1.avatar_url(:thumb)) %>
-        <div class="carousel-caption"><%= @course1.name %></div>
+        <%= link_to detail_course_path(@course_play.find(1)) do %>
+            <%= image_tag(@course_play.find(1).avatar_url(:thumb)) if !@course_play.find(1).avatar.blank? %>
+            <%= image_tag(@course_play.find(1).avatar) if @course_play.find(1).avatar.blank? %>
+            <div class="carousel-caption"><%= @course_play.find(1).name %></div>
         <% end %>
       </div>
-      <div class="item">
-        <%= link_to detail_course_path(@course1) do %>
-            <%= image_tag(@course1.avatar_url(:thumb)) %>
-            <div class="carousel-caption"><%= @course1.name %></div>
-        <% end %>
-      </div>
-      <div class="item">
-        <%= link_to detail_course_path(@course1) do %>
-            <%= image_tag(@course1.avatar_url(:thumb)) %>
-            <div class="carousel-caption"><%= @course1.name %></div>
-        <% end %>
-      </div>
+
+      <% @course_play.find(2,3).each do |play| %>
+          <div class="item" >
+            <%= link_to detail_course_path(play) do %>
+                <%= image_tag(play.avatar_url(:thumb)) if !play.avatar.blank? %>
+                <%= image_tag "fallback/default.jpg" if play.avatar.blank? %>
+                <div class="carousel-caption"><%= play.name %></div>
+            <% end %>
+          </div>
+      <% end %>
+
     </div>
     <!-- 轮播（Carousel）导航 -->
     <a class="carousel-control left" href="#myCarousel"
@@ -39,6 +40,10 @@
 
 
   <hr>
+
+
+
+
 
   <div class="col-sm-12">
     <div class="panel panel-primary">

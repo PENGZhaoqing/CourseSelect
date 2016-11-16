@@ -2,7 +2,7 @@ class HomesController < ApplicationController
 
   def index
     @course=Course.all
-    @course1=Course.find_by_id(1)
+    @course_play=Course.order(:student_num).limit(3)
 
   end
 
