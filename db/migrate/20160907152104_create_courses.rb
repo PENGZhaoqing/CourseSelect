@@ -15,6 +15,7 @@ class CreateCourses < ActiveRecord::Migration
       t.string :course_week
       t.belongs_to :teacher
 
+
       t.timestamps null: false
     end
   end
