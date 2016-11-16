@@ -41,7 +41,7 @@
                   <option value=<%= ct.exam_type %>><%= ct.exam_type %></option>
               <% end %>
             </select>
-            <%= submit_tag("Search") %>
+            <%= submit_tag("Search" ,class:"btn btn-md btn-primary") %>
 
         <% end %>
 
@@ -76,9 +76,13 @@
                   <td><%= course.teaching_type %></td>
                   <td><%= course.exam_type %></td>
                   <td><%= course.teacher.name %></td>
-                  <td><%= link_to "加入课程", select_course_path(course), class: 'btn-sm btn-info' %></td>
+                      <td>
+                        <%= link_to select_course_path(course) do %>
+                            <button type="button" class="btn btn-sm btn-primary" >加入课程</button>
+                        <% end %>
+                      </td>
 
-                </tr>
+                      </tr>
             <% end %>
             <% @course_close.each do |course| %>
                 <tr>
