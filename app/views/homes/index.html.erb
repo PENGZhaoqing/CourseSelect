@@ -1,6 +1,4 @@
-<div class="container">
-
-  <div id="myCarousel" class="carousel slide">
+<div id="myCarousel" class="carousel slide">
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -8,8 +6,7 @@
     </ol>
     <!-- 轮播（Carousel）项目 -->
     <div class="carousel-inner">
-
-      <div class="item active" >
+      <div class="item active" %>
         <%= link_to detail_course_path(@course_play.find(1)) do %>
             <%= image_tag(@course_play.find(1).avatar_url(:thumb)) if !@course_play.find(1).avatar.blank? %>
             <%= image_tag(@course_play.find(1).avatar) if @course_play.find(1).avatar.blank? %>
@@ -44,9 +41,12 @@
 
 
 
+  <div class="container">
+
+
 
   <div class="col-sm-12">
-    <div class="panel panel-primary">
+    <div class="panel">
 
       <div class="panel-body" style="min-height: 450px">
         <table class="table table-striped table-hover">
@@ -93,5 +93,4 @@
       </div>
     </div>
   </div>
-</div>
 </div>
