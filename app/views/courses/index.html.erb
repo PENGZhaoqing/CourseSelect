@@ -33,9 +33,14 @@
                   <td><%= course.credit %></td>
                   <td><%= course.exam_type %></td>
                   <td><%= course.teacher.name %></td>
-
+        
                   <% if teacher_logged_in? %>
                       <td><%= link_to "编辑", edit_course_url(course), class: 'btn btn-xs btn-info' %></td>
+                      <% if course.open %>
+                        <td><%= link_to "关闭", close_course_path(course),  class: 'btn btn-xs btn-danger', :data => {confirm: '确定要关闭此课程?'} %></td>
+                      <% else %>
+                        <td><%= link_to "开放", open_course_path(course),  class: 'btn btn-xs btn-info' %></td>
+                      <% end %>
                       <td><%= link_to "删除", course_path(course), :method => "delete", class: 'btn btn-xs btn-danger', :data => {confirm: '确定要删除此课程?'} %></td>
                   <% elsif student_logged_in? %>
                       <td><%= link_to "删除", quit_course_path(course), class: 'btn-sm btn-danger' %></td>

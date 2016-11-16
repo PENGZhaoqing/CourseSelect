@@ -38,7 +38,11 @@
             <li class="list-group-item">
               <%= link_to list_courses_path do %>
                   <span class="glyphicon glyphicon-chevron-right"></span> 选修课程
-                  <span class="label label-info pull-right"><%= (Course.all-current_user.courses).length %></span>
+                  <% if @course_true.nil? == false %>
+                    <span class="label label-info pull-right"><%= (@course_true).length.to_s+'/'+(Course.all-current_user.courses).length.to_s %></span>
+                  <% else %>
+                    <span class="label label-info pull-right"><%= 0 %></span>
+                  <% end %>
               <% end %>
             </li>
             <li class="list-group-item">
