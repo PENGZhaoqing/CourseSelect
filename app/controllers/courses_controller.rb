@@ -43,10 +43,24 @@ class CoursesController < ApplicationController
     redirect_to courses_path, flash: flash
   end
 
+  def open
+    @course=Course.find_by_id(params[:id])
+    @course.update_attribute(:open,true)
+    redirect_to courses_path, flash: {:success => "已经成功开启该课程:#{ @course.name}"}
+  end
+
+  def close
+    @course=Course.find_by_id(params[:id])
+    @course.update_attribute(:open,false)
+    redirect_to courses_path, flash: {:success => "已经成功关闭该课程:#{ @course.name}"}
+  end
+
+
   #-------------------------for students----------------------
 
   def list
     @course=Course.all
+    @course=@course.where(open:true).all
     @course=@course-current_user.courses
   end
 
@@ -63,7 +77,6 @@ class CoursesController < ApplicationController
     flash={:success => "成功退选课程: #{@course.name}"}
     redirect_to courses_path, flash: flash
   end
-
 
   #-------------------------for both teachers and students----------------------
 
