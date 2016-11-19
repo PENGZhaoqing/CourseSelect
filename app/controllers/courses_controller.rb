@@ -92,6 +92,45 @@ class CoursesController < ApplicationController
     @course=Course.find_by_id(params[:id])
   end
 
+<<<<<<< Updated upstream
+=======
+  def search
+    temp="%"+params[:name]+"%"
+    @theparams=Course.find_by_id(1)
+    @course=Course.all
+    @course_open=Course.where("name like ? AND open =?", temp ,true)
+    @course_close=Course.where("name like ? AND open =?", temp ,false)
+
+    if params[:teaching_type]!=""
+        @course_open=@course_open.where("teaching_type =?", params[:teaching_type])
+        @course_close=@course_close.where("teaching_type =?", params[:teaching_type])
+    end
+    if params[:course_type]!=""
+      @course_open=@course_open.where("course_type =?", params[:course_type])
+      @course_close=@course_close.where("course_type =?", params[:course_type])
+    end
+    if params[:credit]!=""
+      @course_open=@course_open.where("credit =?", params[:credit])
+      @course_close=@course_close.where("credit =?", params[:credit])
+    end
+    if params[:exam_type]!=""
+      @course_open=@course_open.where("exam_type =?", params[:exam_type])
+      @course_close=@course_close.where("exam_type =?", params[:exam_type])
+    end
+    @course_open=@course_open-current_user.courses
+    @course_close=@course_close-current_user.courses
+    @theparams=params
+    render 'list'
+  end
+
+  def refresh_search
+    @course=Course.all
+    @course_open=Course.where("open = ?", true)-current_user.courses
+    @course_close=@course-@course_open
+    @theparams=params
+    render 'list'
+  end
+>>>>>>> Stashed changes
 
   private
 
