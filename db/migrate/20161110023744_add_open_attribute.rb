@@ -4,3 +4,4 @@ class AddOpenAttribute < ActiveRecord::Migration
     change_column_default :courses, :open, from: true, to: false
   end
 end
+ 
