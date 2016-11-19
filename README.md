@@ -2,7 +2,7 @@
 
 ##([本组的heroku展示地址](https://courseselectofstormand.herokuapp.com/))
 目前完成修改：
-* 首页显示所有的课程，与其相关属性。
+* 首页显示所有的课程，与其相关属性。aaa
 
 
 ### [中文教程1](http://blog.csdn.net/ppp8300885/article/details/52594839) [中文教程2](http://blog.csdn.net/ppp8300885/article/details/52601560) [中文教程3](http://blog.csdn.net/ppp8300885/article/details/52669749)
