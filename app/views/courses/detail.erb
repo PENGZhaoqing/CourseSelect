@@ -15,8 +15,9 @@
         </div>
         <div class="panel-body">
           <%= @course.course_introduction %>
-          <%= image_tag @course.avatar, {width: "1000", height: "228"} %>
-          <%= image_tag(@course.avatar_url(:thumb)) if @course.avatar %>
+          <%= image_tag(@course.avatar_url(:thumb)) if !@course.avatar.blank? %>
+          <%= image_tag "fallback/default.jpg" if @course.avatar.blank? %>
+          <%= @course.avatar %>
         </div>
       </div>
     </div>

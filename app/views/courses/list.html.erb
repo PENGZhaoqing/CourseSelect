@@ -9,6 +9,45 @@
         <div class="panel-heading">
           <h3 class="panel-title">选修课程</h3>
         </div>
+        <br>
+        <%= form_tag("/courses/search", method: "get") do %>
+            <%= link_to '', refresh_search_courses_path, :class => "btn btn-md  glyphicon glyphicon-refresh" %>
+            <%= text_field_tag(:name, @theparams[:name] ) %>
+            <select name="credit" id="credit">
+              <option value="">所有课时学分</option>
+              <% @course.select(:credit).distinct.each do |ct| %>
+
+                  <option value=<%= ct.credit %> <%= selected="selected" if @theparams[:credit]==ct.credit %>><%= ct.credit %></option>
+              <% end %>
+            </select>
+
+            <select name="course_type" id="course_type">
+              <option value="">所有课程属性</option>
+              <% @course.select(:course_type).distinct.each do |ct| %>
+                  <option value=<%= ct.course_type %> <%= selected="selected" if @theparams[:course_type]==ct.course_type %>><%= ct.course_type %></option>
+              <% end %>
+            </select>
+
+            <select name="teaching_type" id="teaching_type">
+              <option value="">所有授课方式</option>
+              <% @course.select(:teaching_type).distinct.each do |ct| %>
+              <option value=<%= ct.teaching_type %> <%= selected="selected" if @theparams[:teaching_type]==ct.teaching_type %>><%= ct.teaching_type %></option>
+              <% end %>
+            </select>
+
+            <select name="exam_type" id="exam_type">
+              <option value="">所有考试方式</option>
+              <% @course.select(:exam_type).distinct.each do |ct| %>
+                  <option value=<%= ct.exam_type %> <%= selected="selected" if @theparams[:exam_type]==ct.exam_type %>><%= ct.exam_type %></option>
+              <% end %>
+            </select>
+
+            <%= submit_tag("Search" ,class:"btn btn-md btn-primary") %>
+
+
+        <% end %>
+
+
         <div class="panel-body" style="min-height: 450px">
           <table class="table table-striped table-hover">
             <thead>
@@ -40,7 +79,29 @@
                   <td><%= course.teaching_type %></td>
                   <td><%= course.exam_type %></td>
                   <td><%= course.teacher.name %></td>
-                  <td><%= link_to "加入课程", select_course_path(course), class: 'btn-sm btn-info' %></td>
+                      <td>
+                        <%= link_to select_course_path(course) do %>
+                            <button type="button" class="btn btn-sm btn-primary" >加入课程</button>
+                        <% end %>
+                      </td>
+
+                      </tr>
+            <% end %>
+            <% @course_close.each do |course| %>
+                <tr>
+
+                  <td><%= course.course_code %></td>
+                  <td><%= link_to course.name, detail_course_path(course), class: 'btn-sm' %></td>
+                  <td><%= course.credit %></td>
+                  <td><%= course.limit_num %></td>
+                  <td><%= course.student_num %></td>
+                  <td><%= course.course_type %></td>
+                  <td><%= course.teaching_type %></td>
+                  <td><%= course.exam_type %></td>
+                  <td><%= course.teacher.name %></td>
+                  <td>   <button type="button" class="btn btn-sm btn-default" disabled="disabled">
+                    加入课程
+                  </button></td>
 
                 </tr>
             <% end %>
