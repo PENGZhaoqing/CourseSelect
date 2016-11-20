@@ -20,7 +20,17 @@
               <th>课程编号</th>
               <th>课程名称</th>
               <th>课时/学分</th>
+              
+              <% if teacher_logged_in? %>
+                <th>限选</th>
+              <% end %>
+              
+              <th>已选</th>
+              <th>课程属性</th>
+              <th>授课方式</th>
               <th>考试方式</th>
+              <th>上课周数</th>
+              <th>上课时间</th>
               <th>主讲教师</th>
             </tr>
 
@@ -31,9 +41,19 @@
                   <td><%= course.course_code %></td>
                   <td><%= course.name %></td>
                   <td><%= course.credit %></td>
+                  
+                   <% if teacher_logged_in? %>
+                    <td><%= course.limit_num %></td>
+                  <% end %>
+                
+                  <td><%= course.student_num %></td>
+                  <td><%= course.course_type %></td>
+                  <td><%= course.teaching_type %></td>
                   <td><%= course.exam_type %></td>
+                  <td><%= course.course_week %></td>
+                  <td><%= course.course_time %></td>
                   <td><%= course.teacher.name %></td>
-        
+
                   <% if teacher_logged_in? %>
                       <td><%= link_to "编辑", edit_course_url(course), class: 'btn btn-xs btn-info' %></td>
                       <% if course.open %>
