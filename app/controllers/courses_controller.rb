@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
 
   before_action :student_logged_in, only: [:select, :quit, :list]
-  before_action :teacher_logged_in, only: [:new, :create, :edit, :destroy, :update]
+  before_action :teacher_logged_in, only: [:new, :create, :edit, :destroy, :update, :open, :close]#add open by qiao
   before_action :logged_in, only: :index
 
   #-------------------------for teachers----------------------
@@ -43,10 +43,33 @@ class CoursesController < ApplicationController
     redirect_to courses_path, flash: flash
   end
 
+    #-------QiaoCode--------
+  public
+  def open
+    @course = Course.find_by_id(params[:id])
+    if @course.update_attributes(:open=>true)
+      flash={:info => "开通成功"}
+    else
+      flash={:warning => "开通失败"}
+    end
+    redirect_to courses_path, flash: {:success => "已经成功开启该课程:#{ @course.name}"}
+  end
+
+  def close
+   @course = Course.find_by_id(params[:id])
+    if @course.update_attributes(:open=>false)
+      flash={:info => "关闭成功"}
+    else
+      flash={:warning => "关闭失败"}
+    end
+    redirect_to courses_path, flash: {:success => "已经成功关闭该课程:#{ @course.name}"}
+  end
+
   #-------------------------for students----------------------
 
   def list
-    @course=Course.all
+    #-------QiaoCode--------
+    @course=Course.where(:open=>true)
     @course=@course-current_user.courses
   end
 
