@@ -25,7 +25,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
 
   version :thumb do
-    process :resize_to_fill => [1920, 550]
+    process :resize_to_fill => [1910, 550]
   end
 
 
