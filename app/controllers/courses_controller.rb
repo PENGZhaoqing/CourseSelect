@@ -61,9 +61,9 @@ class CoursesController < ApplicationController
 
   def list
     @course=Course.all
-    @course_open=Course.where("open = ?", true)
-    @course_open=@course_open-current_user.courses
+    @course_open=Course.where("open = ?", true)-current_user.courses
     @course_close=@course-@course_open
+    @theparams=params
   end
 
   def select
@@ -95,6 +95,7 @@ class CoursesController < ApplicationController
 
   def search
     temp="%"+params[:name]+"%"
+    @theparams=Course.find_by_id(1)
     @course=Course.all
     @course_open=Course.where("name like ? AND open =?", temp ,true)
     @course_close=Course.where("name like ? AND open =?", temp ,false)
@@ -117,9 +118,17 @@ class CoursesController < ApplicationController
     end
     @course_open=@course_open-current_user.courses
     @course_close=@course_close-current_user.courses
+    @theparams=params
     render 'list'
   end
 
+  def refresh_search
+    @course=Course.all
+    @course_open=Course.where("open = ?", true)-current_user.courses
+    @course_close=@course-@course_open
+    @theparams=params
+    render 'list'
+  end
 
   private
 

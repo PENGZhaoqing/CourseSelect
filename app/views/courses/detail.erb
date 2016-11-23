@@ -7,17 +7,58 @@
       <%= render "shared/sidenav" %>
     </div>
     <% end %>
-
-    <div class="col-md-offset-3 col-sm-6">
+    <% if logged_in? %>
+    <div class="col-md-offset-1 col-sm-6" >
+    <%	else %>
+    <div class="col-md-offset-3 col-sm-6" >
+    <% end %>
       <div class="panel panel-success">
-        <div class="panel-heading">
-          <h3 class="text-center">课程: <%= @course.name %></h3>
-        </div>
         <div class="panel-body">
-          <%= @course.course_introduction %>
-          <%= image_tag(@course.avatar_url(:thumb)) if !@course.avatar.blank? %>
-          <%= image_tag "fallback/default.jpg" if @course.avatar.blank? %>
-          <%= @course.avatar %>
+          <h1><%= @course.name %></h1>
+            <%= image_tag(@course.avatar_url, class: "img-responsive" ) if !@course.avatar.blank? %>
+            <%= image_tag "fallback/default_original.jpg" , class: "img-responsive" if @course.avatar.blank? %>
+
+          <h4>课程介绍：</h4>
+          <p><%=@course.course_introduction if !@course.course_introduction.blank? %><%="暂无课程介绍" if @course.course_introduction.blank? %></p>
+
+          <div class="row">
+            <div class="col-sm-3">
+              <h4>课程属性</h4>
+              <p><%=@course.course_type %></p>
+            </div>
+            <div class="col-sm-3">
+              <h4>授课方式</h4>
+              <p><%=@course.teaching_type %></p>
+            </div>
+            <div class="col-sm-3">
+              <h4>考试方式</h4>
+              <p><%=@course.exam_type %></p>
+            </div>
+            <div class="col-sm-3">
+              <h4>主讲教师</h4>
+              <p><%=@course.teacher.name %></p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-3">
+              <h4>限选/已选</h4>
+              <p><%=@course.limit_num if !@course.limit_num.blank? %> <%="无限选" if @course.limit_num.blank? %>/<%=@course.student_num %></p>
+            </div>
+            <div class="col-sm-3">
+              <h4>课时/学分</h4>
+              <p><%=@course.credit %></p>
+            </div>
+            <div class="col-sm-3">
+              <h4>时间/周数</h4>
+              <p><%=@course.course_time %>/<%=@course.course_week %></p>
+            </div>
+            <div class="col-sm-3">
+              <h4>上课教室</h4>
+              <p><%=@course.class_room %></p>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

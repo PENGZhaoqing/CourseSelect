@@ -6,18 +6,18 @@
     </ol>
     <!-- 轮播（Carousel）项目 -->
     <div class="carousel-inner">
-      <div class="item active" %>
-        <%= link_to detail_course_path(@course_play.find(1)) do %>
-            <%= image_tag(@course_play.find(1).avatar_url(:thumb)) if !@course_play.find(1).avatar.blank? %>
-            <%= image_tag "fallback/default.jpg" if @course_play.find(1).avatar.blank? %>
-            <div class="carousel-caption"><%= @course_play.find(1).name %></div>
+      <div class="item active">
+        <%= link_to detail_course_path(@course_play_first) do %>
+            <%= image_tag @course_play_first.avatar_url(:thumb) if !@course_play_first.avatar.blank? %>
+            <%= image_tag "fallback/default.jpg" if @course_play_first.avatar.blank? %>
+            <div class="carousel-caption"><%= @course_play_first.name %></div>
         <% end %>
       </div>
 
-      <% @course_play.find(2,3).each do |play| %>
+      <% @course_play.each do |play| %>
           <div class="item" >
             <%= link_to detail_course_path(play) do %>
-                <%= image_tag(play.avatar_url(:thumb)) if !play.avatar.blank? %>
+                <%= image_tag play.avatar_url(:thumb) if !play.avatar.blank? %>
                 <%= image_tag "fallback/default.jpg" if play.avatar.blank? %>
                 <div class="carousel-caption"><%= play.name %></div>
             <% end %>
@@ -56,15 +56,11 @@
             <th>课程编号</th>
             <th>课程名称</th>
             <th>课时/学分</th>
-            <th>限选</th>
-            <th>已选</th>
             <th>课程属性</th>
             <th>授课方式</th>
             <th>考试方式</th>
             <th>主讲教师</th>
-            <th>time</th>
-            <th>week</th>
-            <th>room</th>
+
 
           </tr>
           </thead>
@@ -76,15 +72,10 @@
                 <td><%= course.course_code %></td>
                 <td><%= link_to course.name, detail_course_path(course), class: 'btn-sm' %></td>
                 <td><%= course.credit %></td>
-                <td><%= course.limit_num %></td>
-                <td><%= course.student_num %></td>
                 <td><%= course.course_type %></td>
                 <td><%= course.teaching_type %></td>
                 <td><%= course.exam_type %></td>
                 <td><%= course.teacher.name %></td>
-                <td><%= course.course_time %></td>
-                <td><%= course.course_week %></td>
-                <td><%= course.class_room %></td>
 
               </tr>
           <% end %>
