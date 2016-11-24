@@ -34,6 +34,7 @@
               <tr>
                 <th>学号</th>
                 <th>名字</th>
+                <th>邮箱</th>
                 <th>专业</th>
                 <th>培养单位</th>
                 <th>课程</th>
@@ -50,6 +51,7 @@
                   <% if student_logged_in? %>
                     <td><%= grade.course.course_code %></td>
                     <td><%= grade.course.name %></td>
+                    <td><%= grade.user.email %></td>
                     <td><%= grade.course.credit %></td>
                     <td><%= grade.course.teaching_type %></td>
                     <td><%= grade.course.course_type %></td>
