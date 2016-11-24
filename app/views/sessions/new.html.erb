@@ -1,11 +1,25 @@
-<div class="row">
+<div class="bubbles">
+  <ul class="bg-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+  </div>
+<div class="row" style="width:100%;">
+  
   <div class="col-sm-offset-4 col-sm-4">
     <div class="panel panel-success">
       <div class="panel-heading">
         <h4><span class="glyphicon glyphicon-lock"></span> 登录</h4>
       </div>
       <div class="panel-body">
-
         <%= form_for(:session, url: sessions_login_path, method: :post, html: {role: 'form'}) do |f| %>
             <div class="form-group">
               <%= f.label :email, "账号密码登陆" %>

@@ -42,12 +42,32 @@ class CoursesController < ApplicationController
     flash={:success => "成功删除课程: #{@course.name}"}
     redirect_to courses_path, flash: flash
   end
+  
+  def open
+    @course = Course.find_by_id(params[:id])
+    @course.update_attributes(:open=>true)
+    redirect_to courses_path, flash: {:success => "已经成功开放该课程:#{ @course.name}"}
+  end
+
+  def close
+    @course = Course.find_by_id(params[:id])
+    @course.update_attributes(:open=>false)
+    redirect_to courses_path, flash: {:success => "已经成功关闭该课程:#{ @course.name}"}
+  end
 
   #-------------------------for students----------------------
+
+
 
   def list
     @course=Course.all
     @course=@course-current_user.courses
+    @course_true = Array.new
+    @course.each do |single|
+      if single.open then
+        @course_true.push single
+      end
+    end
   end
 
   def select
@@ -70,6 +90,15 @@ class CoursesController < ApplicationController
   def index
     @course=current_user.teaching_courses if teacher_logged_in?
     @course=current_user.courses if student_logged_in?
+    
+    @course_all=Course.all
+    @course_all=@course_all-@course
+    @course_true = Array.new
+    @course_all.each do |single|
+      if single.open then
+        @course_true.push single
+      end
+    end
   end
 
 
