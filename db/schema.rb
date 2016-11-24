@@ -29,9 +29,9 @@ ActiveRecord::Schema.define(version: 20161110023744) do
     t.string   "course_time"
     t.string   "course_week"
     t.integer  "teacher_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.boolean  "open"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "open",          default: false
   end
 
   create_table "grades", force: :cascade do |t|
