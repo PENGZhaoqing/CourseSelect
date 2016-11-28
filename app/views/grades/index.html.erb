@@ -26,6 +26,7 @@
                 <th>授课方式</th>
                 <th>考试方式</th>
                 <th>主讲教师</th>
+                <th>主讲教师邮箱</th>
                 <th>目前分数</th>
               </tr>
             <% end %>
@@ -51,18 +52,19 @@
                   <% if student_logged_in? %>
                     <td><%= grade.course.course_code %></td>
                     <td><%= grade.course.name %></td>
-                    <td><%= grade.user.email %></td>
                     <td><%= grade.course.credit %></td>
                     <td><%= grade.course.teaching_type %></td>
                     <td><%= grade.course.course_type %></td>
                     <td><%= grade.course.exam_type %></td>
                     <td><%= grade.course.teacher.name %></td>
+                    <td><%= grade.course.teacher.email %></td>
                     <td><%= grade.grade %></td>
                   <% end %>
 
                   <% if teacher_logged_in? %>
                     <td><%= grade.user.num %></td>
                     <td><%= grade.user.name %></td>
+                    <td><%= grade.user.email %></td>
                     <td><%= grade.user.major %></td>
                     <td><%= grade.user.department %></td>
                     <td><%= grade.course.name %></td>
