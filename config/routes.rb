@@ -21,9 +21,14 @@ Rails.application.routes.draw do
     member do
       get :select
       get :quit
+      get :open    #lixudong:open
+      get :close   #lixudong:close 
     end
+
     collection do
       get :list
+#      get :open    #lixudong:open
+#      get :close   #lixudong:close      
     end
   end
 

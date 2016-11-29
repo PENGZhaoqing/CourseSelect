@@ -12,6 +12,7 @@ class CoursesController < ApplicationController
 
   def create
     @course = Course.new(course_params)
+
     if @course.save
       current_user.teaching_courses<<@course
       redirect_to courses_path, flash: {success: "新课程申请成功"}
@@ -21,12 +22,30 @@ class CoursesController < ApplicationController
     end
   end
 
+
+  def open
+    @course=Course.find_by_id(params[:id])
+    @course.open_close = true
+    @course.save
+    redirect_to courses_path, flash: {:success => "已经成功开启该课程:#{ @course.name}"}
+  end
+  #lixudong:close control
+  def close
+    @course=Course.find_by_id(params[:id])
+    @course.open_close = false
+    @course.save 
+    redirect_to courses_path, flash: {:success => "已经成功关闭该课程:#{ @course.name}"}
+  end
+
+
+
   def edit
     @course=Course.find_by_id(params[:id])
   end
 
   def update
     @course = Course.find_by_id(params[:id])
+
     if @course.update_attributes(course_params)
       flash={:info => "更新成功"}
     else
@@ -43,11 +62,20 @@ class CoursesController < ApplicationController
     redirect_to courses_path, flash: flash
   end
 
+
   #-------------------------for students----------------------
 
   def list
     @course=Course.all
     @course=@course-current_user.courses
+    
+    @course_true=Array.new
+    @course.each do |every_course|
+      if every_course.open_close then
+         @course_true.push every_course
+      end
+    end    
+    
   end
 
   def select
@@ -97,9 +125,8 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:course_code, :name, :course_type, :teaching_type, :exam_type,
-                                   :credit, :limit_num, :class_room, :course_time, :course_week)
+    params.require(:course).permit(:open_close, :course_code, :name, :course_type, :teaching_type, :exam_type,
+                                   :credit, :limit_num, :class_room, :course_time, :course_week, :open_close)
   end
-
 
 end
