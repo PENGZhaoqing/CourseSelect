@@ -23,12 +23,14 @@
               <th>授课方式</th>
               <th>考试方式</th>
               <th>主讲教师</th>
+              <th>        </th>
+              <th>该课程可</th>
 
             </tr>
             </thead>
             <tbody>
 
-            <% @course_true.each do |course| %>
+            <% @course.each do |course| %>
                 <tr>
 
                   <td><%= course.course_code %></td>

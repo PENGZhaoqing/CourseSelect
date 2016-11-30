@@ -22,6 +22,7 @@
               <th>课时/学分</th>
               <th>考试方式</th>
               <th>主讲教师</th>
+
             </tr>
 
             <tbody>
@@ -38,10 +39,10 @@
                       <td><%= link_to "编辑", edit_course_url(course), class: 'btn btn-xs btn-info' %></td>
                       
                       <% if course.open_close then %>
-                        <td><%=link_to "close", close_course_url(course),class: 'btn btn-xs btn-danger' %><td>
+                        <td><%=link_to "关闭", close_course_url(course),class: 'btn btn-xs btn-danger' %><td>
                       <% end %>
                       <% unless course.open_close then %>
-                        <td><%=link_to "open", open_course_url(course),class: 'btn btn-xs btn-info' %><td>
+                        <td><%=link_to "开课", open_course_url(course),class: 'btn btn-xs btn-info' %><td>
                       <% end %>
                       
                       
