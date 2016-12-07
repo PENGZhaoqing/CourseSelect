@@ -1,3 +1,5 @@
 123
 my test
 test again
+
+sudo service postgresql start
