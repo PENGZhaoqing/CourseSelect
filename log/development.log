@@ -30852,3 +30852,114 @@ Cannot render console from 111.200.101.127! Allowed networks: 127.0.0.1, ::1, 12
 
 Started GET "/assets/bootstrap/glyphicons-halflings-regular-fe185d11a49676890d47bb783312a0cda5a44c4039214094e7957b4c040ef11c.woff2" for 111.200.101.127 at 2016-11-20 05:57:01 +0000
 Cannot render console from 111.200.101.127! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/" for 111.200.116.17 at 2016-12-07 00:25:00 +0000
+Cannot render console from 111.200.116.17! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomesController#index as HTML
+  Rendered homes/index.html.erb within layouts/application (623.8ms)
+  Rendered layouts/_header.html.erb (4.5ms)
+  Rendered layouts/_content.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 704ms (Views: 694.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-a84ec59e99430bdcdf50f12defd730d40e168cfdea5e5f677e46cde047316060.css?body=1" for 111.200.116.17 at 2016-12-07 00:25:00 +0000
+Cannot render console from 111.200.116.17! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/home-icon-b10adec3477699d75a4c7041170e07c0e84b0e68dd2d66384388388e446db846.png" for 111.200.116.17 at 2016-12-07 00:25:01 +0000
+Cannot render console from 111.200.116.17! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/bootstrap.self-b38817c3e3a3049abb1fc08dd6ae448b23330f8453226efdb074710209474f75.js?body=1" for 111.200.116.17 at 2016-12-07 00:25:01 +0000
+Cannot render console from 111.200.116.17! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for 111.200.116.17 at 2016-12-07 00:25:01 +0000
+Cannot render console from 111.200.116.17! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/application.self-7862a8a8b42407b4741a1adeeea35f0d13ddc4f702ec532adb0674491d296495.js?body=1" for 111.200.116.17 at 2016-12-07 00:25:01 +0000
+Cannot render console from 111.200.116.17! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for 111.200.116.17 at 2016-12-07 00:25:01 +0000
+Cannot render console from 111.200.116.17! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for 111.200.116.17 at 2016-12-07 00:25:01 +0000
+Cannot render console from 111.200.116.17! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/bootstrap/glyphicons-halflings-regular-fe185d11a49676890d47bb783312a0cda5a44c4039214094e7957b4c040ef11c.woff2" for 111.200.116.17 at 2016-12-07 00:25:02 +0000
+Cannot render console from 111.200.116.17! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/" for 220.181.132.220 at 2016-12-07 00:26:46 +0000
+Cannot render console from 220.181.132.220! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by HomesController#index as HTML
+  Rendered homes/index.html.erb within layouts/application (2.8ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_content.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 45ms (Views: 44.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 220.181.132.199 at 2016-12-07 00:26:57 +0000
+Cannot render console from 220.181.132.199! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by HomesController#index as HTML
+  Rendered homes/index.html.erb within layouts/application (2.2ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 45ms (Views: 44.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-a84ec59e99430bdcdf50f12defd730d40e168cfdea5e5f677e46cde047316060.css?body=1" for 220.181.132.199 at 2016-12-07 00:26:57 +0000
+Cannot render console from 220.181.132.199! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for 220.181.132.199 at 2016-12-07 00:26:58 +0000
+Cannot render console from 220.181.132.199! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for 220.181.132.199 at 2016-12-07 00:26:58 +0000
+Cannot render console from 220.181.132.199! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/application.self-7862a8a8b42407b4741a1adeeea35f0d13ddc4f702ec532adb0674491d296495.js?body=1" for 220.181.132.199 at 2016-12-07 00:26:58 +0000
+Cannot render console from 220.181.132.199! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for 220.181.132.199 at 2016-12-07 00:26:58 +0000
+Cannot render console from 220.181.132.199! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/bootstrap.self-b38817c3e3a3049abb1fc08dd6ae448b23330f8453226efdb074710209474f75.js?body=1" for 220.181.132.199 at 2016-12-07 00:26:58 +0000
+Cannot render console from 220.181.132.199! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/" for 111.200.116.17 at 2016-12-07 00:28:12 +0000
+Cannot render console from 111.200.116.17! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by HomesController#index as HTML
+  Rendered homes/index.html.erb within layouts/application (4.8ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 60ms (Views: 58.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/sessions/login" for 111.200.116.17 at 2016-12-07 00:28:15 +0000
+Cannot render console from 111.200.116.17! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (10.8ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 57ms (Views: 56.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/background-1-38e74f093a80b933e1ac851f7a783f869da9533ff546121f56400794279ab668.jpg" for 111.200.116.17 at 2016-12-07 00:28:16 +0000
+Cannot render console from 111.200.116.17! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
