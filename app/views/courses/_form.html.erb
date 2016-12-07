@@ -89,7 +89,7 @@
       <div class="col-sm-9">
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
-          <%= f.text_field :course_week, class: 'form-control', placeholder: "输入课时学分" %>
+          <%= f.text_field :course_week, class: 'form-control', placeholder: "输入上课周数" %>
         </div>
       </div>
     </div>
@@ -102,7 +102,7 @@
           
           <div class="form-control">
             
-            <%= f.text_field :course_time, placeholder: "周一(1-2)", class: 'courseTime', disabled: true, id: "courseTime" %>
+            <%= f.text_field :course_time, placeholder: "周一(1-2)", value: "周一(1-2)", class: 'courseTime', readonly: true, id: "courseTime" %>
             
              <select class="coursetake_week" id= "coursetake_week" style="appearance:none;width:20%" onchange="setValue()">
              <option selected=true>周一</option>
@@ -121,6 +121,8 @@
              <option>3-4</option>
              <option>5-6</option>
              <option>5-7</option>
+             <option>5-8</option>
+             <option>7-8</option>
              <option>9-10</option>
             </select>
           
@@ -133,14 +135,16 @@
       </div>
     </div>
 
-    <%= f.submit '提交', class: "btn btn-success btn-block" %>
-    <%= link_to '取消', courses_path, :class => "btn btn-default btn-block" %>
-    
     <script type= "text/javascript">
      function setValue()
      {
        document.getElementById("courseTime").value = document.getElementById("coursetake_week").value+"("+document.getElementById("coursetake_time").value+")";
+      // alert(document.getElementById("courseTime").value);
      }
       </script>
+
+    <%= f.submit '提交', class: "btn btn-success btn-block" %>
+    <%= link_to '取消', courses_path, :class => "btn btn-default btn-block" %>
+    
 
 <% end %>
