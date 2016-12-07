@@ -65,7 +65,10 @@
       <div class="col-sm-9">
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
-          <%= f.text_field :credit, class: 'form-control', placeholder: "输入课时学分" %>
+          
+           <%= f.select( 'credit',{"0.5"=>"0.5","1.0"=>"1.0","2.0"=>"2.0","3.0"=>"3.0",}, {:selected => "3.0"}, :class => "form-control") %>
+          
+          <!--<%= f.text_field :credit, class: 'form-control', placeholder: "输入课时学分" %>-->
         </div>
       </div>
     </div>
@@ -96,12 +99,48 @@
       <div class="col-sm-9">
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
-          <%= f.text_field :course_time, class: 'form-control', placeholder: "输入课时学分" %>
+          
+          <div class="form-control">
+            
+            <%= f.text_field :course_time, placeholder: "周一(1-2)", class: 'courseTime', disabled: true, id: "courseTime" %>
+            
+             <select class="coursetake_week" id= "coursetake_week" style="appearance:none;width:20%" onchange="setValue()">
+             <option selected=true>周一</option>
+             <option>周二</option>
+             <option>周三</option>
+             <option>周四</option>
+             <option>周五</option>
+             <option>周六</option>
+             <option>周日</option>
+            </select>
+            <select class="coursetake_time" id="coursetake_time" style="appearance:none;width:20%" onchange="setValue()">
+             <option selected=true>1-2</option>
+             <option>1-3</option>
+             <option>1-4</option>
+             <option>2-4</option>
+             <option>3-4</option>
+             <option>5-6</option>
+             <option>5-7</option>
+             <option>9-10</option>
+            </select>
+          
+            </div>          
+
+          
+          <!--<%= date_select({},{}) %>-->
+          <!--<%= f.text_field :course_time, class: 'form-control', placeholder: "输入课时学分" %>-->
         </div>
       </div>
     </div>
 
     <%= f.submit '提交', class: "btn btn-success btn-block" %>
     <%= link_to '取消', courses_path, :class => "btn btn-default btn-block" %>
+    
+    <script type= "text/javascript">
+     function setValue()
+     {
+       document.getElementById("courseTime").value = document.getElementById("coursetake_week").value+"("+document.getElementById("coursetake_time").value+")";
+     }
+      </script>
 
 <% end %>
