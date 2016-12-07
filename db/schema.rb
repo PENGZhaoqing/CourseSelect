@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161116130623) do
+ActiveRecord::Schema.define(version: 20161207131022) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "announcements", force: :cascade do |t|
+    t.integer  "user_id"
+    t.text     "announcement_content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "announcement_title"
+  end
+
+  create_table "course_infos", force: :cascade do |t|
+    t.string   "course_code"
+    t.string   "course_day"
+    t.string   "course_class"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
@@ -31,7 +47,19 @@ ActiveRecord::Schema.define(version: 20161116130623) do
     t.integer  "teacher_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.boolean  "open"
+    t.integer  "department"
+    t.string   "academic_year"
+    t.string   "semester"
+    t.text     "description"
+    t.string   "apply"
+  end
+
+  create_table "departments", force: :cascade do |t|
+    t.string   "dept_name"
+    t.string   "dept_contact"
+    t.string   "dept_office"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "grades", force: :cascade do |t|
@@ -50,13 +78,15 @@ ActiveRecord::Schema.define(version: 20161116130623) do
     t.string   "email"
     t.string   "num"
     t.string   "major"
-    t.string   "department"
     t.string   "password_digest"
     t.string   "remember_digest"
     t.boolean  "admin",           default: false
     t.boolean  "teacher",         default: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.string   "class"
+    t.boolean  "reset"
+    t.integer  "department_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

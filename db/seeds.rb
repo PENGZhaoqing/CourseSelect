@@ -7,7 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 class StudentGenerator
-
   def self.department
     DEPARTMENT.sample
   end
