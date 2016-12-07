@@ -16,7 +16,10 @@
       <div class="col-sm-9">
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
-          <%= f.text_field :course_type, class: 'form-control', placeholder: "输入课程属性" %>
+          
+             <%= f.select( 'course_type',{"专业课"=>"专业课","一级学科核心课"=>"一级学科核心课","一级学科普及课"=>"一级学科普及课","一级学科研讨课"=>"一级学科研讨课","专业核心课"=>"专业核心课","专业普及课"=>"专业普及课","公共选修课"=>"公共选修课"}, {:selected => "专业课"}, :class => "form-control") %>
+          
+          <!--<%= f.text_field :course_type, class: 'form-control', placeholder: "输入课程属性" %>-->
         </div>
       </div>
     </div>
@@ -26,7 +29,10 @@
       <div class="col-sm-9">
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
-          <%= f.text_field :teaching_type, class: 'form-control', placeholder: "输入授课方式" %>
+          
+          <%= f.select( 'teaching_type',{"授课、讨论"=>"授课、讨论","课堂讲授为主"=>"课堂讲授为主","讲课、上机"=>"讲课、上机","讲课、实验"=>"讲课、实验"}, {:selected => "授课、讨论"}, :class => "form-control") %>
+          
+          <!--<%= f.text_field :teaching_type, class: 'form-control', placeholder: "输入授课方式" %>-->
         </div>
       </div>
     </div>
@@ -36,7 +42,10 @@
       <div class="col-sm-9">
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
-          <%= f.text_field :exam_type, class: 'form-control', placeholder: "输入考试方式" %>
+          
+          <%= f.select( 'exam_type',{"大开卷"=>"大开卷","课堂开卷"=>"课堂开卷","闭卷考试"=>"闭卷考试","读书报告"=>"读书报告","其他（需说明）"=>"其他（需说明）"}, {:selected => "闭卷考试"}, :class => "form-control") %>
+          
+          <!--<%= f.text_field :exam_type, class: 'form-control', placeholder: "输入考试方式" %>-->
         </div>
       </div>
     </div>
@@ -56,7 +65,10 @@
       <div class="col-sm-9">
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
-          <%= f.text_field :credit, class: 'form-control', placeholder: "输入课时学分" %>
+          
+           <%= f.select( 'credit',{"28/0.5"=>"28/0.5","32/0.5"=>"32/0.5","20/1.0"=>"20/1.0","24/1.0"=>"24/1.0", "30/1.5"=>"30/1.5","40/2.0"=>"40/2.0","40/3.0"=>"40/3.0","50/4.0"=>"50/4.0","60/4.0"=>"60/4.0","60/5.0"=>"60/5.0"}, {:selected => "40/3.0"}, :class => "form-control") %>
+          
+          <!--<%= f.text_field :credit, class: 'form-control', placeholder: "输入课时学分" %>-->
         </div>
       </div>
     </div>
@@ -77,7 +89,7 @@
       <div class="col-sm-9">
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
-          <%= f.text_field :course_week, class: 'form-control', placeholder: "输入课时学分" %>
+          <%= f.text_field :course_week, class: 'form-control', placeholder: "输入上课周数" %>
         </div>
       </div>
     </div>
@@ -87,12 +99,52 @@
       <div class="col-sm-9">
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
-          <%= f.text_field :course_time, class: 'form-control', placeholder: "输入课时学分" %>
+          
+          <div class="form-control">
+            
+            <%= f.text_field :course_time, id: "courseTime", placeholder: "周一(1-2)", value: "周一(1-2)", class: 'courseTime', readonly: true,  style: "background-color:#bfbfbf" %>
+            
+             <select class="coursetake_week" id= "coursetake_week" style="appearance:none;width:20%" onchange="setValue()">
+             <option selected=true>周一</option>
+             <option>周二</option>
+             <option>周三</option>
+             <option>周四</option>
+             <option>周五</option>
+             <option>周六</option>
+             <option>周日</option>
+            </select>
+            <select class="coursetake_time" id="coursetake_time" style="appearance:none;width:20%" onchange="setValue()">
+             <option selected=true>1-2</option>
+             <option>1-3</option>
+             <option>1-4</option>
+             <option>2-4</option>
+             <option>3-4</option>
+             <option>5-6</option>
+             <option>5-7</option>
+             <option>5-8</option>
+             <option>7-8</option>
+             <option>9-10</option>
+            </select>
+          
+            </div>          
+
+          
+          <!--<%= date_select({},{}) %>-->
+          <!--<%= f.text_field :course_time, class: 'form-control', placeholder: "输入课时学分" %>-->
         </div>
       </div>
     </div>
 
+    <script type= "text/javascript">
+     function setValue()
+     {
+       document.getElementById("courseTime").value = document.getElementById("coursetake_week").value+"("+document.getElementById("coursetake_time").value+")";
+      // alert(document.getElementById("courseTime").value);
+     }
+      </script>
+
     <%= f.submit '提交', class: "btn btn-success btn-block" %>
     <%= link_to '取消', courses_path, :class => "btn btn-default btn-block" %>
+    
 
 <% end %>

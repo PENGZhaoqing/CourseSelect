@@ -26,14 +26,20 @@
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon"><span class="glyphicon glyphicon-home"></span></div>
-                <%= f.text_field :major, class: 'form-control' %>
+                
+                <%= f.select( 'major',{"计算机软件与理论"=>"计算机软件与理论","计算机系统结构"=>"计算机系统结构","计算机应用技术"=>"计算机应用技术","通信与信息系统"=>"通信与信息系统","控制理论与控制工程"=>"控制理论与控制工程"}, {:selected => current_user.major}, :class => "form-control") %>
+                
+                <!--<%= f.text_field :major, class: 'form-control' %>-->
               </div>
             </div>
 
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon"><span class="glyphicon glyphicon-check"></span></div>
-                <%= f.text_field :department, class: 'form-control' %>
+                
+                <%= f.select( 'department',{"计算机网络信息中心"=>"计算机网络信息中心","电子学研究所"=>"电子学研究所","自动化研究所"=>"自动化研究所","计算技术研究所"=>"计算技术研究所","信息工程研究所"=>"信息工程研究所","国家空间科学中心"=>"国家空间科学中心","高能物理研究所"=>"高能物理研究所","软件研究所"=>"软件研究所","工程热物理研究所"=>"工程热物理研究所"}, {:selected => current_user.department}, :class => "form-control") %>
+                
+                <!--<%= f.text_field :department, class: 'form-control' %>-->
               </div>
             </div>
 
