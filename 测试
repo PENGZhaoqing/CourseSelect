@@ -2,4 +2,8 @@
 my test
 test again
 
+<<<<<<< HEAD
 sudo service postgresql start
+=======
+sudo service postgresql start
+>>>>>>> b7c896f6cc4763ed08173595cbacc0492d93a445
