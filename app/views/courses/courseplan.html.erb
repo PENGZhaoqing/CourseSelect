@@ -1,0 +1,129 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2">
+      <%= render "shared/sidenav" %>
+    </div>
+
+    <div class="col-md-10 ">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="text-center">课程: <%= @course.name %></h3>
+        </div>
+        <div class="panel-body">
+         <font style="font-size:15px">课程编码：<%= @course.course_code %>&nbsp&nbsp&nbsp&nbsp课时/学分:<%= @course.credit %>
+           &nbsp&nbsp&nbsp&nbsp课程属性：<%= @course.teaching_type %>&nbsp&nbsp&nbsp&nbsp主讲教师：<%=@course.teacher.name %></front>  
+       <% if @course.id == 1  %>
+      <%= render "courses/q1" %>
+       <% end %> 
+      <% if @course.id == 2 %> 
+       <%= render "courses/q2"%>
+      <% end%>
+      <% if @course.id == 3  %>
+        <%=  render "courses/q3"%>
+      <% end%>
+      <% if @course.id == 4  %>
+        <%=  render "courses/q4"%>
+      <% end%>
+      <% if @course.id == 5  %>
+        <%=  render "courses/q5"%>
+      <% end%>
+      <% if @course.id == 6  %>
+        <%=  render "courses/q6"%>
+      <% end%>
+      <% if @course.id == 7 %> 
+         <%= render "courses/q7"%>
+      <% end%>
+      <% if @course.id == 8  %>
+         <%= render "courses/q8"%>
+      <% end%>
+       
+      <%  if @course.id == 9  %>
+         <%= render "courses/q9"%>
+      <%  end%>
+
+      <% if @course.id == 10  %>
+        <%=  render "courses/q10"%>
+      <% end%>
+      <% if @course.id == 11 %>
+        <%=  render "courses/q11"%>
+      <% end%>
+      <% if @course.id == 12  %>
+        <%=  render "courses/q12"%>
+      <%  end%>
+      <%  if @course.id == 13  %>
+        <%=  render "courses/q13"%>
+      <%  end%>
+      <% if @course.id == 14 %> 
+        <%=  render "courses/q14"%>
+      <%  end%>
+      <% if @course.id == 15  %>
+        <%=  render "courses/q15"%>
+      <%  end%>
+      <% if @course.id == 16  %>
+        <%=  render "courses/q16"%>
+      <%  end%>
+      <% if @course.id == 17  %>
+        <%=  render "courses/q17"%>
+      <%  end%>
+      <%  if @course.id == 18  %>
+        <%=  render "courses/q18"%>
+      <%  end%>
+       
+      <%  if @course.id == 19  %>
+        <%=  render "courses/q19"%>
+      <%  end%>
+       
+      <%  if @course.id == 20  %>
+        <%=  render "courses/q10"%>
+      <%  end%>
+      <%  if @course.id == 21  %>
+        <%= render "courses/q21"%>
+      <%  end%>
+      <%   if @course.id == 22  %>
+        <%=    render "courses/q22"%>
+      <%   end%>
+      <%   if @course.id == 23  %>
+        <%=    render "courses/q23"%>
+      <%   end%>
+      <%   if @course.id == 24  %>
+        <%=     render "courses/q24"%>
+      <%   end%>
+      <%   if @course.id == 25  %>
+        <%=    render "courses/q25"%>
+      <%   end%>
+       
+      <% if @course.id == 26  %>
+        <%= render "courses/q26" %>
+      <% end %> 
+      <% if @course.id == 27  %>
+        <%=    render "courses/q27"%>
+      <%   end%>
+      <%   if @course.id == 28  %>
+        <%=    render "courses/q28"%>
+      <%  end%>
+       
+      <%   if @course.id == 29  %>
+        <%=    render "courses/q29"%>
+      <%  end%>
+       
+      <%  if @course.id == 30  %>
+        <%=    render "courses/q30"%>
+      <%  end%>
+      <%   if @course.id == 31  %>
+        <%=    render "courses/q31"%>
+      <%  end%>
+      <%   if @course.id == 32  %>
+        <%=    render "courses/q31"%>
+      <%  end%>
+      <%   if @course.id == 33  %>
+        <%=   render "courses/q33"%>
+      <%  end%>
+      <% if @course.id == 34  %>
+        <%=  render "courses/q34"%>
+      <%  end %>  
+      
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -50,7 +50,7 @@
             <% @grades.each do |grade| %>
                 <tr>
                   <% if student_logged_in? %>
-                    <td><%= grade.course.course_code %></td>
+                    <td><%= link_to grade.course.course_code,courseplan_course_url(grade.course) %></td>
                     <td><%= grade.course.name %></td>
                     <td><%= grade.course.credit %></td>
                     <td><%= grade.course.teaching_type %></td>

@@ -38,8 +38,8 @@
             <% @course.each do |course| %>
                 <tr>
 
-                  <td><%= course.course_code %></td>
-                  <td><%= course.name %></td>
+                   <td><%= link_to course.course_code,courseplan_course_url(course) %></td>
+					        <td><%= course.name %></a></td>
                   <td><%= course.credit %></td>
                   
                    <% if teacher_logged_in? %>
