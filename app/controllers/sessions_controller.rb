@@ -10,7 +10,12 @@ class SessionsController < ApplicationController
     else
       flash= {:danger => '账号或密码错误'}
     end
-    redirect_to root_url, :flash => flash
+    if user.first == false
+      render "users/edit"
+    else
+      redirect_to root_url, :flash => flash
+    end
+
   end
 
   def new

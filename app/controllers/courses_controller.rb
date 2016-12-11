@@ -61,17 +61,33 @@ class CoursesController < ApplicationController
     @course=Course.all
     #@course = Course.where("open=true")
     @course=@course-current_user.courses
+    @course_open = Array.new # 定义数组类变量, []
+    @course.each do |course| # 循环数组
+      if(course.open == true)
+        @course_open<< course #追加，写进数组
+      end
+    end
+    @course = @course_open
+    end
+
+
+=begin
+  def search1
+    #@course = Course.find_by_course_code(params[:])
+    @course = Course.all
+    @course = @course-current_user.courses
     @course_open = Array.new
     @course.each do |course|
-      if(course.open == true)
+      if(course.open == true )
         @course_open<<course
       end
     end
     @course = @course_open
   end
+=end
 
   def select
-    @course=Course.find_by_id(params[:id])
+    @course=Course.find_by_id(params[:id])#查找
     current_user.courses<<@course
     flash={:success => "成功选择课程: #{@course.name}"}
     redirect_to courses_path, flash: flash
@@ -81,8 +97,10 @@ class CoursesController < ApplicationController
     @course=Course.find_by_id(params[:id])
     current_user.courses.delete(@course)
     flash={:success => "成功退选课程: #{@course.name}"}
-    redirect_to courses_path, flash: flash
+    redirect_to courses_path, flash: flash #跳到下一个页面
   end
+
+
 
 
   #-------------------------for both teachers and students----------------------
@@ -121,5 +139,4 @@ class CoursesController < ApplicationController
                                    :credit, :limit_num, :class_room, :course_time, :course_week)
   end
 
-
-end
+  end
