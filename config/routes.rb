@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
     collection do
       get :list
+      get :public_list
 #      get :open    #lixudong:open
 #      get :close   #lixudong:close      
     end

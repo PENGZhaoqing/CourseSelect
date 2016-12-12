@@ -1,15 +1,21 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-8" style="background-color: #18BC9C;padding-bottom: 10px;padding-top: 10px">
+    <div class="col-md-8" style="background-color: #18BC9C;padding-bottom: 35px;padding-top: 35px">
       <div style="font-size: 50px; padding-left: 50px">
-        <%= image_tag "profile.png" %>
+        <%= image_tag "profile1.png" %>
         Learning RoR!
       </div>
 
     </div>
 
+
     <div class="col-md-4">
       <h1>在线选课系统样本</h1>
+            <li class="list-group-item">
+              <%= link_to public_list_courses_path do %>
+                  <span class="glyphicon glyphicon-chevron-right"></span> 浏览所有课程（支持未登录用户）
+              <% end %>
+            </li>
       <p>这个样本系统是基于国科大研究生课程(高级软件工程)开发的项目,目的是帮助入门者学习RoR(Ruby on Rails),这是适合新学者的入手的第一个项目</p>
       <p>入门者可以在这个样本系统上增加更多的功能:</p>
       <ul>
@@ -68,6 +74,15 @@
       <p>Rails基于MVC（模型- 视图- 控制器）设计模式。从视图中的Ajax应用，到控制器中的访问请求和反馈，到封装数据库的模型，Rails
         为你提供一个纯Ruby的开发环境,它基于一种计算机软件语言Ruby,给程序开发人员提供了强大的框架支持。Rails结合了PHP体系的优点（快速开发）和Java体系的优点（程序规整）</p>
       <a class="btn btn-info" href="http://guides.ruby-china.org/">More Info</a>
+      
+      
+
+
+      
+            
+            
     </div>
   </div>
 </div>
+
+

@@ -100,8 +100,12 @@ class CoursesController < ApplicationController
     @course=current_user.teaching_courses if teacher_logged_in?
     @course=current_user.courses if student_logged_in?
   end
-
-
+  
+  def public_list
+     @course=Course.all
+  end
+   
+   
   private
 
   # Confirms a student logged-in user.
