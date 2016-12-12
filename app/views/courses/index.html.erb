@@ -1,9 +1,11 @@
 <div class="container-fluid">
   <div class="row">
 
+
     <div class="col-sm-2">
       <%= render "shared/sidenav" %>
     </div>
+
 
     <div class="col-sm-10">
 
@@ -35,7 +37,7 @@
                   <td><%= course.name %></td>
                   <td><%= course.credit %></td>
                   <td><%= course.exam_type %></td>
-                  <td><%= course.teacher.name %></td>
+                  <td><%= course.teacher.name%></td>
 
                   <% if teacher_logged_in? %>
                       <td><%= link_to "编辑", edit_course_url(course), class: 'btn btn-xs btn-info' %></td>
