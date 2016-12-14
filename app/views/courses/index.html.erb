@@ -24,8 +24,7 @@
               <th>课时/学分</th>
               <th>考试方式</th>
               <th>主讲教师</th>
-              <th>        </th>
-              <th>课程状态</th>
+
 
             </tr>
 
@@ -58,6 +57,31 @@
             <% end %>
             </tbody>
           </table>
+          
+          
+          
+          
+          
+          
+                  <% if student_logged_in? %>
+
+                            <td><% sumcredit=0.0 %></td>
+                            <td><% sumtime=0 %></td>
+                   
+                        <% @course.each do |course| %>
+                            <tr>
+                                  <td><% sumcredit=sumcredit+(course.credit[3]).to_i+((course.credit[4]).to_i)/10 %></td>
+                                  <td><% sumtime=sumtime+(course.credit).to_i %></td>
+                            </tr>
+                        <% end %>
+                        
+                            <p>您总共选课的学分为:   <span class="label label-info"><%= sumcredit %></span>  </p>
+                            <p>您总共选课的课时为:   <span class="label label-info"><%= sumtime %></span>  </p>
+      
+
+
+                      
+                  <% end %>
 
         </div>
       </div>
