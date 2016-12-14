@@ -1,0 +1,6 @@
+
+    各位在这里记录下自己修改了什么，还有代码最好简要的注释一下
+
+
+我实现了小图标功能，在app/views/layouts/application.html.erb里面修改
+                                  2016.11.30  livkey

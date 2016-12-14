@@ -54,6 +54,10 @@ class CoursesController < ApplicationController
     @course.update_attributes(:open=>false)
     redirect_to courses_path, flash: {:success => "已经成功关闭该课程:#{ @course.name}"}
   end
+  
+  def courseplan
+      @course=Course.find_by_id(params[:id])
+  end
 
   #-------------------------for students----------------------
 
@@ -83,7 +87,13 @@ class CoursesController < ApplicationController
     flash={:success => "成功退选课程: #{@course.name}"}
     redirect_to courses_path, flash: flash
   end
-
+  
+  def credittips
+    @courses=current_user.courses
+    @grades=current_user.grades
+  end
+  
+ 
 
   #-------------------------for both teachers and students----------------------
 

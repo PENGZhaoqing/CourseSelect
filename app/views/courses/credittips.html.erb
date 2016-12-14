@@ -1,0 +1,74 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2">
+      <%= render "shared/sidenav" %>
+    </div>
+    <div class="col-sm-10">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">选课学分提示</h3>
+        </div>
+        <table class="table">
+        <thead>
+          <tr>
+            <th>类别</th>
+            <th>公共选修课程学分</th>
+            <th>专业学位课学分要求</th>
+            <th>总学分要求</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="active">
+            <td>学习要求</td>
+            <td>>=2.0学分</td>
+            <td>>=12.0学分</td>
+            <td>>=30.0学分</td>
+          </tr>
+          <tr class="success">
+            <td>选课情况</td>
+            <% 
+            chosen_credit_public = 0.0
+            chosen_credit_major = 0.0
+            chosen_credit_all = 0.0
+            @courses.each do |course|
+              chosen_credit_all += course.credit[-3..-1].to_f
+              if course.course_type == "公共选修课"
+                chosen_credit_public += course.credit[-3..-1].to_f
+              end
+              if course.course_type == "专业核心课"
+                chosen_credit_major += course.credit[-3..-1].to_f
+              end
+            end
+            %>
+            <td><%= chosen_credit_public %>学分</td>
+            <td><%= chosen_credit_major %>学分</td>
+            <td><%= chosen_credit_all %>学分</td>
+          </tr>
+          <tr class="danger">
+            <td>获取学分</td>
+            <%
+            obtained_credit_pubic = 0.0
+            obtained_credit_major = 0.0
+            obtained_credit_all = 0.0
+            @grades.each do |grade|
+              if grade.grade.nil? == false
+                obtained_credit_all += grade.course.credit[-3..-1].to_f
+                if grade.course.course_type == "公共选修课"
+                  obtained_credit_public += grade.course.credit[-3..-1].to_f
+                end
+                if grade.course.course_type == "专业核心课"
+                  obtained_credit_major += grade.course.credit[-3..-1].to_f
+                end
+              end
+            end
+            %>
+            <td><%= obtained_credit_pubic %>学分</td>
+            <td><%= obtained_credit_major %>学分</td>
+            <td><%= obtained_credit_all %>学分</td>
+          </tr>
+        </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

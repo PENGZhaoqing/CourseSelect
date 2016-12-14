@@ -51,6 +51,11 @@
                   <span class="label label-info pull-right"><%= current_user.courses.length %></span>
               <% end %>
             </li>
+            <li class="list-group-item">
+              <%= link_to credittips_courses_path do %>
+                  <span class="glyphicon glyphicon-chevron-right"></span> 选课学分提示
+              <% end %>
+            </li>
         <% end %>
 
       </ul>

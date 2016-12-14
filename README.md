@@ -55,6 +55,8 @@
 $ git clone https://github.com/PENGZhaoqing/CourseSelect
 $ cd CourseSelect
 $ bundle install
+$ sudo service postgresql start
+$ rake db:create:all
 $ rake db:migrate
 $ rake db:seed
 $ rails s 
