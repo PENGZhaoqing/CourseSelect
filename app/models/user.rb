@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   has_many :teaching_courses, class_name: "Course", foreign_key: :teacher_id
 
-  belongs_to :department
+  belongs_to :depart
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: {maximum: 255},

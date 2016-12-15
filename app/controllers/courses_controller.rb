@@ -43,6 +43,7 @@ class CoursesController < ApplicationController
     redirect_to courses_path, flash: flash
   end
 
+=begin
   #modified by liqingjian
   def open
     @course=Course.find_by_id(params[:id])
@@ -58,13 +59,18 @@ class CoursesController < ApplicationController
   end
 
   #modified end
+=end
   #-------------------------for students----------------------
 
   def list
+    @course=Course.all
+    @course=@course-current_user.courses
+=begin
     #modified by liqingjian
     @course=Course.where("open=true")
     @course=@course-current_user.courses
     #modified end
+=end
   end
 
   def select

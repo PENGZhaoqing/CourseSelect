@@ -4,6 +4,8 @@ class CreateCourseInfos < ActiveRecord::Migration
       t.string :course_code
       t.string :course_day #星期几有课
       t.string :course_class #节次
+      t.timestamps null: false
+
     end
   end
 end

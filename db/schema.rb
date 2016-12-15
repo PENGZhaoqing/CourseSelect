@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161207131022) do
+ActiveRecord::Schema.define(version: 20161215121614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,17 +19,17 @@ ActiveRecord::Schema.define(version: 20161207131022) do
   create_table "announcements", force: :cascade do |t|
     t.integer  "user_id"
     t.text     "announcement_content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "announcement_title"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "course_infos", force: :cascade do |t|
     t.string   "course_code"
     t.string   "course_day"
     t.string   "course_class"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "courses", force: :cascade do |t|
@@ -44,22 +44,22 @@ ActiveRecord::Schema.define(version: 20161207131022) do
     t.string   "class_room"
     t.string   "course_time"
     t.string   "course_week"
-    t.integer  "teacher_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
     t.integer  "department"
     t.string   "academic_year"
     t.string   "semester"
     t.text     "description"
     t.string   "apply"
+    t.integer  "teacher_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
-  create_table "departments", force: :cascade do |t|
+  create_table "departs", force: :cascade do |t|
     t.string   "dept_name"
     t.string   "dept_contact"
     t.string   "dept_office"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "grades", force: :cascade do |t|
@@ -78,15 +78,15 @@ ActiveRecord::Schema.define(version: 20161207131022) do
     t.string   "email"
     t.string   "num"
     t.string   "major"
+    t.integer  "department"
+    t.string   "student_class"
+    t.boolean  "reset"
     t.string   "password_digest"
     t.string   "remember_digest"
     t.boolean  "admin",           default: false
     t.boolean  "teacher",         default: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
-    t.string   "class"
-    t.boolean  "reset"
-    t.integer  "department_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

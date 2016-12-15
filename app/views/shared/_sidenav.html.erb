@@ -40,7 +40,7 @@
                   <span class="glyphicon glyphicon-chevron-right"></span> 选修课程
                   <span class="label label-info pull-right">
                     <!-- modified by liqingjian -->
-                    <%= (Course.where("open=true")-current_user.courses).length %>
+                    <%= (Course.all-current_user.courses).length %>
                     <!-- modified end -->
                   </span>
               <% end %>
