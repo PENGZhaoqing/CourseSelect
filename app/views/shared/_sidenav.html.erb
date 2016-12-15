@@ -37,14 +37,8 @@
         <% if student_logged_in? %>
             <li class="list-group-item">
               <%= link_to list_courses_path do %>
-              <% list_courses = Course.all - current_user.courses %>
-              <% list_courses.each do |x| %>
-                <% unless x.open? %>
-                  <% list_courses = list_courses - [x] %>
-                <% end %>
-              <% end %>
-              <span class="glyphicon glyphicon-chevron-right"></span> 选修课程
-              <span class="label label-info pull-right"><%= list_courses.length %></span>
+                  <span class="glyphicon glyphicon-chevron-right"></span> 选修课程
+                  <span class="label label-info pull-right"><%= (Course.where(open:true).all).length-current_user.courses.length %></span>
               <% end %>
             </li>
             
