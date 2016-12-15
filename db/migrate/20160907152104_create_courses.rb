@@ -4,15 +4,19 @@ class CreateCourses < ActiveRecord::Migration
 
       t.string :name
       t.string :course_code
-      t.string :course_type
       t.string :teaching_type
       t.string :exam_type
-      t.string :credit
+      t.integer :period           #学时
+      t.float :credit              #string->float
       t.integer :limit_num
       t.integer :student_num, default: 0
+      t.string :building          #教学楼
       t.string :class_room
-      t.string :course_time
-      t.string :course_week
+      t.string :course_time       #字段不变，但内容改变
+      t.integer :start_week       #开始周
+      t.integer :end_week         #结束周
+      t.text    :description, default: ""      #课程简介
+      t.boolean :open, default: true
       t.belongs_to :teacher
 
       t.timestamps null: false
