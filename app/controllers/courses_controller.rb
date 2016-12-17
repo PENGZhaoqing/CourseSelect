@@ -77,7 +77,18 @@ class CoursesController < ApplicationController
   def select
     @course=Course.find_by_id(params[:id])
     current_user.courses<<@course
-    flash={:success => "成功选择课程: #{@course.name}"}
+    @grades=current_user.grades.find_by(course_id: params[:id])
+    @grades.update_attributes(:degree => false)
+    flash={:success => "成功选择该课程为非学位课: #{@course.name}"}
+    redirect_to courses_path, flash: flash
+  end
+  
+  def selectasdegree
+    @course=Course.find_by_id(params[:id])
+    current_user.courses<<@course
+    @grades=current_user.grades.find_by(course_id: params[:id])
+    @grades.update_attributes(:degree => true)
+    flash={:success => "成功选择课程为学位课: #{@course.name}"}
     redirect_to courses_path, flash: flash
   end
 

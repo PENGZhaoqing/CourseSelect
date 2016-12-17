@@ -32,6 +32,9 @@
               <th>上课周数</th>
               <th>上课时间</th>
               <th>主讲教师</th>
+              <% if student_logged_in? %>
+                <th>是否为学位课</th>
+              <% end %>
             </tr>
 
             <tbody>
@@ -42,7 +45,7 @@
 					        <td><%= course.name %></a></td>
                   <td><%= course.credit %></td>
                   
-                   <% if teacher_logged_in? %>
+                  <% if teacher_logged_in? %>
                     <td><%= course.limit_num %></td>
                   <% end %>
                 
@@ -63,6 +66,12 @@
                       <% end %>
                       <td><%= link_to "删除", course_path(course), :method => "delete", class: 'btn btn-xs btn-danger', :data => {confirm: '确定要删除此课程?'} %></td>
                   <% elsif student_logged_in? %>
+                      <% grade=current_user.grades.find_by(course_id: course.id)%>
+                      <% if grade.degree %>
+                        <td>是</td>
+                      <% else %>
+                        <td>否</td>
+                      <% end %>
                       <td><%= link_to "删除", quit_course_path(course), class: 'btn-sm btn-danger' %></td>
                   <% end %>
                 </tr>
