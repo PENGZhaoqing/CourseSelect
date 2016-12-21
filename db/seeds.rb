@@ -50,8 +50,10 @@ User.create(
     admin: true
 )
 
+=begin
 teacher_map={
     1 => {name: "胡伟武", department: "计算技术研究所"},
+
     2 => {name: "谢高岗", department: "计算机与控制学院"},
     3 => {name: "魏峻", department: "软件研究所"},
     4 => {name: "罗铁坚", department: "计算机与控制学院"},
@@ -86,7 +88,17 @@ teacher_map={
     33 => {name: "苏桂平", department: "计算机与控制学院"},
     34 => {name: "张晋连", department: "计算机与控制学院"}
 }
+=end
 
+teacher_map={
+    1 => {name: "胡伟武", department: "计算技术研究所"},
+    2 => {name: "刘玉贵", department: "计算机与控制学院"},
+    3 => {name: "李玲", department: "文献情报中心"},
+    4 => {name: "韩健平", department: "人文学院"}
+}
+
+=begin
+暂时先把原来的注释掉
 course_map={
     1 => {course_code: "091M4001H", name: "计算机体系结构", course_type: "专业核心课", credit: "60/3.0", limit_num: "", course_week: "第2-20周", course_time: "周一(9-11)", class_room: "教1-107", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试"},
     2 => {course_code: "091M4002H", name: "计算机网络", course_type: "专业核心课", credit: "60/3.0", limit_num: "", course_week: "第2-20周	", course_time: "周五(2-4)", class_room: "教1-107", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试"},
@@ -123,6 +135,15 @@ course_map={
     33 => {course_code: "093M2007H", name: "数据库新技术", course_type: "一级学科普及课", credit: "40/2.0", limit_num: "", course_week: "第2-12周	", course_time: "周一(3-4)", class_room: "教1-107", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试"},
     34 => {course_code: "09MGX005H", name: "Python语言导论", course_type: "公共选修课", credit: "40/1.0", limit_num: 154, course_week: "第4-14周	", course_time: "周二(7-8)", class_room: "教1-108", teaching_type: "课堂讲授为主", exam_type: "课堂开卷"},
 }
+=end
+
+course_map = 
+{
+  1 => {course_code: "091M4001H", name: "计算机体系结构", period: 60, credit: 3.0, limit_num: 0, start_week: 2, end_week: 20, course_time: "10911", building: "教1", class_room: "107", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试"},
+  2 => {course_code: "093M1002H-2", name: "计算机算法设计与分析", period: 60, credit: 3.0, limit_num: 0, start_week: 2, end_week: 17, course_time: "10102 30102", building: "教1", class_room: "108", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试"},
+  3 => {course_code: "09MGB001H", name: "计算机领域信息检索与利用实用技巧", period: 27, credit: 1.0, limit_num: 0, start_week: 2, end_week: 13, course_time: "20507", building: "图书馆", class_room: "L-145", teaching_type: "课堂讲授为主", exam_type: "大开卷"},
+  4 => {course_code: "14MGX063H", name: "中国古代史讲座", period: 40, credit: 1.0, limit_num: 40, start_week: 3, end_week: 15, course_time: "40507", building: "学园1", class_room: "108", teaching_type: "课堂讲授为主", exam_type: "期末读书报告"}
+}
 
 teacher_map.keys.each do |index|
   teacher=User.create!(
@@ -137,19 +158,21 @@ teacher_map.keys.each do |index|
   teacher.teaching_courses.create!(
       course_code: course_map[index][:course_code],
       name: course_map[index][:name],
-      course_type: course_map[index][:course_type],
       credit: course_map[index][:credit],
+      period: course_map[index][:period],
       limit_num: course_map[index][:limit_num],
-      course_week: course_map[index][:course_week],
+      start_week: course_map[index][:start_week],
+      end_week: course_map[index][:end_week],
       course_time: course_map[index][:course_time],
+      building: course_map[index][:building],
       class_room: course_map[index][:class_room],
       teaching_type: course_map[index][:teaching_type],
-      exam_type: course_map[index][:exam_type],
+      exam_type: course_map[index][:exam_type]
   )
 
 end
 
-(1..200).each do |index|
+(1..5).each do |index|
   student=User.create!(
       name: StudentGenerator.name,
       email: "student#{index}@test.com",
