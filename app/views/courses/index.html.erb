@@ -33,7 +33,7 @@
               <th>上课时间</th>
               <th>主讲教师</th>
               <% if student_logged_in? %>
-                <th>是否为学位课</th>
+                <th>学位课状态</th>
               <% end %>
             </tr>
 
@@ -41,7 +41,7 @@
             <% @course.each do |course| %>
                 <tr>
 
-                   <td><%= link_to course.course_code,courseplan_course_url(course) %></td>
+                  <td><%= link_to course.course_code,courseplan_course_url(course) %></td>
 					        <td><%= course.name %></a></td>
                   <td><%= course.credit %></td>
                   
@@ -68,9 +68,9 @@
                   <% elsif student_logged_in? %>
                       <% grade=current_user.grades.find_by(course_id: course.id)%>
                       <% if grade.degree %>
-                        <td>是</td>
+                        <td><%= link_to "是", modifydegree_course_path(course),  class: 'btn btn-xs btn-success' %></td>
                       <% else %>
-                        <td>否</td>
+                        <td><%= link_to "否", modifydegree_course_path(course),  class: 'btn btn-xs btn-info' %></td>
                       <% end %>
                       <td><%= link_to "删除", quit_course_path(course), class: 'btn-sm btn-danger' %></td>
                   <% end %>

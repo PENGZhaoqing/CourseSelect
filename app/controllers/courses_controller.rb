@@ -100,10 +100,20 @@ class CoursesController < ApplicationController
   end
   
   def credittips
-    @courses=current_user.courses
     @grades=current_user.grades
   end
   
+  def modifydegree
+    @grades=current_user.grades.find_by(course_id: params[:id])
+    if @grades.degree then
+      @grades.update_attributes(:degree => false)
+      flash={:success => "更改为非学位课"}
+    else
+      @grades.update_attributes(:degree => true)
+      flash={:success => "更改为学位课"}
+    end
+    redirect_to courses_path, flash: flash
+  end
  
 
   #-------------------------for both teachers and students----------------------
