@@ -22,10 +22,12 @@ Rails.application.routes.draw do
   resources :courses do
     member do
       get :select
+      get :selectasdegree
       get :quit
       get :open
       get :close
       get :courseplan
+      get :modifydegree
     end
     collection do
       get :list
