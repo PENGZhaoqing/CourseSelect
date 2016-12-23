@@ -59,7 +59,7 @@ $ sudo service postgresql start
 $ rake db:create:all
 $ rake db:migrate
 $ rake db:seed
-$ rails s 
+$ rails s -b $IP -p $PORT 
 ```
 
 在浏览器中输入`localhost:3000`访问主页
