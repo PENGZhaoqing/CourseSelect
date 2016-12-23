@@ -90,14 +90,15 @@
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
           <div class="form-control">
-           <%= f.text_field :class_room, id: "classroom",class: 'courseroom',placeholder: "教1-101", value: "教1-101",  readonly: true,  style: "background-color:#bfbfbf;appearance:none;width:20%;"  %>
-            <input style="appearance:none;width:20%;" id = "courseroom1" placeholder="房间号" onchange="setValue('classroom')" >
+           <%= f.text_field :class_room, id: "course_address",placeholder: "教1-101",  readonly: true,  style: "background-color:#bfbfbf;appearance:none;width:20%;"  %>
+            <input style="appearance:none;width:20%;" id = "courseroom_index" placeholder="房间号" onchange="setValue('courseroom_index')" >
           <!--  <class="coursetake_week" id= "coursetake_week" style="appearance:none;width:20%" onchange="setValue('courseTime')">-->
-            <label > <input type="radio" name="course_room" id="courseroom" value="教1" onchange="setValue('classroom')"  >教1</label>
-            <label > <input type="radio" name="course_room" id="courseroom" value="教2" onchange="setValue('classroom')"  >教2</label>
-            <label > <input type="radio" name="course_room" id="courseroom" value="学1" onchange="setValue('classroom')" >学1</label>
-            <label > <input type="radio" name="course_room" id="courseroom" value="学2" onchange="setValue('classroom')"  >学2</label>
-            <label > <input type="radio" name="course_room" id="courseroom" value="图书馆" onchange="setValue('classroom')"  >图书馆</label>
+            
+            <label > <input type="radio" name="courseroom" value="教1" onclick="setValue('courseroom')" checked >教1</label>
+            <label > <input type="radio" name="courseroom" value="教2" onclick="setValue('courseroom')"  >教2</label>
+            <label > <input type="radio" name="courseroom" value="学1" onclick="setValue('courseroom')"  >学1</label>
+            <label > <input type="radio" name="courseroom" value="学2" onclick="setValue('courseroom')"  >学2</label>
+            <label > <input type="radio" name="courseroom" value="图书馆" onclick="setValue('courseroom')" >图书馆</label>
             
             <!-- <%= f.text_field :class_room, class: 'form-control', placeholder: "输入教室"  %>-->
           </div>
@@ -173,19 +174,34 @@
         
          document.getElementById(idname).value = document.getElementById("coursetake_week").value+"("+document.getElementById("coursetake_time").value+")";
       }
-      else if(idname == "classroom")
-       {
-         document.getElementById(idname).value = document.getElementById("courseroom").value+"-"+document.getElementById("courseroom1").value;
-       }
+      else if(idname == "courseroom" || idname == "courseroom_index")
+      {
+        radioValue = getCheckedRadio("courseroom");
+        document.getElementById("course_address").value = radioValue+"-"+document.getElementById("courseroom_index").value;
+      }
       else
       {
-         document.getElementById(idname).value = "第"+document.getElementById("courseweek1").value+"-"+document.getElementById("courseweek2").value+"周";
-     
-       }
+       document.getElementById(idname).value = "第"+document.getElementById("courseweek1").value+"-"+document.getElementById("courseweek2").value+"周";
+      }
            // alert(document.getElementById("courseTime").value);   
       
      }
+     
+     
+     function getCheckedRadio(radio_name)
+     {
+        var chkObjs = document.getElementsByName(radio_name); 
+        // alert(chkObjs.length);
+        for(var i=0;i<chkObjs.length;i++){ 
+        if(chkObjs[i].checked)
+          {
+            
+            return chkObjs[i].value;
+          }
+        }
+     }
       </script>
+     
       
   <!--    <script type= "text/javascript">-->
   <!--   function setValue1()-->
