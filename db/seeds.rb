@@ -42,12 +42,14 @@ end
 User.create(
     name: "彭兆卿",
     email: "admin@test.com",
-    num: "201628008629001",
-    major: "计算机软件与理论",
+    num: "2016E8007361075",
+    major: "计算机技术",
     department: "计算机与控制学院",
     password: "password",
     password_confirmation: "password",
-    admin: true
+    admin: true,
+    activated: true,   #激活种子数据中的用户
+    activated_at: Time.zone.now
 )
 
 teacher_map={
@@ -150,6 +152,11 @@ teacher_map.keys.each do |index|
 end
 
 (1..200).each do |index|
+=begin
+  name = Faker::StudentGenerator.name
+  email = "student#{index}@test.com"
+  password = "password"
+=end
   student=User.create!(
       name: StudentGenerator.name,
       email: "student#{index}@test.com",
@@ -158,6 +165,8 @@ end
       department: StudentGenerator.department,
       password: "password",
       password_confirmation: "password",
+      activated: true,
+      activated_at: Time.zone.now
   )
 
   course_array=(1..34).to_a.sort { rand() - 0.5 }[1..rand(4..8)]

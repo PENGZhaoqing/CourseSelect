@@ -9,3 +9,6 @@ michael:
   name: 彭兆卿
   email: student1@test.com
   password_digest: <%= User.digest('password') %>
+  admin: true
+  activated: true
+  activated_at: <%= Time.zone.now %>

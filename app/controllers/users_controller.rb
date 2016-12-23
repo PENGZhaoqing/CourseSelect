@@ -9,16 +9,23 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to root_url, flash: {success: "新账号注册成功,请登陆"}
+      #redirect_to root_url, flash: {success: "新账号注册成功,请登录"}
+      
+      #激活检查
+      @user.send_activation_email
+      flash[:info] = "Please check your email to activate your account."
+      redirect_to root_url
     else
       flash[:warning] = "账号信息填写有误,请重试"
       render 'new'
     end
   end
 
+
   def edit
     @user=User.find_by_id(params[:id])
   end
+
 
   def update
     @user = User.find_by_id(params[:id])
@@ -44,14 +51,14 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :major, :department, :password,
-                                 :password_confirmation)
+    params.require(:user).permit(:name, :email, :major, :department, :password, :password_confirmation)
   end
 
   # Confirms a logged-in user.
   def logged_in
     unless logged_in?
-      redirect_to root_url, flash: {danger: '请登陆'}
+      #store_location    #记录之前路径
+      redirect_to root_url, flash: {danger: '请登录'}
     end
   end
 
@@ -66,7 +73,7 @@ class UsersController < ApplicationController
   # Confirms a logged-in user.
   def teacher_logged_in
     unless teacher_logged_in?
-      redirect_to root_url, flash: {danger: '请登陆'}
+      redirect_to root_url, flash: {danger: '请登录'}
     end
   end
 

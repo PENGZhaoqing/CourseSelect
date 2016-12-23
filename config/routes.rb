@@ -36,11 +36,17 @@ Rails.application.routes.draw do
   end
 
   resources :grades, only: [:index, :update]
-  resources :users
+  resources :users 
+  
+  #添加账户激活需要的路由
+  resources :account_activations, only: [:edit]
+
 
   get 'sessions/login' => 'sessions#new'
   post 'sessions/login' => 'sessions#create'
+  
   delete 'sessions/logout' => 'sessions#destroy'
+  
   # Example resource route with options:
   #   resources :products do
   #     member do

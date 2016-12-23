@@ -46,10 +46,9 @@
                   <!--<td><%= course.class_room %></td>-->
                   <td><%= course.course_week %></td>
                   <td><%= course.course_time %></td>
-                  <td><%= course.teacher.name %></td>
+                  <td><%= course.teacher.name %></td> 
                   <td><%= link_to "选为学位课", selectasdegree_course_path(course), class: 'btn-sm btn-info' %></td>
                   <td><%= link_to "选为非学位课", select_course_path(course), class: 'btn-sm btn-info' %></td>
-
                 </tr>
             <% end %>
             </tbody>
