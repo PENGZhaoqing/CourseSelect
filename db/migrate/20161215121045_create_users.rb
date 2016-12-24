@@ -6,7 +6,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.string :num
       t.string :major
-      t.string :department
+      t.integer :department
+      t.string :student_class
+      t.boolean :reset
       t.string :password_digest
       t.string :remember_digest
 

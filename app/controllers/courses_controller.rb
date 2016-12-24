@@ -43,11 +43,29 @@ class CoursesController < ApplicationController
     redirect_to courses_path, flash: flash
   end
 
+=begin
+  #modified by liqingjian
+  def open
+    @course=Course.find_by_id(params[:id])
+    @course.update_attribute(:open,true)
+
+    redirect_to courses_path, flash: {:success => "已经成功开启该课程:#{ @course.name}"}
+  end
+
+  def close
+    @course=Course.find_by_id(params[:id])
+    @course.update_attribute(:open,false)
+    redirect_to courses_path, flash: {:success => "已经成功关闭该课程:#{ @course.name}"}
+  end
+
+  #modified end
+=end
   #-------------------------for students----------------------
 
   def list
     @course=Course.all
     @course=@course-current_user.courses
+<<<<<<< HEAD
     if student_logged_in?
       @cour=Array.new
       @course.each do |i|
@@ -63,6 +81,14 @@ class CoursesController < ApplicationController
     @course.open=true
     @course.save
     redirect_to courses_path, flash: {:success => "已经成功开启该课程:#{ @course.name}"}
+=======
+=begin
+    #modified by liqingjian
+    @course=Course.where("open=true")
+    @course=@course-current_user.courses
+    #modified end
+=end
+>>>>>>> group/master
   end
 
   def close
@@ -92,6 +118,8 @@ class CoursesController < ApplicationController
     @course=current_user.teaching_courses if teacher_logged_in?
     @course=current_user.courses if student_logged_in?
   end
+
+
 
 
   private

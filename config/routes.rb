@@ -22,8 +22,17 @@ Rails.application.routes.draw do
     member do
       get :select
       get :quit
+<<<<<<< HEAD
       get :open
       get :close
+=======
+=begin
+      #modified by liqingjian
+      get :open
+      get :close
+      #modified end
+=end
+>>>>>>> group/master
     end
     collection do
       get :list

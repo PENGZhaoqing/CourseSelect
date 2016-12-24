@@ -11,10 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20161116124530) do
+=======
+ActiveRecord::Schema.define(version: 20161215121614) do
+>>>>>>> group/master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "announcements", force: :cascade do |t|
+    t.integer  "user_id"
+    t.text     "announcement_content"
+    t.string   "announcement_title"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "course_infos", force: :cascade do |t|
+    t.string   "course_code"
+    t.string   "course_day"
+    t.string   "course_class"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
@@ -28,10 +48,23 @@ ActiveRecord::Schema.define(version: 20161116124530) do
     t.string   "class_room"
     t.string   "course_time"
     t.string   "course_week"
+    t.integer  "department"
+    t.string   "academic_year"
+    t.string   "semester"
+    t.text     "description"
+    t.string   "apply"
     t.integer  "teacher_id"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.boolean  "open",          default: false
+  end
+
+  create_table "departs", force: :cascade do |t|
+    t.string   "dept_name"
+    t.string   "dept_contact"
+    t.string   "dept_office"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "grades", force: :cascade do |t|
@@ -50,7 +83,9 @@ ActiveRecord::Schema.define(version: 20161116124530) do
     t.string   "email"
     t.string   "num"
     t.string   "major"
-    t.string   "department"
+    t.integer  "department"
+    t.string   "student_class"
+    t.boolean  "reset"
     t.string   "password_digest"
     t.string   "remember_digest"
     t.boolean  "admin",           default: false
