@@ -5,7 +5,7 @@
       <%= render "shared/sidenav" %>
     </div>
 
-    <div class="col-sm-10">
+    <div class="col-sm-10" style="left:14%; width: 86%; position:absolute">
 
       <div class="panel panel-primary filterable">
         <div class="panel-heading">
@@ -31,6 +31,7 @@
               <th>考试方式</th>
               <th>上课周数</th>
               <th>上课时间</th>
+              <th>授课地点</th>
               <th>主讲教师</th>
             </tr>
 
@@ -52,6 +53,7 @@
                   <td><%= course.exam_type %></td>
                   <td><%= course.course_week %></td>
                   <td><%= course.course_time %></td>
+                  <td><%= course.class_room %></td>
                   <td><%= course.teacher.name %></td>
 
                   <% if teacher_logged_in? %>

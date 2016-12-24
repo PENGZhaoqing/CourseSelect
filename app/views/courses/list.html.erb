@@ -4,7 +4,7 @@
       <%= render "shared/sidenav" %>
 
     </div>
-    <div class="col-sm-10">
+    <div class="col-sm-10" style="left:14%; width:86%; position:absolute; font-size:14px">
       <div class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title">选修课程</h3>
@@ -22,7 +22,7 @@
               <th>课程属性</th>
               <th>授课方式</th>
               <th>考试方式</th>
-              <!--<th>授课地点</th>-->
+              <th>授课地点</th>
               <th>上课周数</th>
               <th>上课时间</th>
               <th>主讲教师</th>
@@ -43,7 +43,7 @@
                   <td><%= course.course_type %></td>
                   <td><%= course.teaching_type %></td>
                   <td><%= course.exam_type %></td>
-                  <!--<td><%= course.class_room %></td>-->
+                  <td><%= course.class_room %></td>
                   <td><%= course.course_week %></td>
                   <td><%= course.course_time %></td>
                   <td><%= course.teacher.name %></td>
