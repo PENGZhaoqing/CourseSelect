@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   
 
+  get 'password_resets/new'
+
+  get 'password_resets/edit'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -40,6 +44,8 @@ Rails.application.routes.draw do
   
   #添加账户激活需要的路由
   resources :account_activations, only: [:edit]
+  #添加密码重置需要的路由
+  resources :password_resets, only: [:new, :create, :edit, :update]
 
 
   get 'sessions/login' => 'sessions#new'

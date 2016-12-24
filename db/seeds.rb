@@ -38,9 +38,9 @@ end
 
 #-------------------------------------------------------------------------------------
 
-
+##运行  $rake db:seed 命令，则会生成管理员账户，自动设置为管理员身份，以及激活状态
 User.create(
-    name: "彭兆卿",
+    name: "管理员",
     email: "admin@test.com",
     num: "2016E8007361075",
     major: "计算机技术",
@@ -127,13 +127,15 @@ course_map={
 }
 
 teacher_map.keys.each do |index|
-  teacher=User.create!(
+  teacher=User.create(
       name: teacher_map[index][:name],
       email: "teacher#{index}@test.com",
       department: teacher_map[index][:department],
       password: "password",
       password_confirmation: "password",
-      teacher: true
+      teacher: true,
+      activated: true,  #实验用例老师账号要激活
+      activated_at: Time.zone.now
   )
 
   teacher.teaching_courses.create!(
@@ -151,7 +153,7 @@ teacher_map.keys.each do |index|
 
 end
 
-(1..200).each do |index|
+(1..200).each do |index|    #相当于做200次循环
 =begin
   name = Faker::StudentGenerator.name
   email = "student#{index}@test.com"

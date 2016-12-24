@@ -1,0 +1,43 @@
+<div class="bubbles">
+  <ul class="bg-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+  </div>
+<div class="row" style="width:100%;">
+  <div class="col-sm-offset-4 col-sm-4">
+    <div class="panel panel-success">
+      
+      <div class="panel-heading">
+        <h4><span class="glyphicon glyphicon-lock"></span> 找回密码</h4>
+      </div>
+      
+      <div class="panel-body">
+        <%= form_for(:session, url: sessions_findpsw_path, method: :post, html: {role: 'form'}) do |f| %>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+                <%= f.email_field :email, class: 'form-control', placeholder: "输入邮箱账号" %>
+              </div>
+            </div>
+
+            <%= button_tag(type: "submit", class: "btn btn-success btn-block") do %>
+                <span class="glyphicon glyphicon-off"></span>确认
+            <% end %>
+
+        <% end %>
+      </div>
+ 
+      
+    </div>
+  </div>
+</div>
+

@@ -8,6 +8,7 @@
 
         <%= form_for current_user, html: {role: 'form'} do |f| %>
             <%= render 'shared/error_messages', :object => current_user %>
+            
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
@@ -15,13 +16,16 @@
               </div>
             </div>
 
-            <div class="form-group">
 
+            <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
                 <%= f.text_field :email, class: 'form-control' %>
               </div>
             </div>
+            
+            
+          <!--#学号不可修改，不在编辑个人信息之内-->
 
             <div class="form-group">
               <div class="input-group">
