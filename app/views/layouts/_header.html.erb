@@ -29,7 +29,7 @@
             </li>
 
             <li>
-              <p class="navbar-text"><%= current_user.department %></p>
+              <p class="navbar-text"><%= $Department.values_at(current_user.department)[0][:dept_name] %></p>
             </li>
 
             <li>

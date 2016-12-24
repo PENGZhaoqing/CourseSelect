@@ -31,7 +31,7 @@
                   <td><%= grade.user.num %></td>
                   <td><%= grade.user.name %></td>
                   <td><%= grade.user.major %></td>
-                  <td><%= grade.user.department %></td>
+                  <td><%= $Department.values_at(grade.user.department)[0][:dept_name] %></td>
                   <td><%= grade.course.name %></td>
                   <td><%= grade.grade %></td>
 

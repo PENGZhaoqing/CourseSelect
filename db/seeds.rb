@@ -60,7 +60,7 @@ department_map={
 
 
 department_map.keys.each do |index|
-  department=Depart.create!(
+  Depart.create!(
       dept_name: department_map[index][:name],
       dept_contact: department_map[index][:dept_contact],
       dept_office: department_map[index][:dept_office],
@@ -243,7 +243,7 @@ end
       email: "student#{index}@test.com",
       num: "2016#{Faker::Number.number(11)}",
       major: department_map[dept][:major_name].sample,
-      department: department_map[dept],
+      department: dept,
       student_class: 20160713,
       reset: false,
       password: "password",
