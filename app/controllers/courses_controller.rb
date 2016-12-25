@@ -64,7 +64,12 @@ class CoursesController < ApplicationController
 
 
   def list
-    @course=Course.all
+    @queryinfo = params[:query]
+    if @queryinfo.nil? == false
+      @course = Course.where("name like '%#{@queryinfo}%'")  
+    else
+       @course=Course.all 
+    end
     @course=@course-current_user.courses
     @course_true = Array.new
     @course.each do |single|
@@ -121,6 +126,10 @@ class CoursesController < ApplicationController
   end
   
  
+ def filter
+    redirect_to list_courses_path(params)
+    
+ end
 
   #-------------------------for both teachers and students----------------------
 
