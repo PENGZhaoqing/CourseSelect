@@ -64,7 +64,7 @@ class CoursesController < ApplicationController
 
 
   def list
-    #   按照关键词（课程名称、教师名）或者下拉列表进行查询
+     #   按照关键词（课程名称、教师名）或者下拉列表进行查询
     @course = Array.new
     @queryType = params[:queryType].to_i
     if @queryType.nil? == false
@@ -79,6 +79,10 @@ class CoursesController < ApplicationController
                     @course.push courseSingle
                 end
             end
+        elsif @queryType == 1
+            @course = Course.where("course_code like '#{@queryinfo}%'")
+        elsif @queryType == 3
+            @course = Course.where("credit like '#{@queryinfo}'")
         else
             @course = Course.all
         end
@@ -88,6 +92,8 @@ class CoursesController < ApplicationController
     else
         @course = Course.all
     end
+   
+    
     @course=@course-current_user.courses
     @course_true = Array.new
     @course.each do |single|

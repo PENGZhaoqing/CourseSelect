@@ -10,33 +10,54 @@
     <option value=9>上课时间</option>
     <option value=10>主讲教师</option>
  </select>
-<input id="query_input" type="text" name="关键词搜索"  style="color:black;padding-left:3px;left:62%;position:relative"  maxlength=10/>
+<input id="query_input" type="text" name="关键词搜索"  style="color:black;padding-left:3px;left:62%;position:relative"  maxlength=10  onkeypress="EnterPress(event)" onkeydown="EnterPress()" />
 <select id="select_1" style="width:18%;color:black;padding-left:3px;left:62%;position:relative" id="query_input" maxlength=10>
     <option selected="selected" value = "01">01-数学学院</option>
-    <option selected="selected" value = "02">02-物理学院</option>
-    <option selected="selected" value = "03">03-天文学院</option>
-    <option selected="selected" value = "04">04-化学学院</option>
-    <option selected="selected" value = "05">05-材料学院</option>
-    <option selected="selected" value = "06">06-生命学院</option>
-    <option selected="selected" value = "07">07-地球学院</option>
-    <option selected="selected" value = "08">08-资环学院</option>
-    <option selected="selected" value = "09">09-计算机学院</option>
-    <option selected="selected" value = "10">10-电子学院</option>
-    <option selected="selected" value = "11">11-工程学院</option>
-    <option selected="selected" value = "12">12-经管学院</option>
-    <option selected="selected" value = "13">13-公共管理学院</option>
-    <option selected="selected" value = "14">14-人文学院</option>
-    <option selected="selected" value = "15">15-外语系</option>
-    <option selected="selected" value = "16">16-中丹学院</option>
-    <option selected="selected" value = "17">17-国际学院</option>
-    <option selected="selected" value = "18">18-存济医学院</option>
-    <option selected="selected" value = "TY">TY-体育教研室</option>
-    <option selected="selected" value = "19">19-微电子学院</option>
-    <option selected="selected" value = "21">21-未来技术学院</option>
-    <option selected="selected" value = "22">22-网络空间安全学院</option>
+    <option value = "02">02-物理学院</option>
+    <option value = "03">03-天文学院</option>
+    <option value = "04">04-化学学院</option>
+    <option value = "05">05-材料学院</option>
+    <option value = "06">06-生命学院</option>
+    <option value = "07">07-地球学院</option>
+    <option value = "08">08-资环学院</option>
+    <option value = "09">09-计算机学院</option>
+    <option value = "10">10-电子学院</option>
+    <option value = "11">11-工程学院</option>
+    <option value = "12">12-经管学院</option>
+    <option value = "13">13-公共管理学院</option>
+    <option value = "14">14-人文学院</option>
+    <option value = "15">15-外语系</option>
+    <option value = "16">16-中丹学院</option>
+    <option value = "17">17-国际学院</option>
+    <option value = "18">18-存济医学院</option>
+    <option value = "TY">TY-体育教研室</option>
+    <option value = "19">19-微电子学院</option>
+    <option value = "21">21-未来技术学院</option>
+    <option value = "22">22-网络空间安全学院</option>
  </select>
+ <select id="select_3" style="width:18%;color:black;padding-left:3px;left:62%;position:relative" id="query_input" maxlength=10>
+     <option selected="selected" value = "28/0.5">28/0.5</option>
+     <option value = "32/0.5">32/0.5</option>
+     <option value = "20/1.0">20/1.0</option>
+     <option value = "24/1.0">24/1.0</option>
+     <option value = "30/1.5">30/1.5</option>
+     <option value = "40/2.0">40/2.0</option>
+     <option value = "40/3.0">40/3.0</option>
+     <option value = "60/3.0">60/3.0</option>
+     <option value = "50/4.0">50/4.0</option>
+     <option value = "60/4.0">60/4.0</option>
+     <option value = "60/5.0">60/5.0</option>
+ </select>
+ <select id="select_4" style="width:18%;color:black;padding-left:3px;left:62%;position:relative" id="query_input" maxlength=10></select>
+ <select id="select_5" style="width:18%;color:black;padding-left:3px;left:62%;position:relative" id="query_input" maxlength=10></select>
+ <select id="select_6" style="width:18%;color:black;padding-left:3px;left:62%;position:relative" id="query_input" maxlength=10></select>
+ <select id="select_7" style="width:18%;color:black;padding-left:3px;left:62%;position:relative" id="query_input" maxlength=10></select>
+ <select id="select_8" style="width:18%;color:black;padding-left:3px;left:62%;position:relative" id="query_input" maxlength=10></select>
+ <select id="select_9" style="width:18%;color:black;padding-left:3px;left:62%;position:relative" id="query_input" maxlength=10></select>
 
-<button style="position:relative;float:right;color:black;font-size:13px;padding:3px;width:4.5%" onclick="queryCourse()">筛选</button>
+
+
+<button style="position:relative;float:right;color:black;font-size:13px;padding:3px;width:4.5%" onclick="queryCourse()" >筛选</button>
 
 <script type= "text/javascript">
   $(function(){ 
@@ -59,16 +80,23 @@
     if(document.getElementById("keyword_type").value == 2 || document.getElementById("keyword_type").value == 10 )
     {
       document.getElementById("query_input").style.display = "inline";
-      document.getElementById("keyword_select").style.display = "none";
+      for(var i = 1; i<10; i++)
+          {
+              if(i != 2)
+                  document.getElementById("select_"+i).style.display = "none";
+          }
     }
-    else if(document.getElementById("keyword_type").value == 1)
-     {
-       document.getElementById("query_input").style.display = "none";
-       document.getElementById("keyword_select").style.display = "inline";
-     }
      else
       {
         document.getElementById("query_input").style.display = "none";
+        for(var i = 1; i<10; i++)
+          {
+              if(i == document.getElementById("keyword_type").value)
+                  document.getElementById("select_"+i).style.display = "inline";
+              else if (i ==2) continue;
+              else 
+                document.getElementById("select_"+i).style.display = "none";
+          }
       }
   }
   
@@ -85,8 +113,17 @@
         window.location.href = "<%= filter_courses_path %>"+"?queryType="+document.getElementById("keyword_type").value+"&query="+document.getElementById("query_input").value;
     }
     else
-      window.location.href = "<%= filter_courses_path %>"+"?queryType=0"+"query="+document.getElementById("query_input").value;
+    {
+         window.location.href = "<%= filter_courses_path %>"+"?queryType="+document.getElementById("keyword_type").value+"&query="+document.getElementById("select_"+document.getElementById("keyword_type").value).value;   
+    }
   }
+  
+  function EnterPress(e){ //传入 event 
+    var e = e || window.event; 
+    if(e.keyCode == 13){ 
+        queryCourse();
+        } 
+    } 
 </script>
 
 
