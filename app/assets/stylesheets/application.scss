@@ -35,7 +35,9 @@ footer {
   // background-image: image-url('background.jpg');
   //background-color: #DADADA;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100% 150%;
+  // position: absolute;
+  z-index: -1;
 }
 
 body{
@@ -47,6 +49,12 @@ html {
   height: 100%;
 }
 
+.form-horizontal
+{
+  font-size: 16px;
+}
+
+// 起泡效果
 .bubbles {
   position:absolute;
   top:8%;
