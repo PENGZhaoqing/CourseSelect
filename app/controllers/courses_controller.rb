@@ -82,7 +82,18 @@ class CoursesController < ApplicationController
   def select
     @course=Course.find_by_id(params[:id])
     current_user.courses<<@course
-    flash={:success => "成功选择课程: #{@course.name}"}
+    @grades=current_user.grades.find_by(course_id: params[:id])
+    @grades.update_attributes(:degree => false)
+    flash={:success => "成功选择该课程为非学位课: #{@course.name}"}
+    redirect_to courses_path, flash: flash
+  end
+  
+  def selectasdegree
+    @course=Course.find_by_id(params[:id])
+    current_user.courses<<@course
+    @grades=current_user.grades.find_by(course_id: params[:id])
+    @grades.update_attributes(:degree => true)
+    flash={:success => "成功选择课程为学位课: #{@course.name}"}
     redirect_to courses_path, flash: flash
   end
 
@@ -94,8 +105,8 @@ class CoursesController < ApplicationController
   end
   
   def credittips
-    @courses=current_user.courses
     @grades=current_user.grades
+    @courses = current_user.courses
     @chosen_credit_all = 0.0
     @chosen_credit_public = 0.0
     @chosen_credit_major = 0.0
@@ -125,6 +136,17 @@ class CoursesController < ApplicationController
    end
   end
   
+  def modifydegree
+    @grades=current_user.grades.find_by(course_id: params[:id])
+    if @grades.degree then
+      @grades.update_attributes(:degree => false)
+      flash={:success => "更改为非学位课"}
+    else
+      @grades.update_attributes(:degree => true)
+      flash={:success => "更改为学位课"}
+    end
+    redirect_to courses_path, flash: flash
+  end
  
  def filter
     redirect_to list_courses_path(params)

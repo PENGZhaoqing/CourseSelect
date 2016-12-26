@@ -21,7 +21,11 @@
               <option value=9>上课时间</option>
               <option value=10>主讲教师</option>
               </select>
-            <input type="text" name="关键词搜索" id="keyword_input" style="color:black;padding-left:3px;left:62%;position:relative" id="query_input" maxlength=10/>
+            <input type="text" name="关键词搜索"  style="color:black;padding-left:3px;left:62%;position:relative" id="query_input" maxlength=10/>
+            <select id="keyword_select" style="width:17.5%;color:black;padding-left:3px;left:62%;position:relative" id="query_input" maxlength=10>
+              <option selected="selected">91M</option>
+              </select>
+            
             <button style="position:relative;float:right;color:black;font-size:13px;padding:3px;width:4%" onclick="queryCourse()">筛选</button>
             
           </h3>
@@ -65,6 +69,8 @@
                   <td><%= course.course_time %></td>
                   <td><%= course.teacher.name %></td>
                   <td><%= link_to "加入", select_course_path(course), class: 'btn-sm btn-info' %></td>
+                  <td><%= link_to "选为学位课", selectasdegree_course_path(course), class: 'btn-sm btn-info' %></td>
+                  <td><%= link_to "选为非学位课", select_course_path(course), class: 'btn-sm btn-info' %></td>
 
                 </tr>
             <% end %>
@@ -80,26 +86,34 @@
   $(function(){ 
     // alert(document.getElementById("keyword_type").value);
      if(document.getElementById("keyword_type").value == 2 || document.getElementById("keyword_type").value == 10 )
-       document.getElementById("keyword_input").style.display = "inline";
-     else
       {
-        document.getElementById("keyword_input").style.display = "none";
+      document.getElementById("query_input").style.display = "inline";
+      document.getElementById("keyword_select").style.display = "none";
       }
   }); 
 
   function setType()
   {
     if(document.getElementById("keyword_type").value == 2 || document.getElementById("keyword_type").value == 10 )
-       document.getElementById("keyword_input").style.display = "inline";
+    {
+      document.getElementById("query_input").style.display = "inline";
+      document.getElementById("keyword_select").style.display = "none";
+    }
+    if(document.getElementById("keyword_type").value == 1)
+     {
+       document.getElementById("query_input").style.display = "none";
+       document.getElementById("keyword_select").style.display = "inline";
+     }
      else
       {
-        document.getElementById("keyword_input").style.display = "none";
+        document.getElementById("query_input").style.display = "none";
       }
   }
   
   function queryCourse()
   {
-    window.location.href = "<%= list_courses_path %>"+"?query="+document.getElementById("query_input").value;
+    // alert
+    window.location.href = "<%= filter_courses_path %>"+"?query="+document.getElementById("query_input").value;
   }
 </script>
 

@@ -1,9 +1,25 @@
 <%= form_for @course, html: {class: 'form-horizontal', role: 'form'} do |f|%>
     <%= render 'shared/error_messages', :object => @course %>
 
+<<<<<<< HEAD
     <div class="form-group" >
       <%= f.label "课程名", class: 'col-sm-2 control-label' %>
       <div class="col-sm-10">
+=======
+    <div class="form-group">
+      <%= f.label "课程编号", class: 'col-sm-3 control-label' %>
+      <div class="col-sm-9">
+        <div class="input-group">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
+          <%= f.text_field :course_code, class: 'form-control', placeholder: "输入课程编号" %>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label "课程名", class: 'col-sm-3 control-label' %>
+      <div class="col-sm-9">
+>>>>>>> upstream/master
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
           <%= f.text_field :name, class: 'form-control', placeholder: "输入课程名" %>
@@ -79,17 +95,37 @@
       <div class="col-sm-10">
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
-          <%= f.text_field :class_room, class: 'form-control', placeholder: "输入教室" %>
+          <div class="form-control">
+           <%= f.text_field :class_room, id: "course_address",placeholder: "教1-101",  readonly: true,  style: "background-color:#bfbfbf;appearance:none;width:20%;"  %>
+            <input style="appearance:none;width:20%;" id = "courseroom_index" placeholder="房间号" onchange="setValue('courseroom_index')" >
+          <!--  <class="coursetake_week" id= "coursetake_week" style="appearance:none;width:20%" onchange="setValue('courseTime')">-->
+            
+            <label > <input type="radio" name="courseroom" value="教1" onclick="setValue('courseroom')" checked >教1</label>
+            <label > <input type="radio" name="courseroom" value="教2" onclick="setValue('courseroom')"  >教2</label>
+            <label > <input type="radio" name="courseroom" value="学1" onclick="setValue('courseroom')"  >学1</label>
+            <label > <input type="radio" name="courseroom" value="学2" onclick="setValue('courseroom')"  >学2</label>
+            <label > <input type="radio" name="courseroom" value="图书馆" onclick="setValue('courseroom')" >图书馆</label>
+            
+            <!-- <%= f.text_field :class_room, class: 'form-control', placeholder: "输入教室"  %>-->
+          </div>
         </div>
       </div>
     </div>
-
+    
+    
     <div class="form-group">
       <%= f.label "上课周数", class: 'col-sm-2 control-label' %>
       <div class="col-sm-10">
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
-          <%= f.text_field :course_week, class: 'form-control', placeholder: "输入上课周数" %>
+           <div class="form-control">
+          <%= f.text_field :course_week, id:"courseweek",class: 'courseweek',placeholder: "第1-18周", value: "第1-18周",  readonly: true,  style: "background-color:#bfbfbf;appearance:none;width:20%;" %>
+          <label>第</label>
+          <input style="appearance:none;width:20%;" id="courseweek1"  placeholder="开课周" onchange="setValue('courseweek')" >
+          <label>-</label>
+          <input style="appearance:none;width:20%;" id="courseweek2"  placeholder= "结课周" onchange="setValue('courseweek')" >
+          <label>周</label>
+          </div>
         </div>
       </div>
     </div>
@@ -104,7 +140,7 @@
             
             <%= f.text_field :course_time, id: "courseTime", placeholder: "周一(1-2)", value: "周一(1-2)", class: 'courseTime', readonly: true,  style: "background-color:#bfbfbf" %>
             
-             <select class="coursetake_week" id= "coursetake_week" style="appearance:none;width:20%" onchange="setValue()">
+             <select class="coursetake_week" id= "coursetake_week" style="appearance:none;width:20%" onchange="setValue('courseTime')">
              <option selected=true>周一</option>
              <option>周二</option>
              <option>周三</option>
@@ -113,7 +149,7 @@
              <option>周六</option>
              <option>周日</option>
             </select>
-            <select class="coursetake_time" id="coursetake_time" style="appearance:none;width:20%" onchange="setValue()">
+            <select class="coursetake_time" id="coursetake_time" style="appearance:none;width:20%" onchange="setValue('courseTime')">
              <option selected=true>1-2</option>
              <option>1-3</option>
              <option>1-4</option>
@@ -136,13 +172,56 @@
     </div>
 
     <script type= "text/javascript">
-     function setValue()
+     function setValue(idname)
      {
-       document.getElementById("courseTime").value = document.getElementById("coursetake_week").value+"("+document.getElementById("coursetake_time").value+")";
-      // alert(document.getElementById("courseTime").value);
+      // alert(idname == "courseTime");
+      if(idname == "courseTime")
+      {
+        
+         document.getElementById(idname).value = document.getElementById("coursetake_week").value+"("+document.getElementById("coursetake_time").value+")";
+      }
+      else if(idname == "courseroom" || idname == "courseroom_index")
+      {
+        radioValue = getCheckedRadio("courseroom");
+        document.getElementById("course_address").value = radioValue+"-"+document.getElementById("courseroom_index").value;
+      }
+      else
+      {
+       document.getElementById(idname).value = "第"+document.getElementById("courseweek1").value+"-"+document.getElementById("courseweek2").value+"周";
+      }
+           // alert(document.getElementById("courseTime").value);   
+      
+     }
+     
+     
+     function getCheckedRadio(radio_name)
+     {
+        var chkObjs = document.getElementsByName(radio_name); 
+        // alert(chkObjs.length);
+        for(var i=0;i<chkObjs.length;i++){ 
+        if(chkObjs[i].checked)
+          {
+            
+            return chkObjs[i].value;
+          }
+        }
      }
       </script>
-
+     
+      
+  <!--    <script type= "text/javascript">-->
+  <!--   function setValue1()-->
+  <!-- {-->
+  <!--   document.getElementById("classroom").value = document.getElementById("courseroom").value+"-"+document.getElementById("courseroom1").value+;-->
+  <!--  }-->
+  <!--   </script>-->
+  <!--<script type= "text/javascript">-->
+  <!--function setValue2()-->
+  <!-- {-->
+  <!--    document.getElementById("courseweek").value = "第"+document.getElementById("courseweek1").value+"-"+document.getElementById("courseweek2").value+"周";-->
+     
+  <!--   }-->
+  <!--   </script>-->
     <%= f.submit '提交', class: "btn btn-success btn-block" %>
     <%= link_to '取消', courses_path, :class => "btn btn-default btn-block" %>
     
