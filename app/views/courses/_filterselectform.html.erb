@@ -1,4 +1,4 @@
-<select id = "keyword_type" style="color:black;left:62%;position:relative;font-size:15px" onclick="setType()">
+<select id = "keyword_type" style="color:black;left:52%;position:relative;font-size:15px" onclick="setType()">
     <option value=1>课程编号</option>
     <option selected = "selected" value=2>课程名称</option>
     <option value=3>课时/学分</option>
@@ -6,12 +6,12 @@
     <option value=5>授课方式</option>
     <option value=6>考试方式</option>
     <option value=7>授课地点</option>
-    <option value=8>上课周数</option>
+  <!--  <option value=8>上课周数</option>-->
     <option value=9>上课时间</option>
     <option value=10>主讲教师</option>
  </select>
-<input id="query_input" type="text" name="关键词搜索"  style="color:black;padding-left:3px;left:62%;position:relative"  maxlength=10  onkeypress="EnterPress(event)" onkeydown="EnterPress()" />
-<select id="select_1" style="width:18%;color:black;padding-left:3px;left:62%;position:relative" id="query_input" maxlength=10>
+<input id="query_input" type="text" name="关键词搜索"  style="width:27%;color:black;padding-left:3px;left:53%;position:relative"  maxlength=10  onkeypress="EnterPress(event)" onkeydown="EnterPress()" />
+<select id="select_1" style="width:28%;color:black;padding-left:3px;left:52%;position:relative"  maxlength=10>
     <option selected="selected" value = "01">01-数学学院</option>
     <option value = "02">02-物理学院</option>
     <option value = "03">03-天文学院</option>
@@ -35,7 +35,7 @@
     <option value = "21">21-未来技术学院</option>
     <option value = "22">22-网络空间安全学院</option>
  </select>
- <select id="select_3" style="width:18%;color:black;padding-left:3px;left:62%;position:relative" id="query_input" maxlength=10>
+ <select id="select_3" style="width:27%;color:black;padding-left:3px;left:53%;position:relative"  maxlength=10>
      <option selected="selected" value = "28/0.5">28/0.5</option>
      <option value = "32/0.5">32/0.5</option>
      <option value = "20/1.0">20/1.0</option>
@@ -48,13 +48,60 @@
      <option value = "60/4.0">60/4.0</option>
      <option value = "60/5.0">60/5.0</option>
  </select>
- <select id="select_4" style="width:18%;color:black;padding-left:3px;left:62%;position:relative" id="query_input" maxlength=10></select>
- <select id="select_5" style="width:18%;color:black;padding-left:3px;left:62%;position:relative" id="query_input" maxlength=10></select>
- <select id="select_6" style="width:18%;color:black;padding-left:3px;left:62%;position:relative" id="query_input" maxlength=10></select>
- <select id="select_7" style="width:18%;color:black;padding-left:3px;left:62%;position:relative" id="query_input" maxlength=10></select>
- <select id="select_8" style="width:18%;color:black;padding-left:3px;left:62%;position:relative" id="query_input" maxlength=10></select>
- <select id="select_9" style="width:18%;color:black;padding-left:3px;left:62%;position:relative" id="query_input" maxlength=10></select>
-
+ <select id="select_4" style="width:27%;color:black;padding-left:3px;left:53%;position:relative"  maxlength=10>
+     <option selected="selected" value = "一级学科核心课">一级学科核心课</option>
+     <option value = "一级学科普及课">一级学科普及课</option>
+     <option value = "一级学科研讨课">一级学科研讨课</option>
+     <option value = "专业核心课">专业核心课</option>
+     <option value = "专业普及课">专业普及课</option>
+     <option value = "专业研讨课">专业研讨课</option>
+     <option value = "高级强化课">高级强化课</option>
+     <option value = "公共选修课">公共选修课</option>
+     <option value = "公共必修课">公共必修课</option>
+     <option value = "实验课">实验课</option>
+ </select>
+ <select id="select_5" style="width:27%;color:black;padding-left:3px;left:53%;position:relative" id="query_input" maxlength=10>
+   <option selected="selected" value ="课堂讲授为主">课堂讲授为主</option>
+     <option value = "讲课、上机">讲课、上机</option>
+     <option value = "授课、讨论课">授课、讨论</option>
+ </select>
+ <select id="select_6" style="width:27%;color:black;padding-left:3px;left:53%;position:relative" id="query_input" maxlength=10>
+     <option selected="selected" value = "闭卷笔试">闭卷笔试</option>
+     <option value = "课堂开卷">课堂开卷课</option>
+     <option value = "其他">其他</option>
+ </select>
+ <div id="select_7" style="width:28%;color:black;padding-left:3px;left:53%;position:relative" id="query_input" maxlength=10>
+            <label > <input type="radio" name="courseroom" value="教1" checked="true" >教1</label>
+            <label > <input type="radio" name="courseroom" value="教2"   >教2</label>
+            <label > <input type="radio" name="courseroom" value="学1"   >学1</label>
+            <label > <input type="radio" name="courseroom" value="学2"   >学2</label>
+            <label > <input type="radio" name="courseroom" value="图书馆"  >图书馆</label>
+            <input style="appearance:none;width:5%;"  id = "courseroom_index" placeholder="房间号"  >
+ </div>
+ <select id="select_8" style="width:27%;color:black;padding-left:3px;left:53%;position:relative" id="query_input" maxlength=10> </select>
+ <div id="select_9" style="width:28%;color:black;padding-left:3px;left:53%;position:relative" id="query_input" maxlength=10>
+             <select class="coursetake_week" id= "coursetake_week" style="color:no;width:13%" >
+             <option selected=true>周一</option>
+             <option>周二</option>
+             <option>周三</option>
+             <option>周四</option>
+             <option>周五</option>
+             <option>周六</option>
+             <option>周日</option>
+            </select>
+            <select class="coursetake_time" id="coursetake_time" style="color:black;width:13%" >
+             <option selected=true>1-2</option>
+             <option>1-3</option>
+             <option>1-4</option>
+             <option>2-4</option>
+             <option>3-4</option>
+             <option>5-6</option>
+             <option>5-7</option>
+             <option>5-8</option>
+             <option>7-8</option>
+             <option>9-11</option>
+            </select>
+</div>
 
 
 <button style="position:relative;float:right;color:black;font-size:13px;padding:3px;width:4.5%" onclick="queryCourse()" >筛选</button>
@@ -112,9 +159,24 @@
       else
         window.location.href = "<%= filter_courses_path %>"+"?queryType="+document.getElementById("keyword_type").value+"&query="+document.getElementById("query_input").value;
     }
-    else
+    else if(document.getElementById("keyword_type").value ==7||document.getElementById("keyword_type").value ==9)
     {
-         window.location.href = "<%= filter_courses_path %>"+"?queryType="+document.getElementById("keyword_type").value+"&query="+document.getElementById("select_"+document.getElementById("keyword_type").value).value;   
+        if(document.getElementById("keyword_type").value ==7)
+         {
+        radioValue = getCheckedRadio("courseroom");
+        select7 = radioValue+"-"+document.getElementById("courseroom_index").value;
+                window.location.href = "<%= filter_courses_path %>"+"?queryType="+document.getElementById("keyword_type").value+"&query="+select7;   
+       
+         }
+        else
+        {
+        select9=document.getElementById("coursetake_week").value+"("+document.getElementById("coursetake_time").value+")";
+        window.location.href = "<%= filter_courses_path %>"+"?queryType="+document.getElementById("keyword_type").value+"&query="+select9;   
+        }
+    }
+    else 
+    {
+        window.location.href = "<%= filter_courses_path %>"+"?queryType="+document.getElementById("keyword_type").value+"&query="+document.getElementById("select_"+document.getElementById("keyword_type").value).value;   
     }
   }
   
@@ -124,6 +186,19 @@
         queryCourse();
         } 
     } 
+        
+     function getCheckedRadio(radio_name)
+     {
+        var chkObjs = document.getElementsByName(radio_name); 
+        
+        for(var i=0;i<chkObjs.length;i++){ 
+        if(chkObjs[i].checked)
+          {
+            
+            return chkObjs[i].value;
+          }
+        }
+     }
 </script>
 
 

@@ -83,6 +83,18 @@ class CoursesController < ApplicationController
             @course = Course.where("course_code like '#{@queryinfo}%'")
         elsif @queryType == 3
             @course = Course.where("credit like '#{@queryinfo}'")
+        elsif @queryType == 4
+            @course = Course.where("course_type like '#{@queryinfo}'")
+        elsif @queryType == 5
+            @course = Course.where("teaching_type like '#{@queryinfo}'")
+        elsif @queryType == 6
+            @course = Course.where("exam_type like '#{@queryinfo}'")
+        elsif @queryType == 7
+            @course = Course.where("class_room like '#{@queryinfo}'")
+        elsif @queryType == 8
+            @course = Course.where("course_week like '#{@queryinfo}'")
+        elsif @queryType == 9
+            @course = Course.where("course_time like '#{@queryinfo}'")    
         else
             @course = Course.all
         end
