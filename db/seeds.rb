@@ -53,9 +53,9 @@ department_map={
     12 => {name: '管理学院', dept_contact: '1111112', dept_office: '办公楼202', major_name: %w(管理科学与工程 工商管理 应用经济学 图书情报与档案管理)},
     13 => {name: '公共管理学院', dept_contact: '1111113', dept_office: '办公楼203', major_name: %w(管理科学与工程 公共管理 法学)},
     14 => {name: '人文学院', dept_contact: '1111114', dept_office: '办公楼204', major_name: %w(哲学 心理学 新闻传播学 科学技术史)},
-    18 => {name: '存济医学院', dept_contact: '1111118', dept_office: '办公楼205', major_name: %w(基础医学 药学 生物医学工程)},
-    19 => {name: '微电子学院', dept_contact: '1111119', dept_office: '办公楼206', major_name: %w(电子与通信工程 集成电路工程)},
-    20 => {name: '网络安全学院', dept_contact: '1111120', dept_office: '办公楼207', major_name: %w(网络空间管理)}
+    15 => {name: '存济医学院', dept_contact: '1111115', dept_office: '办公楼205', major_name: %w(基础医学 药学 生物医学工程)},
+    16 => {name: '微电子学院', dept_contact: '1111116', dept_office: '办公楼206', major_name: %w(电子与通信工程 集成电路工程)},
+    17 => {name: '网络安全学院', dept_contact: '1111117', dept_office: '办公楼207', major_name: %w(网络空间管理)}
 }
 
 
