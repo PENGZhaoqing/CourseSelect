@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-sm-offset-4 col-sm-4">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h4>密码重置</h4>
+      </div>
+      <div class="panel-body">
+
+        <%= form_for(@user, url: password_reset_path(params[:id])) do |f| %>
+        <%= render 'shared/error_messages', :object => @user %>
+        <%= hidden_field_tag :email, @user.email %>  <!--莫名其妙 这一句话就能验证两个密码是否一样-->
+          
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                <%= f.password_field :password, class: 'form-control', placeholder: "输入新密码" %>
+              </div>
+            </div>
+
+            <div>
+              <div class="input-group">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                <%= f.password_field :password_confirmation, class: 'form-control', placeholder: "再次输入密码" %>
+              </div>
+            </div>
+ 
+              <br/>
+
+            <%= f.submit '提交', class: "btn btn-info btn-block" %> 
+            <%= link_to '取消', sessions_login_path, :class => "btn btn-default btn-block" %>
+ 
+
+        <% end %>
+      </div>
+      <div class="panel-footer">
+          <p> 
+              <br/>
+          </p>
+        </div>
+        
+    </div>
+  </div>
+</div>

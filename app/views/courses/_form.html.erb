@@ -27,7 +27,10 @@
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
           
-             <%= f.select( 'course_type',{"专业课"=>"专业课","一级学科核心课"=>"一级学科核心课","一级学科普及课"=>"一级学科普及课","一级学科研讨课"=>"一级学科研讨课","专业核心课"=>"专业核心课","专业普及课"=>"专业普及课","公共选修课"=>"公共选修课"}, {:selected => "专业课"}, :class => "form-control") %>
+             <%= f.select( 'course_type',{"专业课"=>"专业课","一级学科核心课"=>"一级学科核心课",
+             "一级学科普及课"=>"一级学科普及课","一级学科研讨课"=>"一级学科研讨课",
+             "专业核心课"=>"专业核心课","专业普及课"=>"专业普及课","公共选修课"=>"公共选修课"}, 
+             {:selected => "专业课"}, :class => "form-control") %>
           
           <!--<%= f.text_field :course_type, class: 'form-control', placeholder: "输入课程属性" %>-->
         </div>
@@ -40,7 +43,9 @@
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
           
-          <%= f.select( 'teaching_type',{"授课、讨论"=>"授课、讨论","课堂讲授为主"=>"课堂讲授为主","讲课、上机"=>"讲课、上机","讲课、实验"=>"讲课、实验"}, {:selected => "授课、讨论"}, :class => "form-control") %>
+          <%= f.select( 'teaching_type',{"授课、讨论"=>"授课、讨论","课堂讲授为主"=>"课堂讲授为主",
+          "讲课、上机"=>"讲课、上机","讲课、实验"=>"讲课、实验"}, 
+          {:selected => "授课、讨论"}, :class => "form-control") %>
           
           <!--<%= f.text_field :teaching_type, class: 'form-control', placeholder: "输入授课方式" %>-->
         </div>
@@ -53,7 +58,9 @@
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
           
-          <%= f.select( 'exam_type',{"大开卷"=>"大开卷","课堂开卷"=>"课堂开卷","闭卷考试"=>"闭卷考试","读书报告"=>"读书报告","其他（需说明）"=>"其他（需说明）"}, {:selected => "闭卷考试"}, :class => "form-control") %>
+          <%= f.select( 'exam_type',{"大开卷"=>"大开卷","课堂开卷"=>"课堂开卷","闭卷考试"=>"闭卷考试",
+          "读书报告"=>"读书报告","其他（需说明）"=>"其他（需说明）"}, 
+          {:selected => "闭卷考试"}, :class => "form-control") %>
           
           <!--<%= f.text_field :exam_type, class: 'form-control', placeholder: "输入考试方式" %>-->
         </div>
@@ -82,7 +89,6 @@
         </div>
       </div>
     </div>
-
 
     <div class="form-group">
       <%= f.label "教室", class: 'col-sm-2 control-label' %>

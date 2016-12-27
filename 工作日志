@@ -4,3 +4,97 @@
 
 我实现了小图标功能，在app/views/layouts/application.html.erb里面修改
                                   2016.11.30  livkey
+                                  
+     ##***************************************************************************************************************************                           
+加入了注册激活功能：
+新的登陆方法如下：
+
+
+1.先注册，姓名不要用中文(有待解决，应该是编码问题，可以登陆后修改成中文名)
+注册完后会有这样的提示：
+Please check your email to activate your account.
+
+2.之后会发送一个激活的地址链接到控制台，还没有做到真正的发送到邮件里
+在ruby-"ubuntu@**"窗口里会有如下内容：
+       .  
+       .
+       .
+       .
+----==_mimepart_585d44232e3f0_e6913fbd8f705be8785e2
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+##这是邮件内容
+
+Hi livkey,
+Account activation!
+welcome to CourseSelect! Click on the link below to activate your account:
+https://courseselect-yongliu-ucas.cs50.io/account_activations/0Z84f9ZgpYehR3NWhm-WSQ/edit?email=4343%40sef.f
+
+##点击上面这个链接，就可以激活了
+
+
+----==_mimepart_585d44232e3f0_e6913fbd8f705be8785e2
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <body>
+    <h1>Account activation</h1>
+<p>Hi 2323,</p>
+<p>
+Account activation!
+welcome to CourseSelect! Click on the link below to activate your account:
+</p>
+
+<a href="https://courseselect-yongliu-ucas.cs50.io/account_activations/0Z84f9ZgpYehR3NWhm-WSQ/edit?email=4343%40sef.f">Activate</a>
+  </body>
+</html>
+
+----==_mimepart_585d44232e3f0_e6913fbd8f705be8785e2--
+
+Redirected to https://courseselect-yongliu-ucas.cs50.io/
+Completed 302 Found in 432ms (ActiveRecord: 8.3ms)
+
+
+Started GET "/" for 121.195.114.52 at 2016-12-23 15:34:59 +0000
+Cannot render console from 121.195.114.52! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by HomesController#index as HTML
+  Rendered homes/index.html.erb within layouts/application (2.7ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+  Rendered layouts/_content.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 53ms (Views: 52.2ms | ActiveRecord: 0.0ms)
+
+
+3.点击里面那个链接，就可以激活了。点击链接会跳转到新网页
+ 
+
+不能是中文名注册，这个问题再慢慢改。
+
+##***************************************************************************************************************************
+存在的问题
+
+views/users/-form.html.erb
+注册学号的的时候 需要对学号进行判断是否合法
+
+修改后，实验用例的老师和学生好像登不上了。
+解决办法是：如果你们用老师学生账号也登陆不上的时候。把app/controllers/sessions_controller.rb
+中检查是否激活的代码注释掉，我已经标记出来了。
+
+就可以跳过激活做其他的修改了。
+
+
+                                                     2016.12.23
+##***************************************************************************************************************************
+密码重置功能还有写问题，点击重置链接的时候有问题。
+                                                     2016.12.24
+                                                     
+##***************************************************************************************************************************
+
+
+
+
+

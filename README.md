@@ -59,8 +59,19 @@ $ sudo service postgresql start
 $ rake db:create:all
 $ rake db:migrate
 $ rake db:seed
-$ rails s 
+$ rails s -b $IP -p $PORT 
 ```
+##往数据库中添加属性的命令：
+1.
+添加一个属性：
+rails generate migration add_reset_to_users reset_digest:string
+添加多个属性：
+rails generate migration add_reset_to_users reset_digest:string reset_sent_at:datetime
+
+2.bundle exec rake db:migrate:reset
+（bundle exec rake db:migrate这个命令好像不对，用上面那个）
+
+3.$ bundle exec rake db:seed
 
 在浏览器中输入`localhost:3000`访问主页
 
@@ -89,6 +100,26 @@ $ rails s
 
 
 ## Heroku云部署
+##搭建Heroku环境
+照着下面代码运行，应该就没问题
+
+#为了准备好部署环境，下面要运行bundle install命令，并且指定一个特殊的选项，
+#禁止在本地安装生成环境使用gem(即pg和rails_12factor)：
+$ bundle install --without production
+##提交改动：
+$ git commit -a -m "Update Gemfile.lock for Heroku"
+##检查系统中安装Heroku命令行客户端:(会看到版本号)
+$ heroku version
+##登陆Heroku账号，需要输入账号和密码
+$ heroku login
+##添加SSH密钥
+$ heroku keys:add
+##在Heroku上面部署你的应用，Heroku会为你的项目分配一个二级域名
+$ heroku create
+（会产生一个网址，那个就是你的项目部署到Heroku的地址）
+##最后一步，把你的应用推送到Heroku
+$ git push heroku master
+
 
 项目可直接在Heroku上免费部署
 

@@ -1,0 +1,47 @@
+<div class="bubbles">  <!--界面做的真好看-->
+  <ul class="bg-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+	</ul>
+</div>
+
+<div class="row" style="width:100%;">
+    <div class="col-sm-offset-4 col-sm-4">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4>忘记密码</h4>
+            </div>
+            
+            <div class="panel-body">
+                <%= form_for(:password_reset, url: password_resets_path, method: :post, html: {role: 'form'}) do |f| %>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+                            <%= f.email_field :email, class: 'form-control', placeholder: "输入邮箱"%>
+                        </div>
+                    </div>  
+                    
+                    <%= f.submit '提交', class: "btn btn-info btn-block" %> 
+                    <%= link_to '取消', sessions_login_path, :class => "btn btn-default btn-block" %>
+
+                                      
+                <% end %>
+            </div>        
+            
+            <div class="panel-footer">
+                <p> 
+                <br/>
+                </p>
+            </div>
+            
+        </div>
+    </div>
+</div>

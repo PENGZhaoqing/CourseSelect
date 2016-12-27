@@ -7,22 +7,22 @@
 			<li></li>
 			<li></li>
 			<li></li>
+			<li></li> 
 			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
-  </div>
+	</ul>
+</div>
+
 <div class="row" style="width:100%;">
-  
   <div class="col-sm-offset-4 col-sm-4">
     <div class="panel panel-success">
+      
       <div class="panel-heading">
         <h4><span class="glyphicon glyphicon-lock"></span> 登录</h4>
       </div>
+      
       <div class="panel-body">
         <%= form_for(:session, url: sessions_login_path, method: :post, html: {role: 'form'}) do |f| %>
             <div class="form-group">
-              <%= f.label :email, "账号密码登陆" %>
               <div class="input-group">
                 <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
                 <%= f.email_field :email, class: 'form-control', placeholder: "输入邮箱" %>
@@ -36,22 +36,29 @@
               </div>
             </div>
 
-            <div class="checkbox">
+            <div class="checkbox"> <!--判断checkbox是否被选中-->
+              &nbsp; &nbsp;&nbsp;
               <label><%= f.check_box :remember_me %>记住我</label>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              
+              <%= link_to "找回密码",new_password_reset_path %>
             </div>
 
             <%= button_tag(type: "submit", class: "btn btn-success btn-block") do %>
-                <span class="glyphicon glyphicon-off"></span>登陆
+                <span class="glyphicon glyphicon-off"></span>登录
             <% end %>
 
         <% end %>
       </div>
-
+      
       <div class="panel-footer">
-        <p>没有账号?
-          <%= link_to "注册", new_user_path %>
+        <p> 
+         没有账号?<%= link_to "注册", new_user_path %>
         </p>
       </div>
+      
     </div>
   </div>
 </div>

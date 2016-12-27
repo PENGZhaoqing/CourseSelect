@@ -27,13 +27,11 @@ module SessionsHelper
     @current_visit = nil
   end
 
-
-
   # Returns the user corresponding to the remember token cookie.
   def current_user
     if session[:user_id]
-      @current_user||= User.find_by(id: session[:user_id])
-    elsif cookies.signed[:user_id]
+      @current_user||= User.find_by(id: session[:user_id]) #存在但是没有赋值时赋值
+    elsif cookies.signed[:user_id] #读取值
       user = User.find_by(id: cookies.signed[:user_id])
       if user && user.user_authenticated?(:remember, cookies[:remember_token])
         log_in user
@@ -60,6 +58,16 @@ module SessionsHelper
   def current_user?(user)
     user == current_user
   end
-
-
+  
+  #重定向到默认的地址，或者存储的地址
+  def redirect_back_or(default)
+    redirect_to(session[:forwarding_url] || default)
+    session.delete(:forwarding_url)
+  end
+  
+  #存储以后需要获取的地址
+  def store_location
+    session[:forwarding_url] = request.url if request.get?
+  end
+ 
 end

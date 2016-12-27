@@ -54,11 +54,17 @@
                   <td><%= course.class_room %></td>
                   <td><%= course.course_week %></td>
                   <td><%= course.course_time %></td>
+<<<<<<< HEAD
+                  <td><%= course.teacher.name %></td> 
+                  <td><%= link_to "选为学位课", selectasdegree_course_path(course), class: 'btn-sm btn-info' %></td>
+                  <td><%= link_to "选为非学位课", select_course_path(course), class: 'btn-sm btn-info' %></td>
+=======
                   <td><%= course.teacher.name %></td>
                   <td style="width:5%;padding:0"><%= link_to "加入", select_course_path(course), class: 'btn-sm btn-info' %></td>
                   <td style="width:8%;padding:0"><%= link_to "选为学位课", selectasdegree_course_path(course), class: 'btn-sm btn-info' %></td>
                   <td style="width:9%;padding:0"><%= link_to "选为非学位课", select_course_path(course), class: 'btn-sm btn-info' %></td>
 
+>>>>>>> 32ffe70f7ec3132c7974f2b4bc51295909193946
                 </tr>
             <% end %>
             </tbody>

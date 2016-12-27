@@ -38,16 +38,18 @@ end
 
 #-------------------------------------------------------------------------------------
 
-
+##运行  $rake db:seed 命令，则会生成管理员账户，自动设置为管理员身份，以及激活状态
 User.create(
-    name: "彭兆卿",
+    name: "管理员",
     email: "admin@test.com",
-    num: "201628008629001",
-    major: "计算机软件与理论",
+    num: "2016E8007361075",
+    major: "计算机技术",
     department: "计算机与控制学院",
     password: "password",
     password_confirmation: "password",
-    admin: true
+    admin: true,
+    activated: true,   #激活种子数据中的用户
+    activated_at: Time.zone.now
 )
 
 teacher_map={
@@ -125,13 +127,15 @@ course_map={
 }
 
 teacher_map.keys.each do |index|
-  teacher=User.create!(
+  teacher=User.create(
       name: teacher_map[index][:name],
       email: "teacher#{index}@test.com",
       department: teacher_map[index][:department],
       password: "password",
       password_confirmation: "password",
-      teacher: true
+      teacher: true,
+      activated: true,  #实验用例老师账号要激活
+      activated_at: Time.zone.now
   )
 
   teacher.teaching_courses.create!(
@@ -149,7 +153,12 @@ teacher_map.keys.each do |index|
 
 end
 
-(1..200).each do |index|
+(1..200).each do |index|    #相当于做200次循环
+=begin
+  name = Faker::StudentGenerator.name
+  email = "student#{index}@test.com"
+  password = "password"
+=end
   student=User.create!(
       name: StudentGenerator.name,
       email: "student#{index}@test.com",
@@ -158,8 +167,10 @@ end
       department: StudentGenerator.department,
       password: "password",
       password_confirmation: "password",
+      activated: true,
+      activated_at: Time.zone.now
   )
-
+  
   course_array=(1..34).to_a.sort { rand() - 0.5 }[1..rand(4..8)]
   course_array.each do |index|
     student.courses<<Course.find(index)
