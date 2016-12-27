@@ -31,22 +31,28 @@ Rails.application.routes.draw do
       get :open
       get :close
       get :courseplan
+      get :modifydegree
     end
     collection do
       get :list
       get :credittips
+      get :filter
       
     end
   end
-
-  resources :grades, only: [:index, :update]
-  resources :users 
+ 
   
   #添加账户激活需要的路由
   resources :account_activations, only: [:edit]
   #添加密码重置需要的路由
   resources :password_resets, only: [:new, :create, :edit, :update]
-
+ 
+  resources :grades do
+    collection do
+      get :evaluate
+    end
+  end
+  resources :users 
 
   get 'sessions/login' => 'sessions#new'
   post 'sessions/login' => 'sessions#create'

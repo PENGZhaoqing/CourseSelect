@@ -5,7 +5,7 @@
       <%= render "shared/sidenav" %>
     </div>
 
-    <div class="col-sm-10">
+    <div class="col-sm-10" style="left:14%; width: 86%; position:absolute">
 
       <div class="panel panel-primary filterable">
         <div class="panel-heading">
@@ -31,9 +31,10 @@
               <th>考试方式</th>
               <th>上课周数</th>
               <th>上课时间</th>
+              <th>授课地点</th>
               <th>主讲教师</th>
               <% if student_logged_in? %>
-                <th>是否为学位课</th>
+                <th>学位课状态</th>
               <% end %>
             </tr>
 
@@ -41,7 +42,7 @@
             <% @course.each do |course| %>
                 <tr>
 
-                   <td><%= link_to course.course_code,courseplan_course_url(course) %></td>
+                  <td><%= link_to course.course_code,courseplan_course_url(course) %></td>
 					        <td><%= course.name %></a></td>
                   <td><%= course.credit %></td>
                   
@@ -55,6 +56,7 @@
                   <td><%= course.exam_type %></td>
                   <td><%= course.course_week %></td>
                   <td><%= course.course_time %></td>
+                  <td><%= course.class_room %></td>
                   <td><%= course.teacher.name %></td>
 
                   <% if teacher_logged_in? %>
@@ -68,9 +70,9 @@
                   <% elsif student_logged_in? %>
                       <% grade=current_user.grades.find_by(course_id: course.id)%>
                       <% if grade.degree %>
-                        <td>是</td>
+                        <td><%= link_to "是", modifydegree_course_path(course),  class: 'btn btn-xs btn-success' %></td>
                       <% else %>
-                        <td>否</td>
+                        <td><%= link_to "否", modifydegree_course_path(course),  class: 'btn btn-xs btn-info' %></td>
                       <% end %>
                       <td><%= link_to "删除", quit_course_path(course), class: 'btn-sm btn-danger' %></td>
                   <% end %>

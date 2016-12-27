@@ -1,0 +1,156 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2">
+      <%= render "shared/sidenav" %>
+    </div>
+
+    <div class="col-md-offset-1 col-sm-6">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title">查看评估结果: <%=@course.name%></h3>
+        </div>
+        <div class="panel-body">
+          <%  rank_teacher_sum = 0.0 
+          rank_teacher_num = 0 
+          rank_course_sum = 0.0 
+          rank_course_num = 0 
+          @grades_all.each do |grade|
+            if grade.rank_teacher.nil? == false
+              rank_teacher_sum += grade.rank_teacher
+              rank_teacher_num += 1
+            end
+            if grade.rank_course.nil? == false
+              rank_course_sum += grade.rank_course
+              rank_course_num += 1
+            end
+          end
+            
+          rank_teacher_aver = rank_teacher_sum/rank_teacher_num
+          rank_course_aver = rank_course_sum/rank_course_num  %>
+          <div class="form-group">
+            <label  class="col-sm-3 control-label"> 课程难度系数：</label>
+            <div class="col-sm-9">
+              <nobr>
+              <% if rank_course_num > 0 %>
+                <% if rank_course_aver < 2 %>
+                  <label  class="col-sm-3 control-label"><%= rank_course_aver.round(2) %>（非常简单）</label>
+                <% elsif rank_course_aver < 3 %>
+                  <label  class="col-sm-3 control-label"><%= rank_course_aver.round(2) %>（较简单）</label>
+                <% elsif rank_course_aver < 4 %>
+                  <label  class="col-sm-3 control-label"><%= rank_course_aver.round(2) %>（一般）</label>
+                <% elsif rank_course_aver < 5 %>
+                  <label  class="col-sm-3 control-label"><%= rank_course_aver.round(2) %>（较难）</label>
+                <% else %>
+                  <label  class="col-sm-3 control-label"><%= rank_course_aver.round(2) %>（很难）</label>
+                <% end %>
+              <% else %>
+              <label  class="col-sm-3 control-label">未评价</label>
+              <% end %>
+              </nobr>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label  class="col-sm-3 control-label"> 教师评分：</label>
+            <div class="col-sm-9">
+              <nobr>
+              <% if rank_teacher_num > 0 %>
+                <% if rank_teacher_aver < 2 %>
+                  <label  class="col-sm-3 control-label"><%= rank_teacher_aver.round(2) %>（非常差）</label>
+                <% elsif rank_teacher_aver < 3 %>
+                  <label  class="col-sm-3 control-label"><%= rank_teacher_aver.round(2) %>（较差）</label>
+                <% elsif rank_teacher_aver < 4 %>
+                  <label  class="col-sm-3 control-label"><%= rank_teacher_aver.round(2) %>（合格）</label>
+                <% elsif rank_teacher_aver < 5 %>
+                  <label  class="col-sm-3 control-label"><%= rank_teacher_aver.round(2) %>（良好）</label>
+                <% else %>
+                  <label  class="col-sm-3 control-label"><%= rank_teacher_aver.round(2) %>（优秀）</label>
+                <% end %>
+              <% else %>
+              <label  class="col-sm-3 control-label">未评价</label>
+              <% end %>
+              </nobr>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label  class="col-sm-3 control-label"> 评论：</label>
+            <table class="table">
+            <% i = 0 %>
+            <%  @grades_all.each do |grade| %>
+              <% if grade.rank_comment.blank? == false %>
+                <% i += 1 %>
+                <tr class="success"><td>评论<%= i %>：</td><td><%= grade.rank_comment %></td></tr>
+              <% end %>
+            <% end %>
+            </table>
+          </div>
+        </div>
+        
+        <% if student_logged_in? %>
+        <div class="panel-heading">
+          <h3 class="panel-title">进行评估：<%=@course.name%></h3>
+        </div>
+        <div class="panel-body">
+          <%= form_for @grades, url: grade_url(id: @grades.id, course_id: @course.id), method: :patch do |f| %>
+            <div class="form-group">
+              <%= f.label "课程难度系数：", class: 'col-sm-3 control-label' %>
+              <%= f.hidden_field :rank_course, id: "rank_course",  readonly: true %>
+              <div class="col-sm-9">
+                <div class="rating">
+                  <input type="radio" id="star5" name="rank_course" value=5  onclick="setValue('rank_course')"  /><label for="star5" title="很难"></label>
+                  <input type="radio" id="star4" name="rank_course" value=4  onclick="setValue('rank_course')"  /><label for="star4" title="较难"></label>
+                  <input type="radio" id="star3" name="rank_course" value=3  onclick="setValue('rank_course')"  /><label for="star3" title="一般"></label>
+                  <input type="radio" id="star2" name="rank_course" value=2  onclick="setValue('rank_course')"  /><label for="star2" title="较简单"></label>
+                  <input type="radio" id="star1" name="rank_course" value=1  onclick="setValue('rank_course')"  /><label for="star1" title="非常简单"></label>
+                </div>
+              </div>
+            </div>
+          
+            <div class="form-group">
+              <%= f.label "教师评分：", class: 'col-sm-3 control-label' %>
+              <%= f.hidden_field :rank_teacher, id: "rank_teacher",  readonly: true %>
+              <div class="col-sm-9">
+                <div class="rating">
+                  <input type="radio" id="star6" name="rank_teacher" value=5  onclick="setValue('rank_teacher')"  /><label for="star6" title="优秀"></label>
+                  <input type="radio" id="star7" name="rank_teacher" value=4  onclick="setValue('rank_teacher')"  /><label for="star7" title="良好"></label>
+                  <input type="radio" id="star8" name="rank_teacher" value=3  onclick="setValue('rank_teacher')"  /><label for="star8" title="合格"></label>
+                  <input type="radio" id="star9" name="rank_teacher" value=2  onclick="setValue('rank_teacher')"  /><label for="star9" title="较差"></label>
+                  <input type="radio" id="star10" name="rank_teacher" value=1  onclick="setValue('rank_teacher')"  /><label for="star10" title="非常差"></label>
+                </div>
+              </div>
+            </div>
+          
+            <div class="form-group">
+              <%= f.label "评论：", class: 'col-sm-3 control-label' %>
+              <div class="col-sm-9">
+                <div class="input-group">
+                  <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
+                  <%= f.text_area :rank_comment, class: 'form-control', placeholder: "对这门课有什么评价", :rows => 3, :cols => 40 %>
+                </div>
+              </div>
+            </div>
+            <%= f.submit '提交', class: "btn btn-success btn-block" %>
+            <%= link_to '取消', courses_path, :class => "btn btn-default btn-block" %>
+          <% end %>    
+        </div>
+        <% end %>    
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type= "text/javascript">
+function setValue(idname){
+  radioValue = getCheckedRadio(idname);
+  document.getElementById(idname).value = radioValue;
+}
+function getCheckedRadio(radio_name){
+  var chkObjs = document.getElementsByName(radio_name); 
+  for(var i=0;i<chkObjs.length;i++){ 
+    if(chkObjs[i].checked){
+      return chkObjs[i].value;
+    }
+  }
+}
+</script>

@@ -64,7 +64,48 @@ class CoursesController < ApplicationController
 
 
   def list
-    @course=Course.all
+     #   按照关键词（课程名称、教师名）或者下拉列表进行查询
+    @course = Array.new
+    @queryType = params[:queryType].to_i
+    if @queryType.nil? == false
+     @queryinfo = params[:query]
+     if @queryinfo.nil? == false
+        if @queryType == 2 
+            @course = Course.where("name like '%#{@queryinfo}%'")  
+        elsif @queryType == 10
+            @teacherName = User.where("name like '%#{@queryinfo}%'")
+            @teacherName.each do |teacherSingle|
+                teacherSingle.teaching_courses.each do |courseSingle|
+                    @course.push courseSingle
+                end
+            end
+        elsif @queryType == 1
+            @course = Course.where("course_code like '#{@queryinfo}%'")
+        elsif @queryType == 3
+            @course = Course.where("credit like '#{@queryinfo}'")
+        elsif @queryType == 4
+            @course = Course.where("course_type like '#{@queryinfo}'")
+        elsif @queryType == 5
+            @course = Course.where("teaching_type like '#{@queryinfo}'")
+        elsif @queryType == 6
+            @course = Course.where("exam_type like '#{@queryinfo}'")
+        elsif @queryType == 7
+            @course = Course.where("class_room like '#{@queryinfo}'")
+        elsif @queryType == 8
+            @course = Course.where("course_week like '#{@queryinfo}'")
+        elsif @queryType == 9
+            @course = Course.where("course_time like '#{@queryinfo}'")    
+        else
+            @course = Course.all
+        end
+     else
+         @course=Course.all 
+     end
+    else
+        @course = Course.all
+    end
+   
+    
     @course=@course-current_user.courses
     @course_true = Array.new
     @course.each do |single|
@@ -102,9 +143,52 @@ class CoursesController < ApplicationController
   def credittips
     @courses=current_user.courses
     @grades=current_user.grades
+    @chosen_credit_all = 0.0
+    @chosen_credit_public = 0.0
+    @chosen_credit_major = 0.0
+    @courses.each do |course|
+      @chosen_credit_all = @chosen_credit_all+ course.credit[-3..-1].to_f
+      if course.course_type == "公共选修课" then
+         @chosen_credit_public = @chosen_credit_public+course.credit[-3..-1].to_f
+      end
+      if course.course_type == "专业核心课" then
+         @chosen_credit_major = @chosen_credit_major+course.credit[-3..-1].to_f
+      end
+    end
+    
+   @obtained_credit_pubic = 0.0
+   @obtained_credit_major = 0.0
+   @obtained_credit_all = 0.0
+   @grades.each do |grade|
+      if grade.grade.nil? == false
+         @obtained_credit_all += grade.course.credit[-3..-1].to_f
+         if grade.course.course_type == "公共选修课"
+            @obtained_credit_public += grade.course.credit[-3..-1].to_f
+         end
+         if grade.course.course_type == "专业核心课"
+             @obtained_credit_major += grade.course.credit[-3..-1].to_f
+         end
+      end
+   end
   end
   
  
+ def filter
+    redirect_to list_courses_path(params)
+    
+ end
+ 
+ def modifydegree
+    @grades=current_user.grades.find_by(course_id: params[:id])
+    if @grades.degree then
+      @grades.update_attributes(:degree => false)
+      flash={:success => "更改为非学位课"}
+    else
+      @grades.update_attributes(:degree => true)
+      flash={:success => "更改为学位课"}
+    end
+    redirect_to courses_path, flash: flash
+ end
 
   #-------------------------for both teachers and students----------------------
 

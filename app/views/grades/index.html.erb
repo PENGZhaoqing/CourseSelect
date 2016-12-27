@@ -4,7 +4,7 @@
       <%= render "shared/sidenav" %>
 
     </div>
-    <div class="col-sm-10">
+    <div class="col-sm-10" style="left:14%; width:86%; position:absolute">
       <div class="panel panel-primary">
         <div class="panel-heading">
           <% if teacher_logged_in? %><h3 class="panel-title">成绩管理: <%=@course.name%></h3><% end %>
@@ -59,7 +59,6 @@
                     <td><%= grade.course.teacher.name %></td>
                     <td><%= grade.course.teacher.email %></td>
                     <td><%= grade.grade %></td>
-                    <td><%= grade.degree %></td>
                   <% end %>
 
                   <% if teacher_logged_in? %>

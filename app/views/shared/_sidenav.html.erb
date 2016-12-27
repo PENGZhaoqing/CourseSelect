@@ -1,4 +1,4 @@
-<div class="panel-group" id="accordion">
+<div class="panel-group" id="accordion" style= "width:93%">
 
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -103,4 +103,40 @@
       </div>
     </div>
   </div>
+  
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#EvaluationCollapse"><span class="glyphicon glyphicon-user"></span>
+              课程评估</a>
+      </h4>
+    </div>
+
+    <div id="EvaluationCollapse" class="panel-collapse collapse <%= "in" if ["grades"].include?(params[:controller]) %>">
+      <div class="list-group">
+
+        <% if teacher_logged_in? %>
+            <% current_user.teaching_courses.each do |course| %>
+                <li class="list-group-item">
+                  <%= link_to evaluate_grades_path(course_id: course.id) do %>
+                      <span class="glyphicon glyphicon-chevron-right"></span> <%= course.name %>
+                  <% end %>
+                </li>
+            <% end %>
+        <% end %>
+
+        <% if student_logged_in? %>
+            <% current_user.courses.each do |course| %>
+                <li class="list-group-item">
+                  <%= link_to evaluate_grades_path(course_id: course.id) do %>
+                      <span class="glyphicon glyphicon-chevron-right"></span> <%= course.name %>
+                  <% end %>
+                </li>
+            <% end %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+  
 </div>
