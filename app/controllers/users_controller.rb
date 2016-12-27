@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       
       #激活检查
       @user.send_activation_email
-      flash[:info] = "Please check your email to activate your account."
+      flash[:info] = "请检查你的邮箱激活链接并激活账户."
       redirect_to root_url
     else
       flash[:warning] = "账号信息填写有误,请重试"
