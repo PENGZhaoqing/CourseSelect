@@ -47,7 +47,9 @@ User.create(
     department: "计算机与控制学院",
     password: "password",
     password_confirmation: "password",
-    admin: true
+    admin: true,
+    activated: true,   #激活种子数据中的用户
+    activated_at: Time.zone.now
 )
 
 teacher_map={
@@ -131,7 +133,9 @@ teacher_map.keys.each do |index|
       department: teacher_map[index][:department],
       password: "password",
       password_confirmation: "password",
-      teacher: true
+      teacher: true,
+      activated: true,  #实验用例老师账号要激活
+      activated_at: Time.zone.now
   )
 
   teacher.teaching_courses.create!(
@@ -162,7 +166,9 @@ end
       major: StudentGenerator.major,
       department: StudentGenerator.department,
       password: "password",
-      password_confirmation: "password"
+      password_confirmation: "password",
+      activated: true,
+      activated_at: Time.zone.now
   )
   
   course_array=(1..34).to_a.sort { rand() - 0.5 }[1..rand(4..8)]
