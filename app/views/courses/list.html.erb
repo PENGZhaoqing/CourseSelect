@@ -12,109 +12,149 @@
         <div class="panel-body" style="min-height: 450px">
 
           <!-- 条件查询-->
-          <form class="form-horizontal" role="form">
+          <form class="form-horizontal" role="form" method="get" action= <%= list_courses_path %>>
             <div class="form-group well" style="margin-left: 10px; margin-right: 10px">
               <div class="col-sm-1">
 
               </div>
               <div class="col-sm-2">
                 <label for="department">学院</label>
-                <select  class="form-control" id="department">
-                  <option value="" selected>
-                    --请选择学院--
-                  </option>
-                  <option>
-                    计算机与控制学院
-                  </option>
-                  <option>
-                    网络安全学院
-                  </option>
+                <select  class="form-control" id="department" name="department">
+                  <% $Department.each do |key, value|%>
+                      <%# ------保留上一次的输入-------%>
+                      <% if params[:department] != key.to_s%>
+                          <option value= <%= key %>><%= value.values_at(:dept_name).first %></option>
+                      <% else%>
+                          <option value= <%= key %> selected><%= value.values_at(:dept_name).first %></option>
+                      <% end %>
+
+                  <% end %>
                 </select>
               </div>
 
               <div class="col-sm-2">
                 <label for="week">星期</label>
-                <select  class="form-control" id="week">
-                  <option value="" selected>
-                    --请选择星期--
-                  </option>
-                  <option>
-                    星期一
-                  </option>
-                  <option>
-                    星期二
-                  </option>
+                <select  class="form-control" id="week" name="week">
+                  <% (0..7).each do |i|%>
+                      <%# ------保留上一次的输入-------%>
+                      <% if params[:week] != i.to_s %>
+                          <option value= <%= i %>><%= $Week.values_at(i).first %></option>
+                      <% else%>
+                          <option value= <%= i %> selected><%= $Week.values_at(i).first %></option>
+                      <% end %>
+                  <% end %>
                 </select>
               </div>
 
               <div class="col-sm-2">
                 <label for="course_time">节次</label>
-                <select  class="form-control" id="course_time">
-                  <option value="" selected>
-                    --请选择节次--
-                  </option>
-                  <option>
-                    上午1-2节
-                  </option>
-                  <option>
-                    上午1-3节
-                  </option>
+                <select  class="form-control" id="course_time" name="course_time">
+                  <% $ClassTime.each do |key, value|%>
+                      <%# ------保留上一次的输入-------%>
+                      <% if params[:course_time] != key.to_s %>
+                        <option value= <%= key %>><%= value %></option>
+                      <% else%>
+                        <option value= <%= key %> selected><%= value %></option>
+                      <% end %>
+                  <% end %>
                 </select>
               </div>
 
               <div class="col-sm-2">
                 <label for="course_name">课程名称</label>
-                <input type="text"  class="form-control" id="course_name" placeholder="请输入课程名称">
+                <input type="text"  class="form-control" id="course_name" name="course_name"
+                      <%# ------保留上一次的输入-------%>
+                       <% if params[:course_name] == ''%>
+                        placeholder="请输入课程名称"
+                      <% else %>
+                        placeholder=<%= params[:course_name] %>
+                      <% end %>
+                       >
                 </input>
               </div>
 
+              <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
               <div class="col-sm-3">
                 <label for="submit"></label>
-                <input type="submit" class="btn btn-block btn-info" id="submit" value="查询" style="width: 50%; margin: auto">
+                <input type="submit" class="btn btn-block btn-info" id="submit" name= "submit" value="查询" style="width: 50%; margin: auto">
               </div>
 
             </div>
 
+
+            <hr>
+            <table class="table table-striped table-hover">
+              <thead>
+
+              <tr>
+                <th>序号</th>
+                <th>课程编号</th>
+                <th>课程名称</th>
+                <th>课时/学分</th>
+                <th>限选</th>
+                <th>已选</th>
+                <th>课程属性</th>
+                <th>授课方式</th>
+                <th>考试方式</th>
+                <th>主讲教师</th>
+
+              </tr>
+              </thead>
+              <tbody>
+              <% (params[:pageStart]..params[:pageEnd]).each do |i| %>
+                  <tr>
+                    <td><%= i+1 %></td>
+                    <td><%= @course[i].course_code %></td>
+                    <td><%= @course[i].name %></td>
+                    <td><%= @course[i].course_time %>/<%= @course[i].credit %></td>
+                    <td><%= @course[i].limit_num %></td>
+                    <td><%= @course[i].student_num %></td>
+                    <td><%= @course[i].course_type %></td>
+                    <td><%= @course[i].teaching_type %></td>
+                    <td><%= @course[i].exam_type %></td>
+                    <td><%= @course[i].teacher.name %></td>
+                    <td><%= link_to "加入课程", select_course_path(@course[i]), class: 'btn-sm btn-info' %></td>
+
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+            <%# --------------------分页-----------------------%>
+            <div id="nav">
+              <input type="hidden" name="page" value=<%= params[:page]%>>
+              <nav style="text-align: center">
+                <ul class="pagination">
+                  <% if params[:page].to_i == 1%>
+                    <li class="disabled"><a>首页</a></li>
+                    <li class="disabled"><a>上一页</a></li>
+                  <% else %>
+                    <li><a href=<%= list_courses_path + '?department='+params[:department]+
+                                    '&week='+params[:week]+'&course_time='+params[:course_time]+
+                                    '&course_name='+params[:course_name]+'&authenticity_token='+
+                                     params[:authenticity_token]+'&page=1'%> >首页</a></li>
+                    <li><a href=<%= list_courses_path + '?department='+params[:department]+
+                                    '&week='+params[:week]+'&course_time='+params[:course_time]+
+                                    '&course_name='+params[:course_name]+'&authenticity_token='+
+                                     params[:authenticity_token]+'&page='+(params[:page].to_i - 1).to_s %>>上一页</a></li>
+                  <% end %>
+                    <li><a>当前为第<%= params[:page] %>页 共<%= params[:pageNum] %>页</a></li>
+                  <% if params[:page].to_i == params[:pageNum]%>
+                    <li class="disabled"><a>下一页</a></li>
+                    <li class="disabled"><a>末页</a></li>
+                  <% else %>
+                    <li><a href=<%=  list_courses_path + '?department='+params[:department]+
+                                     '&week='+params[:week]+'&course_time='+params[:course_time]+
+                                     '&course_name='+params[:course_name]+'&authenticity_token='+
+                                      params[:authenticity_token]+'&page=' + (params[:page].to_i + 1).to_s %> >下一页</a></li>
+                    <li><a href=<%=  list_courses_path + '?department='+params[:department]+
+                                     '&week='+params[:week]+'&course_time='+params[:course_time]+
+                                     '&course_name='+params[:course_name]+'&authenticity_token='+
+                                      params[:authenticity_token]+'&page=' + params[:pageNum].to_s %>>末页</a></li>
+                  <% end %>
+                </ul>
+              </nav>
+            </div>
           </form>
-
-
-          <hr>
-          <table class="table table-striped table-hover">
-            <thead>
-
-            <tr>
-              <th>课程编号</th>
-              <th>课程名称</th>
-              <th>课时/学分</th>
-              <th>限选</th>
-              <th>已选</th>
-              <th>课程属性</th>
-              <th>授课方式</th>
-              <th>考试方式</th>
-              <th>主讲教师</th>
-
-            </tr>
-            </thead>
-            <tbody>
-
-            <% @course.each do |course| %>
-                <tr>
-
-                  <td><%= course.course_code %></td>
-                  <td><%= course.name %></td>
-                  <td><%= course.course_time %>/<%= course.credit %></td>
-                  <td><%= course.limit_num %></td>
-                  <td><%= course.student_num %></td>
-                  <td><%= course.course_type %></td>
-                  <td><%= course.teaching_type %></td>
-                  <td><%= course.exam_type %></td>
-                  <td><%= course.teacher.name %></td>
-                  <td><%= link_to "加入课程", select_course_path(course), class: 'btn-sm btn-info' %></td>
-
-                </tr>
-            <% end %>
-            </tbody>
-          </table>
         </div>
       </div>
     </div>
