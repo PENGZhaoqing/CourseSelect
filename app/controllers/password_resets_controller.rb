@@ -41,7 +41,7 @@ private
     params.require(:user).permit(:password, :password_confirmation)
   end
   
-  #密码和确认密码都为空，返回true
+  #密码和确认密码都为空，则返回true
   def both_passwords_blank?
     params[:user][:password].blank? &&params[:user][:password_confirmation].blank?
   end
