@@ -30,7 +30,7 @@
 
                   <td><%= course.course_code %></td>
                   <td><%= course.name %></td>
-                  <td><%= course.credit %></td>
+                  <td><%= course.course_time %>/<%= course.credit %></td>
                   <td><%= course.exam_type %></td>
                   <td><%= course.teacher.name %></td>
 
@@ -46,15 +46,54 @@
                                       :data => {confirm: '确定要删除此课程?'} %></td>
 
                   <% elsif student_logged_in? %>
-                      <td><%= link_to "删除", quit_course_path(course), class: 'btn-sm btn-danger' %></td>
+                      <td><%= link_to "删除", '', class: 'btn-sm btn-danger', :data =>{toggle: 'modal', target: '#myModal', path: quit_course_url(course), name: course.name} %></td>
                   <% end %>
                 </tr>
             <% end %>
             </tbody>
           </table>
-
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">删除课程</h4>
+      </div>
+      <div class="modal-body"><span id="modal-body-content"></span></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-danger" id="modal-submit">确定</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal -->
+</div>
+
+<script>
+
+  /*$(function () {
+    $('#modal_form').on('hide.bs.modal', function () {
+
+    });
+  });*/
+
+  $('#modal-submit').click(function () {
+    window.location.href = $('#modal-submit').attr('href');
+  });
+
+    $('#myModal').on('show.bs.modal', function (e) {
+    //获取是单击了哪个按钮
+    var button = $(e.relatedTarget);
+    var name = '确定要删除课程：'+ button.data('name') + '?';
+    var url = button.data('path');
+    $('#modal-submit').attr('href', url);
+    $('#modal-body-content').html(name);
+  });
+
+</script>

@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20161215121614) do
   end
 
   create_table "course_infos", force: :cascade do |t|
-    t.string   "course_code"
+    t.integer  "course_code"
     t.string   "course_day"
     t.string   "course_class"
     t.datetime "created_at",   null: false
@@ -66,8 +66,9 @@ ActiveRecord::Schema.define(version: 20161215121614) do
     t.integer  "course_id"
     t.integer  "user_id"
     t.integer  "grade"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "apply",      default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_index "grades", ["course_id"], name: "index_grades_on_course_id", using: :btree

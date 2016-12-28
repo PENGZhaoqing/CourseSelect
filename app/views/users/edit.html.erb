@@ -11,7 +11,7 @@
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-                <%= f.text_field :name, class: 'form-control' %>
+                <%= f.text_field :name, class: 'form-control', "disabled"=>true%>
               </div>
             </div>
 
@@ -26,14 +26,14 @@
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon"><span class="glyphicon glyphicon-home"></span></div>
-                <%= f.text_field :major, class: 'form-control' %>
+                <%= f.text_field :major, class: 'form-control',  "disabled"=>true %>
               </div>
             </div>
 
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon"><span class="glyphicon glyphicon-check"></span></div>
-                <%= f.text_field :department, class: 'form-control' %>
+                <%= f.text_field :department, class: 'form-control', value: $Department.values_at(current_user.department)[0].values_at(:dept_name),"disabled"=>true%>
               </div>
             </div>
 

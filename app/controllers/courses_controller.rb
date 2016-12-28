@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
 
-  before_action :student_logged_in, only: [:select, :quit, :list]
+  before_action :student_logged_in, only: [:select, :quit, :list, :search]
   before_action :teacher_logged_in, only: [:new, :create, :edit, :destroy, :update]
   before_action :logged_in, only: :index
 
@@ -63,10 +63,80 @@ class CoursesController < ApplicationController
   #-------------------------for students----------------------
 
   def list
-    @course=Course.all
+    if params[:department] == nil
+      params[:department] = '0'
+    end
+
+    if params[:week] == nil
+      params[:week] = '0'
+    end
+
+    if params[:course_time] == nil
+      params[:course_time] = '0'
+    end
+
+    if params[:course_name] == nil
+      params[:course_name] = ''
+    end
+
+    if params[:authenticity_token] == nil
+      params[:authenticity_token] = ''
+    end
+
+    search_string = "true"
+    if params[:submit] != nil
+      params[:page] = 1   #每次查询都是从第一页开始的
+      if params[:department] != '0'
+        search_string += " and department = '" + params[:department] + "'"
+      end
+      if params[:week] != '0'
+        search_string += " and course_day = '" + params[:week] + "'"
+      end
+      if params[:course_time] != '0'
+        search_string += " and course_class = '" + params[:course_time] + "'"
+      end
+      if params[:course_name] != nil
+        #模糊查询
+        search_string += " and name like '%" + params[:course_name] + "%'"
+      end
+    end
+
+
+    @course = Course.joins(:course_infos).where(search_string)
     @course=@course-current_user.courses
 
 
+<<<<<<< HEAD
+=======
+    #----------分页功能的实现---------#
+    total = @course.count
+    params[:total] = total
+    if(params[:page] == nil)
+      params[:page] = 1  #进行初始化
+    end
+    if total % $PageSize == 0
+      params[:pageNum] = total / $PageSize
+    else
+      params[:pageNum] = total / $PageSize + 1
+    end
+
+    #计算分页的开始和结束位置
+    params[:pageStart] = (params[:page].to_i - 1) * $PageSize
+
+    if params[:pageStart].to_i + $PageSize <= params[:total].to_i
+      params[:pageEnd] = params[:pageStart].to_i + $PageSize - 1
+    else
+      params[:pageEnd] = params[:total].to_i - 1  #最后一页
+    end
+
+
+=begin
+    #modified by liqingjian
+    @course=Course.where("open=true")
+    @course=@course-current_user.courses
+    #modified end
+=end
+>>>>>>> group/master
   end
 
   def close
@@ -127,6 +197,5 @@ class CoursesController < ApplicationController
     params.require(:course).permit(:course_code, :name, :course_type, :teaching_type, :exam_type,
                                    :credit, :limit_num, :class_room, :course_time, :course_week)
   end
-
 
 end

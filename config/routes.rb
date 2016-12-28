@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :list
+      #post :list
     end
   end
 
