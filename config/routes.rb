@@ -17,16 +17,13 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'homes#index'
 
+
   resources :courses do
     member do
       get :select
       get :quit
-=begin
-      #modified by liqingjian
       get :open
       get :close
-      #modified end
-=end
     end
     collection do
       get :list

@@ -24,7 +24,9 @@
             <li class="list-group-item">
               <%= link_to courses_path do %>
                   <span class="glyphicon glyphicon-chevron-right"></span> 已授课程
-                  <span class="label label-info pull-right"><%= current_user.teaching_courses.length %></span>
+                  <span class="label label-info pull-right">
+                    <%= current_user.teaching_courses.length %>
+                  </span>
               <% end %>
             </li>
             <li class="list-group-item">
@@ -39,9 +41,8 @@
               <%= link_to list_courses_path do %>
                   <span class="glyphicon glyphicon-chevron-right"></span> 选修课程
                   <span class="label label-info pull-right">
-                    <!-- modified by liqingjian -->
                     <%= (Course.all-current_user.courses).length %>
-                    <!-- modified end -->
+
                   </span>
               <% end %>
             </li>

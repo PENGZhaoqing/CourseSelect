@@ -105,7 +105,6 @@ class CoursesController < ApplicationController
     @course = Course.joins(:course_infos).where(search_string)
     @course=@course-current_user.courses
 
-
     #----------分页功能的实现---------#
     total = @course.count
     params[:total] = total
@@ -128,14 +127,15 @@ class CoursesController < ApplicationController
     end
 
 
-=begin
-    #modified by liqingjian
-    @course=Course.where("open=true")
-    @course=@course-current_user.courses
-    #modified end
-=end
+
   end
 
+  def close
+    @course=Course.find_by_id(params[:id])
+    @course.open=false
+    @course.save
+    redirect_to courses_path, flash: {:success => "已经成功关闭该课程:#{ @course.name}"}
+  end
   def select
     @course=Course.find_by_id(params[:id])
     current_user.courses<<@course
