@@ -18,6 +18,14 @@ class GradesController < ApplicationController
       @grades=@course.grades
     elsif student_logged_in?
       @grades=current_user.grades
+      @grades_true=Array.new
+      @grades.each do |every_grade|
+        if every_grade.grade then
+          @grades_true.push every_grade
+        end
+      end
+      @grades=@grades_true
+      
     else
       redirect_to root_path, flash: {:warning=>"请先登陆"}
     end
