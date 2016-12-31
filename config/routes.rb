@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :list
+      get :public_list
     end
   end
 

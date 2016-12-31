@@ -49,6 +49,11 @@ class CoursesController < ApplicationController
     @course=Course.all
     @course=@course-current_user.courses
   end
+  
+  def public_list 
+    @course=Course.all
+  end
+  
 
   def select
     @course=Course.find_by_id(params[:id])
