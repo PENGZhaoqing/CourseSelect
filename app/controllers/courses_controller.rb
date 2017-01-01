@@ -46,35 +46,31 @@ class CoursesController < ApplicationController
   #-------------------------for students----------------------
 
   def list
-      #   按照关键词（课程名称、教师名）或者下拉列表进行查询
-    @course = Array.new
-    @queryType = params[:queryType].to_i
-    if @queryType.nil? == false
-     @queryinfo = params[:query]
-     if @queryinfo.nil? == false
-        if @queryType == 2 
-            @course = Course.where("name like '%#{@queryinfo}%'")  
-        elsif @queryType == 10
-            @teacherName = User.where("name like '%#{@queryinfo}%'")
-            @teacherName.each do |teacherSingle|
-                teacherSingle.teaching_courses.each do |courseSingle|
-                    @course.push courseSingle
-                end
-            end
-        elsif @queryType == 1
-            @course = Course.where("course_code like '#{@queryinfo}%'")
-        elsif @queryType == 3
-            @course = Course.where("credit like '#{@queryinfo}'")
-        else
-            @course = Course.all
+     #   按照关键词（课程名称、教师名）或者下拉列表进行查询
+    @course = Course.all
+
+    @param1 =  params[:queryKeyword_1]   #课程名
+    @param2= params[:queryKeyword_2]  #department
+    @param3= params[:queryKeyword_3] #credit/hour
+    @param4 =params[:queryKeyword_4] #type
+    @param5= params[:queryKeyword_5] #exam
+    if @param1.nil? ==  false and @param1 != ''
+      @course = Course.where("name like '%#{@param1}%'")  
+    end  
+    if @param2.nil? == false and @param2 != ''
+      @course = @course.where("course_code like '#{@param2}%'")
+    end
+    if @param3.nil? == false and @param3 != ''
+      @course = @course.where("credit like '#{@param3}'")
         end
-     else
-         @course=Course.all 
-     end
-    else
-        @course = Course.all
-    end 
-        @course=@course-current_user.courses
+    if @param4.nil? == false and @param4 != ''
+      @course = @course.where("course_type like '#{@param4}'")
+        end
+    if @param5.nil? == false and @param5 != ''
+     @course = @course.where("exam_type like '#{@param5}'")
+    end
+
+    @course=@course-current_user.courses
     @course_true = Array.new
     @course.each do |single|
       if single.open then
