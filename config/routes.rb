@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     collection do
       get :list
       get :public_list
+      get :filter
     end
   end
 

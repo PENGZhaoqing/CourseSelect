@@ -46,8 +46,41 @@ class CoursesController < ApplicationController
   #-------------------------for students----------------------
 
   def list
-    @course=Course.all
-    @course=@course-current_user.courses
+      #   按照关键词（课程名称、教师名）或者下拉列表进行查询
+    @course = Array.new
+    @queryType = params[:queryType].to_i
+    if @queryType.nil? == false
+     @queryinfo = params[:query]
+     if @queryinfo.nil? == false
+        if @queryType == 2 
+            @course = Course.where("name like '%#{@queryinfo}%'")  
+        elsif @queryType == 10
+            @teacherName = User.where("name like '%#{@queryinfo}%'")
+            @teacherName.each do |teacherSingle|
+                teacherSingle.teaching_courses.each do |courseSingle|
+                    @course.push courseSingle
+                end
+            end
+        elsif @queryType == 1
+            @course = Course.where("course_code like '#{@queryinfo}%'")
+        elsif @queryType == 3
+            @course = Course.where("credit like '#{@queryinfo}'")
+        else
+            @course = Course.all
+        end
+     else
+         @course=Course.all 
+     end
+    else
+        @course = Course.all
+    end 
+        @course=@course-current_user.courses
+    @course_true = Array.new
+    @course.each do |single|
+      if single.open then
+        @course_true.push single
+      end
+    end
   end
   
   def public_list 
@@ -69,7 +102,9 @@ class CoursesController < ApplicationController
     redirect_to courses_path, flash: flash
   end
 
-
+ def filter
+    redirect_to list_courses_path(params)
+ end
   #-------------------------for both teachers and students----------------------
 
   def index
