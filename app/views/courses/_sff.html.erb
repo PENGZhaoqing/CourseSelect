@@ -1,0 +1,92 @@
+   <div id="filter" style="background-color:#00000;">
+    课程名称:<input  id="select_1" type="text" name="关键词搜索"  style="width:10%;color:black;padding:3px;bottom:3px;pleft:0%;position:static"  maxlength=10   > </input>
+    所属学院:<select id="select_2" style="width:12%;color:black;left:0%;position:static;padding:1px"  maxlength=10>
+    <option selected="selected" value = "">--学院--</option>
+    <option value = "01">01-数学学院</option>
+    <option value = "02">02-物理学院</option>
+    <option value = "03">03-天文学院</option>
+    <option value = "04">04-化学学院</option>
+    <option value = "05">05-材料学院</option>
+    <option value = "06">06-生命学院</option>
+    <option value = "07">07-地球学院</option>
+    <option value = "08">08-资环学院</option>
+    <option value = "09">09-计算机学院</option>
+    <option value = "10">10-电子学院</option>
+    <option value = "11">11-工程学院</option>
+    <option value = "12">12-经管学院</option>
+    <option value = "13">13-公共管理学院</option>
+    <option value = "14">14-人文学院</option>
+    <option value = "15">15-外语系</option>
+    <option value = "16">16-中丹学院</option>
+    <option value = "17">17-国际学院</option>
+    <option value = "18">18-存济医学院</option>
+    <option value = "TY">TY-体育教研室</option>
+    <option value = "19">19-微电子学院</option>
+    <option value = "21">21-未来技术学院</option>
+    <option value = "22">22-网络空间安全学院</option>
+ </select>
+课时/学分: <select id="select_3" style="width:8%;color:black;padding:1px;top:-3px;left:0%;position:static"  maxlength=10>
+     <option selected="selected" value = "">--课时/学分--</option>
+     <option value = "28/0.5">28/0.5</option>
+     <option value = "20/1.0">20/1.0</option>
+     <option value = "24/1.0">24/1.0</option>
+     <option value = "30/1.5">30/1.5</option>
+     <option value = "40/2.0">40/2.0</option>
+     <option value = "40/3.0">40/3.0</option>
+     <option value = "60/3.0">60/3.0</option>
+     <option value = "50/4.0">50/4.0</option>
+     <option value = "60/4.0">60/4.0</option>
+
+ </select>
+ 课程类型:<select id="select_4" style="width:12%;color:black;padding:1px;left:0%;position:relative"  maxlength=10>
+     <option selected="selected" value = "">--课程类型--</option>
+     <option  value = "一级学科核心课">一级学科核心课</option>
+     <option value = "一级学科普及课">一级学科普及课</option>
+     <option value = "一级学科研讨课">一级学科研讨课</option>
+     <option value = "专业核心课">专业核心课</option>
+     <option value = "专业普及课">专业普及课</option>
+     <option value = "专业研讨课">专业研讨课</option>
+     <option value = "高级强化课">高级强化课</option>
+     <option value = "公共选修课">公共选修课</option>
+     <option value = "公共必修课">公共必修课</option>
+     <option value = "实验课">实验课</option>
+ </select>
+  考试类型:<select id="select_5" style="width:12%;color:black;padding:1px;left:0%;position:relative" id="query_input" maxlength=10>
+     <option selected="selected" value = "">--考试类型--</option>
+     <option value = "闭卷笔试">闭卷笔试</option>
+     <option value = "课堂开卷">课堂开卷</option>
+     <option value = "读书报告">读书报告</option>
+     <option value = "其他">其他</option>
+</select>
+<button style="position:relative;float:right;color:black;font-size:13px;padding:3px;width:4.5%" onclick="queryCourse()" > 查询 </button>
+</div>
+
+<script>
+function queryCourse() {
+    var tag =new Boolean();
+    tag = false;
+
+        for(var i = 1; i<6; i++)
+        {
+            
+            if(document.getElementById("select_"+i).value != '')
+                tag=true;
+        }
+    if(tag == false)
+    {
+        window.alert("请至少填写一个检索条件");
+    }
+    else
+    {
+        var redict_url = "<%= filter_courses_path %>?";
+        for(var i = 1; i<6; i++)
+            {
+                redict_url = redict_url+"&queryKeyword_"+i+"="+document.getElementById("select_"+i).value;
+            }
+        window.location.href = redict_url;
+    }   
+}
+</script>
+
+
+            
