@@ -71,12 +71,7 @@ class CoursesController < ApplicationController
     end
 
     @course=@course-current_user.courses
-    @course_true = Array.new
-    @course.each do |single|
-      if single.open then
-        @course_true.push single
-      end
-    end
+    
   end
   
   def public_list 
