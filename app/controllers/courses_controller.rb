@@ -46,8 +46,37 @@ class CoursesController < ApplicationController
   #-------------------------for students----------------------
 
   def list
-    @course=Course.all
+     #   按照关键词（课程名称、教师名）或者下拉列表进行查询
+    @course = Course.all
+
+    @param1 =  params[:queryKeyword_1]   #课程名
+    @param2= params[:queryKeyword_2]  #department
+    @param3= params[:queryKeyword_3] #credit/hour
+    @param4 =params[:queryKeyword_4] #type
+    @param5= params[:queryKeyword_5] #exam
+    if @param1.nil? ==  false and @param1 != ''
+      @course = Course.where("name like '%#{@param1}%'")  
+    end  
+    if @param2.nil? == false and @param2 != ''
+      @course = @course.where("course_code like '#{@param2}%'")
+    end
+    if @param3.nil? == false and @param3 != ''
+      @course = @course.where("credit like '#{@param3}'")
+        end
+    if @param4.nil? == false and @param4 != ''
+      @course = @course.where("course_type like '#{@param4}'")
+        end
+    if @param5.nil? == false and @param5 != ''
+     @course = @course.where("exam_type like '#{@param5}'")
+    end
+
     @course=@course-current_user.courses
+    @course_true = Array.new
+    @course.each do |single|
+      if single.open then
+        @course_true.push single
+      end
+    end
   end
   
   def public_list 
@@ -69,7 +98,9 @@ class CoursesController < ApplicationController
     redirect_to courses_path, flash: flash
   end
 
-
+ def filter
+    redirect_to list_courses_path(params)
+ end
   #-------------------------for both teachers and students----------------------
 
   def index
