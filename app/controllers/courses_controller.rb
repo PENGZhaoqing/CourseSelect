@@ -59,32 +59,19 @@ class CoursesController < ApplicationController
 
   def list
     @course=Course.all
-    #@course = Course.where("open=true")
+    #@course = Course.paginate(:page=>params[:page],:per_page=>8)
+
     @course=@course-current_user.courses
-    @course_open = Array.new # 定义数组类变量, []
-    @course.each do |course| # 循环数组
-      if(course.open == true)
-        @course_open<< course #追加，写进数组
-      end
-    end
-    @course = @course_open
-    end
-
-
-=begin
-  def search1
-    #@course = Course.find_by_course_code(params[:])
-    @course = Course.all
-    @course = @course-current_user.courses
     @course_open = Array.new
     @course.each do |course|
-      if(course.open == true )
-        @course_open<<course
+      if(course.open == true)
+       @course_open<< course
       end
     end
     @course = @course_open
-  end
-=end
+
+    end
+
 
   def select
     @course=Course.find_by_id(params[:id])#查找
@@ -106,8 +93,18 @@ class CoursesController < ApplicationController
   #-------------------------for both teachers and students----------------------
 
   def index
-    @course=current_user.teaching_courses if teacher_logged_in?
-    @course=current_user.courses if student_logged_in?
+    if teacher_logged_in?
+    @course=current_user.teaching_courses.paginate(:page=>params[:page],:per_page=>5)
+
+    end
+    if student_logged_in?
+    @course=current_user.courses.paginate(:page=>params[:page],:per_page=>5)
+    @courses = current_user.courses
+    @sum_credit = 0
+    @courses.each do |courses|
+     @sum_credit += courses.credit[3...4].to_i
+    end
+    end
   end
 
 
