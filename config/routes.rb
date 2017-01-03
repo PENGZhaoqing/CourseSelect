@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :list
+      get :credittips
       get :public_list
       get :filter
     end
