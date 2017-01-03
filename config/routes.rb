@@ -27,6 +27,9 @@ Rails.application.routes.draw do
     collection do
       get :list
     end
+    collection do
+      get :schedule
+    end
   end
 
   resources :grades, only: [:index, :update]
