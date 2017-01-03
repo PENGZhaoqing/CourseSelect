@@ -33,6 +33,7 @@
                   <td><%= course.exam_type %></td>
                   <td><%= course.teacher.name %></td>
                   <% sum_credit += course.credit[3...4].to_i %>
+
                   <% if teacher_logged_in? %>
                       <td><%= link_to "编辑", edit_course_url(course), class: 'btn btn-xs btn-info' %></td>
                       <% if course.open==false %>
@@ -46,7 +47,10 @@
                   <% end %>
                 </tr>
             <% end %>
-            <%= "你选修的总学分为:" %> <%= sum_credit%>
+            <% if student_logged_in? %>
+                <%= "你选修的总学分为:" %>
+                <%= sum_credit%>
+            <% end %>
             </tbody>
           </table>
 
