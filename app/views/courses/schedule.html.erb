@@ -27,17 +27,7 @@
             </thead>
             <tbody>
 
-            <%# for i in 1..7 %>
-              <%# for j in 1..11%>
-              <%# temprt=matchtime(i,j)%>
-              <%# if temprt!=nil %>
-              <tr><td><%#= temprt.name%></td></tr>
-              <%# end %>
-            <%# end %>
-      
-            <%# alist=Courselist.new %>
-            <%# alist.getlist(@course) %>
-            <%# alist.mylist[i][j].name  %>
+
           
             <% courselist=Array.new(12){Array.new(8)} %>
                 <% @course=current_user.courses %>
