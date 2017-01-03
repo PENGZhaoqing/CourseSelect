@@ -83,6 +83,7 @@ class CoursesController < ApplicationController
     @course=Course.all
   end
   
+  
 
   def select
     @course=Course.find_by_id(params[:id])
@@ -92,12 +93,17 @@ class CoursesController < ApplicationController
   end
 
   def quit
-    @course=Course.find_by(params[:id])
+    @course=Course.find_by_id(params[:id])
     current_user.courses.delete(@course)
     flash={:success => "成功退选课程: #{@course.name}"}
     redirect_to courses_path, flash: flash
   end
-
+  
+  def credittips
+     @courses=current_user.courses
+     @grades=current_user.grades
+  end
+  
  def filter
     redirect_to list_courses_path(params)
  end
