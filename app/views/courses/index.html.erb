@@ -35,7 +35,7 @@
                   <% time_str2 = Hashes.time_to_str(course.course_time) %>
                   <td><%= time_str1 %><br><%= time_str2 %></td>
                   <td><%= course.teacher.name %></td>
-                  <td><%= link_to "详细信息", nil, class: "btn-sm btn-info" %></td>
+                  <td><%= link_to "详细信息",  detail_course_path(course), class: "btn-sm btn-info" %></td>
 
                   <% if teacher_logged_in? %>
                       <td><%= link_to "编辑", edit_course_url(course), class: 'btn btn-xs btn-info' %></td>

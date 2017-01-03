@@ -8,15 +8,17 @@ class CoursesController < ApplicationController
 
   def new
     @course=Course.new
+    @course1=Course.new
   end
 
   def create
     @course = Course.new(course_params)
+    get_course_code
     if @course.save
       current_user.teaching_courses<<@course
       redirect_to courses_path, flash: {success: "新课程申请成功"}
     else
-      flash[:warning] = "信息填写有误,请重试"
+      flash[:info] = "请继续"
       render 'new'
     end
   end
@@ -27,6 +29,7 @@ class CoursesController < ApplicationController
 
   def update
     @course = Course.find_by_id(params[:id])
+    get_course_code
     if @course.update_attributes(course_params)
       flash={:info => "更新成功"}
     else
@@ -48,12 +51,13 @@ class CoursesController < ApplicationController
     @course.update_attribute(:open,true)
     redirect_to courses_path, flash: {:success => "已经成功开启该课程:#{ @course.name}"}
   end
-
+  
   def close
     @course=Course.find_by_id(params[:id])
     @course.update_attribute(:open,false)
     redirect_to courses_path, flash: {:success => "已经成功关闭该课程:#{ @course.name}"}
   end
+  
 
 
   #-------------------------for students----------------------
@@ -78,13 +82,17 @@ class CoursesController < ApplicationController
     redirect_to courses_path, flash: flash
   end
 
+
   #-------------------------for both teachers and students----------------------
 
   def index
     @course=current_user.teaching_courses if teacher_logged_in?
     @course=current_user.courses if student_logged_in?
   end
-
+  
+  def detail
+    @course=Course.find_by(id:params[:id])
+  end
 
   private
 
@@ -110,9 +118,12 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:course_code, :name, :course_type, :teaching_type, :exam_type,
-                                   :credit, :limit_num, :class_room, :course_time, :course_week)
+    params.require(:course).permit(:course_code, :name, :course_department, :course_firstlevel, :teaching_object, :course_type, 
+                                   :teaching_type, :exam_type,:period, :credit, :limit_num, :campus, :building, :class_room, 
+                                   :course_time, :start_week, :end_week)
   end
 
-
+  def get_course_code
+    @course.course_code= @course.course_department[0,2] + @course.course_firstlevel[3,1]+@course.teaching_object[0,1]+@course.course_type[0,1]+"#{params[:id].to_i+100}"+@course.campus[0,1]
+  end
 end

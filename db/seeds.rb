@@ -158,6 +158,10 @@ teacher_map.keys.each do |index|
   teacher.teaching_courses.create!(
       course_code: course_map[index][:course_code],
       name: course_map[index][:name],
+      course_department: course_map[index][:course_department],
+      course_firstlevel: course_map[index][:course_firstlevel],
+      teaching_object: course_map[index][:teaching_object],
+      course_type: course_map[index][:course_type],
       credit: course_map[index][:credit],
       period: course_map[index][:period],
       limit_num: course_map[index][:limit_num],
