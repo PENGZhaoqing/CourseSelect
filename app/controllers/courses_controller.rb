@@ -83,7 +83,6 @@ class CoursesController < ApplicationController
   end
   
 
-
   #-------------------------for both teachers and students----------------------
 
   def index
