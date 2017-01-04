@@ -21,6 +21,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    byebug
     @user = User.find_by_id(params[:id])
     if @user.update_attributes(user_params)
       flash={:info => "更新成功"}
@@ -44,7 +45,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :major, :department, :password,
+    params.require(:user).permit(:email, :password,
                                  :password_confirmation)
   end
 
