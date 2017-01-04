@@ -36,14 +36,14 @@
                   <td><%= time_str1 %><br><%= time_str2 %></td>
                   <td><%= Hashes.type(course.course_code) %></td>
                   <td><%= course.teacher.name %></td>
-                  <td><%= link_to "详细信息", nil, class: "btn-sm btn-info" %></td>
+                  <td><%= link_to "详细信息",  detail_course_path(course), class: "btn-sm btn-info" %></td>
 
                   <% if teacher_logged_in? %>
                       <td><%= link_to "编辑", edit_course_url(course), class: 'btn btn-xs btn-info' %></td>
                       <% if course.open %>
                           <td><%= link_to "关闭", close_course_path(course), class: 'btn btn-xs btn-warning', :data => {confirm: '确定要关闭此课程?'} %></td>
                       <% else%>
-                          <td><%= link_to "打开", open_course_path(course), class: 'btn btn-xs btn-success'%></td>
+                          <td><%= link_to "打开", open_course_path(course),class: 'btn btn-xs btn-info'%></td>
                       <% end %>
                       <td><%= link_to "删除", course_path(course), :method => "delete", class: 'btn btn-xs btn-danger', :data => {confirm: '确定要删除此课程?'} %></td>
                   <% elsif student_logged_in? %>
