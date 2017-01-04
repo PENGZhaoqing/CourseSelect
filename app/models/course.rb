@@ -5,6 +5,7 @@ class Course < ActiveRecord::Base
 
   belongs_to :teacher, class_name: "User"
 
+<<<<<<< HEAD
   validates :name, :course_time, :start_week, :end_week, :building,
             :class_room, :period, :credit, :teaching_type, :exam_type, presence: true, length: {maximum: 50}
 end
@@ -57,6 +58,13 @@ class CourseTime
     return re_course_list
   end
 end
+=======
+  validates :course_code, :name, 
+            :course_time, :start_week, :end_week,  :building, :class_room, :period, :credit, 
+            :teaching_type, :exam_type, presence: true, length: {maximum: 50}
+  
+  validates :course_department, :course_firstlevel, :teaching_object, :course_type, :campus, length:{maximum:50}
+>>>>>>> 0bf9ed440487805a1fa2817839880173d3640fec
 
 # use string 4 long string to the pair of time 
 class TimePair
