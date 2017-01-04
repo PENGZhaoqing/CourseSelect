@@ -1,10 +1,8 @@
 <div class="container-fluid">
   <div class="row">
-
     <div class="col-sm-2">
       <%= render "shared/sidenav" %>
     </div>
-
     <div class="col-sm-10">
       <div class="panel panel-primary filterable">
         <div class="panel-heading">
@@ -23,11 +21,9 @@
               <th>课程属性</th>
               <th>主讲教师</th>
             </tr>
-
             <tbody>
             <% @course.each do |course| %>
                 <tr>
-
                   <td><%= course.course_code %></td>
                   <td><%= course.name %></td>
                   <td><%= course.period.to_s + "/" + course.credit.to_s %></td>

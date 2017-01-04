@@ -25,7 +25,12 @@ Rails.application.routes.draw do
       get :quit
       get :open
       get :close
+<<<<<<< HEAD
+      get :conflict
+      get :change
+=======
       get :detail
+>>>>>>> 0bf9ed440487805a1fa2817839880173d3640fec
     end
     collection do
       get :list

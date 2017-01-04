@@ -102,7 +102,7 @@ $ rails s
 
 ## 测试
 
-本项目包含了部分的测试（integration/fixture/model test），测试文件位于/test目录下。运行测试：
+本项目包含了部分的测试（integration/fixture/modelr test），测试文件位于/test目录下。运行测试：
 
 ```
 PENG-MacBook-Pro:IMS_sample PENG-mac$ rake test
