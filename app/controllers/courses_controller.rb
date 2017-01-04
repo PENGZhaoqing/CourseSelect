@@ -57,11 +57,29 @@ class CoursesController < ApplicationController
 
 
   #-------------------------for students----------------------
-
+  
   def list
-    @course=Course.all
-    @course=@course.where(open:true).all
-    @course=@course-current_user.courses
+    @course = Course.all
+    @course.each do |x|
+      unless x.open?
+        #如果课程处于关闭状态，则在列表中删除该课程
+        @course = @course - [x]
+      end
+    end
+    @course = @course - current_user.courses
+  end
+  
+  def filter
+    #byebug
+    $SelectedCourses = current_user.courses
+    Filter.filter(params[:exchange])            #获取筛选字符串并执行筛选操作
+    @course = Filter.filtered_courses           #返回筛选结果
+    @course.each do |x|
+      unless x.open?
+        @course = @course - [x]
+      end
+    end
+    @course = @course - current_user.courses
   end
 
   def select

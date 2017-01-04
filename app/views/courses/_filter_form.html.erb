@@ -1,0 +1,291 @@
+<form role = "form" class = "edit_filter" id = "filter" action = "/courses/filter" method = "get">
+<div class = "panel panel-default">
+    <div class = "panel-heading">
+        <h4 class = "panel-title">
+            <a data-toggle="collapse" href="#CourseFilter"><span class="glyphicon glyphicon-list-alt"></span>
+              课程筛选</a>
+      </h4>
+    </div>
+    
+    <div id = "CourseFilter" class="panel-collapse collapse">
+    <div class = "panel-body">
+        <div class="row">
+            <div class = "col-sm-2">
+                <div class="checkbox">
+                    <label class = "control-label"><input id = "choose_forwhom" type = "checkbox">授课对象</label>
+                </div>
+            </div>
+            <div class = "col-sm-10">
+                <select id = "forwhom_list" type = "selectpicker" class = "form-control">
+                    <% Hashes.for_map.each do |key, value| %>
+                        <option value = <%= key %> >
+                            <%= value %>
+                        </option>
+                    <% end %>
+                </select>
+            </div>
+        </div>
+        
+        <div class = "row">
+            <div class = "col-sm-2">
+                <div class="checkbox">
+                    <label class = "control-label"><input id = "choose_department" type = "checkbox">开课学院</label>
+                </div>
+            </div>
+            <div class = "col-sm-10">
+                <select id = "department_list" type = "selectpicker" class = "form-control">
+                    <% Hashes.department_map.each do |key, value| %>
+                        <option value = <%= key %> >
+                            <%= value %>
+                        </option>
+                    <% end %>
+                </select>
+            </div>
+        </div>
+        
+        <div class = "row">
+            <div class = "col-sm-2">
+                <div class="checkbox">
+                    <label class = "control-label"><input id = "choose_property" type = "checkbox">课程类型</label>
+                </div>
+            </div>
+            <div class = "col-sm-10">
+                <select id = "property_list" type = "selectpicker" class = "form-control">
+                    <% Hashes.property_map.each do |key, value| %>
+                        <option value = <%= key %> >
+                            <%= value %>
+                        </option>
+                    <% end %>
+                </select>
+            </div>
+        </div>
+        
+        <div class = "row">
+            <div class = "col-sm-2">
+                <div class="checkbox">
+                    <label class = "control-label"><input id = "choose_place" type = "checkbox">上课地点</label>
+                </div>
+            </div>
+            <div class = "col-sm-5">
+                <select id = "campus_list" type = "selectpicker" class = "form-control">
+                    <% Hashes.campus_map.each do |key, value| %>
+                        <option value = <%= key %> >
+                            <%= value %>
+                        </option>
+                    <% end %>
+                </select>
+            </div>
+            <div class = "col-sm-5">
+                <select id = "building_list" type = "selectpicker" class = "form-control">
+                    <option value = "all">不限</option>
+                    <option value = "教">教</option>
+                    <option value = "教1">教1</option>
+                    <option value = "教2">教2</option>
+                    <option value = "学园1">学园1</option>
+                    <option value = "学园2">学园2</option>
+                    <option value = "学园3">学园3</option>
+                    <option value = "学园4">学园4</option>
+                    <option value = "N">N</option>
+                    <option value = "S">S</option>
+                    <option value = "other">其他</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class = "row">
+            <div class = "col-sm-2">
+                <div class="checkbox">
+                    <label class = "control-label"><input id = "choose_weekday" type = "checkbox">上课时间</label>
+                </div>
+            </div>
+            <div class = "col-sm-2">
+                <select id = "weekday_list" type = "selectpicker" class = "form-control">
+                    <% Hashes.weekday_map.each do |key, value| %>
+                        <option value = <%= key %> >
+                            <%= value %>
+                        </option>
+                    <% end %>
+                </select>
+            </div>
+            <div class = "col-sm-1"></div>
+            
+            <div class = "col-sm-2">
+                <div class="checkbox">
+                    <label class = "control-label"><input id = "choose_time" type = "checkbox">上课节</label>
+                </div>
+            </div>
+            <div class = "col-sm-1">
+                <select id = "start_lesson" type = "selectpicker" class = "form-control">
+                    <% (1..11).each do |x| %>
+                        <option value = <%= x.to_s.rjust(2,'0') %> ><%= x %></option>
+                    <% end %>
+                </select>
+            </div>
+            <div class = "col-sm-1">
+                <label>——</label>
+            </div>
+            <div class = "col-sm-1">
+                <select id = "end_lesson" type = "selectpicker" class = "form-control">
+                    <% (1..11).each do |x| %>
+                        <option value = <%= x.to_s.rjust(2,'0') %> ><%= x %></option>
+                    <% end %>
+                </select>
+            </div>
+            <div class = "col-sm-2">
+                <div class="checkbox">
+                    <label class = "control-label"><input id = "precise" type = "checkbox">精确</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class = "row">
+            <div class = "col-sm-2">
+                <div class="checkbox">
+                    <label class = "control-label"><input id = "choose_credit" type = "checkbox">课程学分</label>
+                </div>
+            </div>
+            <div class = "col-sm-2">
+                <select id = "operator_list" type = "selectpicker" class = "form-control">
+                    <option value = "eq"> = </option>
+                    <option value = "gt"> > </option>
+                    <option value = "ge"> ≥ </option>
+                    <option value = "ls"> < </option>
+                    <option value = "le"> ≤ </option>
+                    <option value = "ne"> ≠ </option>
+                </select>
+            </div>
+            <div class = "col-sm-8">
+                <select id = "credit_list" type = "selectpicker" class = "form-control">
+                    <option value = "0.5"> 0.5 </option>
+                    <option value = "1.0"> 1.0 </option>
+                    <option value = "1.5"> 1.5 </option>
+                    <option value = "2.0"> 2.0 </option>
+                    <option value = "2.5"> 2.5 </option>
+                    <option value = "3.0"> 3.0 </option>
+                    <option value = "4.0"> 4.0 </option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class = "col-sm-12">
+                <div class="checkbox">
+                    <label class = "control-label"><input id = "not_conflict" type = "checkbox">仅列出与已选课程不冲突的课程</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class = "row">
+            <div class = "col-sm-2"></div>
+            
+            <script>
+                function ForwhomString()
+                {
+                    if (document.getElementById("choose_forwhom").checked)
+                    {
+                        var item = document.getElementById("forwhom_list")
+                        return "a" + item.options[item.selectedIndex].value + " ";
+                    }
+                    else return "";
+                }
+                
+                function DepartmentString()
+                {
+                    if (document.getElementById("choose_department").checked)
+                    {
+                        var item = document.getElementById("department_list")
+                        return "b" + item.options[item.selectedIndex].value + " ";
+                    }
+                    else return "";
+                }
+                
+                function PropertyString()
+                {
+                    if (document.getElementById("choose_property").checked)
+                    {
+                        var item = document.getElementById("property_list")
+                        return "c" + item.options[item.selectedIndex].value + " ";
+                    }
+                    else return "";
+                }
+                
+                function PlaceString()
+                {
+                    if (document.getElementById("choose_place").checked)
+                    {
+                        var item1 = document.getElementById("campus_list")
+                        var item2 = document.getElementById("building_list")
+                        var ret = item1.options[item1.selectedIndex].value + item2.options[item2.selectedIndex].value;
+                        return ("d" + ret + " ");
+                    }
+                    else return "";
+                }
+                
+                function WeekdayString()
+                {
+                    if (document.getElementById("choose_weekday").checked)
+                    {
+                        var item = document.getElementById("weekday_list")
+                        return "e" + item.options[item.selectedIndex].value + " ";
+                    }
+                    else return "";
+                }
+                
+                function LessonString()
+                {
+                    if (document.getElementById("choose_time").checked)
+                    {
+                        var item1 = document.getElementById("start_lesson")
+                        var item2 = document.getElementById("end_lesson")
+                        var ret = "f"
+                        if (document.getElementById("precise").checked) ret += "P";
+                        else ret += "V";
+                        ret += item1.options[item1.selectedIndex].value + item2.options[item2.selectedIndex].value
+                        return ret + " ";
+                    }
+                    else return "";
+                }
+                
+                function CreditString()
+                {
+                    if (document.getElementById("choose_credit").checked)
+                    {
+                        var item1 = document.getElementById("operator_list")
+                        var item2 = document.getElementById("credit_list")
+                        var ret = item1.options[item1.selectedIndex].value + item2.options[item2.selectedIndex].value;
+                        return ("g" + ret + " ");
+                    }
+                    else return "";
+                }
+                
+                function ClashString()
+                {
+                    if (document.getElementById("not_conflict").checked) return "h "
+                    else return "";
+                }
+                
+                function getFilterString()
+                {
+                    var str = "";
+                    str += ForwhomString();
+                    str += DepartmentString();
+                    str += PropertyString();
+                    str += PlaceString();
+                    str += WeekdayString();
+                    str += LessonString();
+                    str += CreditString();
+                    str += ClashString();
+                    document.getElementById("exchange").value = str;
+                }
+            </script>
+            
+            <div class = "col-sm-8">
+                <input id = "exchange" name = "exchange" value = "" hidden></input>
+                <input type = "submit" name = "filter" value = "筛选" class = "btn btn-info btn-block" onclick = "getFilterString()"></input>
+            </div>
+            <div class = "col-sm-2"></div>
+        </div>
+    </div>
+    </div>
+</div>
+</form>
