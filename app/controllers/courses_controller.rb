@@ -66,11 +66,32 @@ class CoursesController < ApplicationController
 
   def select
     @course=Course.find_by_id(params[:id])
-    current_user.courses<<@course
-    flash={:success => "成功选择课程: #{@course.name}"}
+    course_time=CourseTime.new @course
+    @@conflict_list=course_time.DectConflictByList(current_user.courses)
+    if @@conflict_list.empty?
+      current_user.courses<<@course
+      flash={:success => "成功选择课程: #{@course.name}"}
+      redirect_to courses_path, flash: flash
+    else
+      flash={:warning => "#{@course.name}  与下列课程冲突"}
+      @@change_course=@course
+      redirect_to conflict_course_path,flash: flash
+    end        
+  end
+  
+  def conflict
+    @course=@@conflict_list
+  end
+  
+  def change
+    current_user.courses<<@@change_course
+    @@conflict_list.each do |course|
+      current_user.courses.delete(course)
+    end
+    flash={:success => "成功选择课程: #{@@change_course.name}"}
     redirect_to courses_path, flash: flash
   end
-
+  
   def quit
     @course=Course.find_by(id:params[:id])
     current_user.courses.delete(@course)

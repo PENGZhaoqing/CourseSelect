@@ -141,8 +141,9 @@ course_map =
 {
   1 => {course_code: "091M4001H", name: "计算机体系结构", period: 60, credit: 3.0, limit_num: 0, start_week: 2, end_week: 20, course_time: "10911", building: "教1", class_room: "107", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试"},
   2 => {course_code: "093M1002H-2", name: "计算机算法设计与分析", period: 60, credit: 3.0, limit_num: 0, start_week: 2, end_week: 17, course_time: "10102 30102", building: "教1", class_room: "108", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试"},
-  3 => {course_code: "09MGB001H", name: "计算机领域信息检索与利用实用技巧", period: 27, credit: 1.0, limit_num: 0, start_week: 2, end_week: 13, course_time: "20507", building: "图书馆", class_room: "L-145", teaching_type: "课堂讲授为主", exam_type: "大开卷"},
-  4 => {course_code: "14MGX063H", name: "中国古代史讲座", period: 40, credit: 1.0, limit_num: 40, start_week: 3, end_week: 15, course_time: "40507", building: "学园1", class_room: "108", teaching_type: "课堂讲授为主", exam_type: "期末读书报告"}
+  3 => {course_code: "09MGB001H", name: "计算机领域信息检索与利用实用技巧", period: 27, credit: 1.0, limit_num: 0, start_week: 2, end_week: 13, course_time: "40507", building: "图书馆", class_room: "L-145", teaching_type: "课堂讲授为主", exam_type: "大开卷"},
+  4 => {course_code: "14MGX063H", name: "中国古代史讲座1", period: 40, credit: 1.0, limit_num: 40, start_week: 3, end_week: 15, course_time: "40507", building: "学园1", class_room: "108", teaching_type: "课堂讲授为主", exam_type: "期末读书报告"}
+  
 }
 
 teacher_map.keys.each do |index|
