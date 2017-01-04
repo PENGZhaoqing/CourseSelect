@@ -8,15 +8,17 @@ class CoursesController < ApplicationController
 
   def new
     @course=Course.new
+    @course1=Course.new
   end
 
   def create
     @course = Course.new(course_params)
+    get_course_code
     if @course.save
       current_user.teaching_courses<<@course
       redirect_to courses_path, flash: {success: "新课程申请成功"}
     else
-      flash[:warning] = "信息填写有误,请重试"
+      flash[:info] = "请继续"
       render 'new'
     end
   end
@@ -27,6 +29,7 @@ class CoursesController < ApplicationController
 
   def update
     @course = Course.find_by_id(params[:id])
+    get_course_code
     if @course.update_attributes(course_params)
       flash={:info => "更新成功"}
     else
@@ -48,29 +51,70 @@ class CoursesController < ApplicationController
     @course.update_attribute(:open,true)
     redirect_to courses_path, flash: {:success => "已经成功开启该课程:#{ @course.name}"}
   end
-
+  
   def close
     @course=Course.find_by_id(params[:id])
     @course.update_attribute(:open,false)
     redirect_to courses_path, flash: {:success => "已经成功关闭该课程:#{ @course.name}"}
   end
+  
 
 
   #-------------------------for students----------------------
-
+  
   def list
-    @course=Course.all
-    @course=@course.where(open:true).all
-    @course=@course-current_user.courses
+    @course = Course.all
+    @course.each do |x|
+      unless x.open?
+        #如果课程处于关闭状态，则在列表中删除该课程
+        @course = @course - [x]
+      end
+    end
+    @course = @course - current_user.courses
+  end
+  
+  def filter
+    #byebug
+    $SelectedCourses = current_user.courses
+    Filter.filter(params[:exchange])            #获取筛选字符串并执行筛选操作
+    @course = Filter.filtered_courses           #返回筛选结果
+    @course.each do |x|
+      unless x.open?
+        @course = @course - [x]
+      end
+    end
+    @course = @course - current_user.courses
   end
 
   def select
     @course=Course.find_by_id(params[:id])
-    current_user.courses<<@course
-    flash={:success => "成功选择课程: #{@course.name}"}
+    course_time=CourseTime.new @course
+    @@conflict_list=course_time.DectConflictByList(current_user.courses)
+    if @@conflict_list.empty?
+      current_user.courses<<@course
+      flash={:success => "成功选择课程: #{@course.name}"}
+      redirect_to courses_path, flash: flash
+    else
+      flash={:warning => "#{@course.name}  与下列课程冲突"}
+      @@change_course=@course
+      redirect_to conflict_course_path,flash: flash
+    end        
+  end
+  
+  def conflict
+    @course=@@conflict_list
+  end
+  
+  def change
+    current_user.courses<<@@change_course
+    @@conflict_list.each do |course|
+      current_user.courses.delete(course)
+    end
+    flash={:success => "成功选择课程: #{@@change_course.name}"}
     redirect_to courses_path, flash: flash
   end
   
+
   def schedule
     @course=current_user.courses
   end
@@ -83,13 +127,17 @@ class CoursesController < ApplicationController
   end
   
 
+
   #-------------------------for both teachers and students----------------------
 
   def index
     @course=current_user.teaching_courses if teacher_logged_in?
     @course=current_user.courses if student_logged_in?
   end
-
+  
+  def detail
+    @course=Course.find_by(id:params[:id])
+  end
 
   private
 
@@ -115,8 +163,14 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:course_code, :name, :course_type, :teaching_type, :exam_type,
-                                   :credit, :limit_num, :class_room, :course_time, :course_week)
+    params.require(:course).permit(:course_code, :name, :course_department, :course_firstlevel, :teaching_object, :course_type, 
+                                   :teaching_type, :exam_type,:period, :credit, :limit_num, :campus, :building, :class_room, 
+                                   :course_time, :start_week, :end_week)
+  end
+
+
+  def get_course_code
+    @course.course_code= @course.course_department[0,2] + @course.course_firstlevel[3,1]+@course.teaching_object[0,1]+@course.course_type[0,1]+"#{params[:id].to_i+100}"+@course.campus[0,1]
   end
 
 end

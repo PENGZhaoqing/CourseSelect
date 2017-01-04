@@ -2,96 +2,140 @@
     <%= render 'shared/error_messages', :object => @course %>
 
     <div class="form-group">
-      <%= f.label "课程名", class: 'col-sm-3 control-label' %>
-      <div class="col-sm-9">
-        <div class="input-group">
-          <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
+      <%= f.label "课程名", class: 'col-sm-4 control-label' %>
+      <div class="col-sm-6">
           <%= f.text_field :name, class: 'form-control', placeholder: "输入课程名" %>
-        </div>
+      </div>
+    </div>
+    
+	  <div class="form-group">  
+      <%= f.label "开课院系", class: 'col-sm-4 control-label' %>
+      <div class="col-sm-6">
+       <%= f.select :course_department, options_for_select(['01 数学科学学院','02 物理科学学院','03 天文与空间科学学院','04 化学与化工学院',
+       '05 材料科学与光电技术学院','06 生命科学学院','07 地球科学学院','08 资源与环境学院', '09 计算机与控制学院','10 电子电气与通信工程学院',
+       '11 工程科学学院','12 经济与管理学院','13 公共政策与管理学院','14 人文学院','18 存济医学院','19 微电子学院','20 网络空间安全学院']), {}, class: 'form-control', placeholder: "选择开课学院" %> 
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label "一级学科", class: 'col-sm-4 control-label' %>
+      <div class="col-sm-6">
+       <%= f.select :course_firstlevel, options_for_select([
+       '01-1 数学', '01-2 系统科学','01-3 统计学',
+       '02-1 物理学', '02-2 核科学与技术',
+       '03-1 天文学',
+       '04-1 化学', '04-2 化学工程与技术',
+       '05-1 材料科学与工程', '05-2 光学工程','05-3 机械工程',
+       '06-1 生物学',
+       '07-1 地球物理学', '07-2 地质学','07-3 大气科学','07-4 海洋科学','07-5 地质资源与地质工程','07-6 测绘科学与技术',
+       '08-1 地理学', '08-2 生态学','08-3 环境科学与工程','08-4 农业资源利用',
+       '09-1 计算机科学与技术', '09-2 控制科学与工程','09-3 软件工程',
+       '10-1 信息与通信工程', '10-2 电子科学与技术','10-3 电气工程',
+       '11-1 力学', '11-2 动力工程及工程热物理','11-3 土木工程',
+       '12-1 管理科学与工程', '12-2 工商管理','12-3 应用经济学','12-4 图书情报与档案管理',
+       '13-1 管理科学与工程', '13-2 公共管理','13-3 法学',
+       '14-1 哲学', '14-2 心理学','14-3 新闻传播学','14-4 新闻传播学',
+       '18-1 基础医学', '18-2 药学','18-3 生物医学工程',
+       '19-1 电子与通信工程', '19-2 集成电路工程',
+       '20-1 网络空间安全']), {}, class: 'form-control', placeholder: "选择授课对象" %>  
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label "授课对象", class: 'col-sm-4 control-label' %>
+      <div class="col-sm-6">
+       <%= f.select :teaching_object, options_for_select(['M 硕士生', 'D 博士生']), {}, class: 'form-control', placeholder: "选择授课对象" %>  
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label "课程属性", class: 'col-sm-4 control-label' %>
+      <div class="col-sm-6">
+       <%= f.select :course_type, options_for_select(['1 一级学科核心课', '2 一级学科普及课','3 一级学科研讨课','4 专业核心课','5 专业普及课','6 专业研讨课','7 高级强化课']), {}, class: 'form-control', placeholder: "选择课程属性" %>  
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label "课程属性", class: 'col-sm-3 control-label' %>
-      <div class="col-sm-9">
-        <div class="input-group">
-          <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
-          <%= f.text_field :course_type, class: 'form-control', placeholder: "输入课程属性" %>
-        </div>
+      <%= f.label "授课方式", class: 'col-sm-4 control-label' %>
+      <div class="col-sm-6">
+       <%= f.select :teaching_type, options_for_select(['课堂讲授为主', '授课、讨论','讲课、上机','讲课、实验']), {}, class: 'form-control', placeholder: "选择授课方式" %>  
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label "授课方式", class: 'col-sm-3 control-label' %>
-      <div class="col-sm-9">
-        <div class="input-group">
-          <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
-          <%= f.text_field :teaching_type, class: 'form-control', placeholder: "输入授课方式" %>
-        </div>
+      <%= f.label "考核方式", class: 'col-sm-4 control-label' %>
+      <div class="col-sm-6">
+       <%= f.select :exam_type, options_for_select(['闭卷笔试', '课堂开卷','大开卷','读书报告','其他（需说明）']), {}, class: 'form-control', placeholder: "选择考核方式" %>  
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label "考试方式", class: 'col-sm-3 control-label' %>
-      <div class="col-sm-9">
-        <div class="input-group">
-          <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
-          <%= f.text_field :exam_type, class: 'form-control', placeholder: "输入考试方式" %>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label "限选人数", class: 'col-sm-3 control-label' %>
-      <div class="col-sm-9">
-        <div class="input-group">
-          <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
+      <%= f.label "限选人数", class: 'col-sm-4 control-label' %>
+      <div class="col-sm-6">
           <%= f.text_field :limit_num, class: 'form-control', placeholder: "输入限选人数" %>
-        </div>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label "课时学分", class: 'col-sm-3 control-label' %>
-      <div class="col-sm-9">
-        <div class="input-group">
-          <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
-          <%= f.text_field :credit, class: 'form-control', placeholder: "输入课时学分" %>
-        </div>
+      <%= f.label "课时", class: 'col-sm-4 control-label' %>
+      <div class="col-sm-6">
+          <%= f.text_field :period, class: 'form-control', placeholder: "输入课时" %>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label "学分", class: 'col-sm-4 control-label' %>
+      <div class="col-sm-6">
+          <%= f.select :credit, options_for_select(['0.5','1.0','1.5', '2.0','2.5','3.0','3.5','4.0','4.5','5.0']), {}, class: 'form-control', placeholder: "选择学分" %>  
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label "校区", class: 'col-sm-4 control-label' %>
+      <div class="col-sm-6">
+       <%= f.select :campus, options_for_select(['H 雁栖湖', 'Y 玉泉路', 'Z 中关村']), {}, class: 'form-control', placeholder: "选择校区" %>  
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label "教学楼", class: 'col-sm-4 control-label' %>
+      <div class="col-sm-6">
+       <%= f.select :building, options_for_select(['教1', '教2', '学园1', '学园2', '图书馆']), {}, class: 'form-control', placeholder: "选择教学楼" %>  
       </div>
     </div>
 
-
     <div class="form-group">
-      <%= f.label "教室", class: 'col-sm-3 control-label' %>
-      <div class="col-sm-9">
-        <div class="input-group">
-          <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
+      <%= f.label "教室", class: 'col-sm-4 control-label' %>
+      <div class="col-sm-6">
           <%= f.text_field :class_room, class: 'form-control', placeholder: "输入教室" %>
-        </div>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label "上课周数", class: 'col-sm-3 control-label' %>
-      <div class="col-sm-9">
-        <div class="input-group">
-          <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
-          <%= f.text_field :course_week, class: 'form-control', placeholder: "输入课时学分" %>
-        </div>
+      <%= f.label "开始周", class: 'col-sm-4 control-label' %>
+      <div class="col-sm-6">
+          <%= f.text_field :start_week, class: 'form-control', placeholder: "输入开始周" %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label "上课时间", class: 'col-sm-3 control-label' %>
-      <div class="col-sm-9">
-        <div class="input-group">
-          <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
-          <%= f.text_field :course_time, class: 'form-control', placeholder: "输入课时学分" %>
-        </div>
+      <%= f.label "结束周", class: 'col-sm-4 control-label' %>
+      <div class="col-sm-6">
+          <%= f.text_field :end_week, class: 'form-control', placeholder: "输入结束周" %>
       </div>
     </div>
-
+    
+	  <div class="form-group">
+      <%= f.label "*上课时间", class: 'col-sm-4 control-label' %>
+      <div class="col-sm-6">
+          <%= f.text_field :course_time, class: 'form-control', placeholder: "输入上课时间" %>
+      </div>
+    </div>
+    
+    <div class="col-md-offset-1 col-sm-10">
+        <%= "*注：<上课时间>填写5位编码，如：60910，表示周六第九至第十节；多个上课时间编码之间用空格隔开" %>
+    </div>
+    
     <%= f.submit '提交', class: "btn btn-success btn-block" %>
     <%= link_to '取消', courses_path, :class => "btn btn-default btn-block" %>
 

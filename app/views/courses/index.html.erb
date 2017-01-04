@@ -1,12 +1,9 @@
 <div class="container-fluid">
   <div class="row">
-
     <div class="col-sm-2">
       <%= render "shared/sidenav" %>
     </div>
-
     <div class="col-sm-10">
-
       <div class="panel panel-primary filterable">
         <div class="panel-heading">
           <% if teacher_logged_in? %><h3 class="panel-title">授课列表</h3><% end %>
@@ -21,21 +18,21 @@
               <th>课程名称</th>
               <th>课时/学分</th>
               <th>上课时间</th>
+              <th>课程属性</th>
               <th>主讲教师</th>
             </tr>
-
             <tbody>
             <% @course.each do |course| %>
                 <tr>
-
                   <td><%= course.course_code %></td>
                   <td><%= course.name %></td>
                   <td><%= course.period.to_s + "/" + course.credit.to_s %></td>
                   <% time_str1 = "第#{course.start_week}~#{course.end_week}周" %>
                   <% time_str2 = Hashes.time_to_str(course.course_time) %>
                   <td><%= time_str1 %><br><%= time_str2 %></td>
+                  <td><%= Hashes.type(course.course_code) %></td>
                   <td><%= course.teacher.name %></td>
-                  <td><%= link_to "详细信息", nil, class: "btn-sm btn-info" %></td>
+                  <td><%= link_to "详细信息",  detail_course_path(course), class: "btn-sm btn-info" %></td>
 
                   <% if teacher_logged_in? %>
                       <td><%= link_to "编辑", edit_course_url(course), class: 'btn btn-xs btn-info' %></td>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'ajax/get_filter_string'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -23,9 +25,16 @@ Rails.application.routes.draw do
       get :quit
       get :open
       get :close
+
+      get :conflict
+      get :change
+
+      get :detail
+
     end
     collection do
       get :list
+      get :filter
     end
     collection do
       get :schedule
