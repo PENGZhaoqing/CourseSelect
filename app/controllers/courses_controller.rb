@@ -70,6 +70,28 @@ class CoursesController < ApplicationController
     end
     @course = @course_open
 
+
+    #------------分页---------------------
+    total = @course.count
+    params[:total] = total
+    if params[:page] == nil
+      params[:page] = 1  #进行初始化
+    end
+    if total % $PageSize == 0
+      params[:pageNum] = total / $PageSize
+    else
+      params[:pageNum] = total / $PageSize + 1
+    end
+
+    #计算分页的开始和结束位置
+    params[:pageStart] = (params[:page].to_i - 1) * $PageSize
+
+    if params[:pageStart].to_i + $PageSize <= params[:total].to_i
+      params[:pageEnd] = params[:pageStart].to_i + $PageSize - 1
+    else
+      params[:pageEnd] = params[:total].to_i - 1  #最后一页
+    end
+    #---------------------------------------------------------------------
     end
 
 
