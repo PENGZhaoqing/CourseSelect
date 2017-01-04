@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
 
-  before_action :student_logged_in, only: [:select, :quit, :list]
+  before_action :student_logged_in, only: [:select, :quit, :list, :schedule]
   before_action :teacher_logged_in, only: [:new, :create, :edit, :destroy, :update]
   before_action :logged_in, only: :index
 
@@ -114,12 +114,18 @@ class CoursesController < ApplicationController
     redirect_to courses_path, flash: flash
   end
   
+
+  def schedule
+    @course=current_user.courses
+  end
+
   def quit
     @course=Course.find_by(id:params[:id])
     current_user.courses.delete(@course)
     flash={:success => "成功退选课程: #{@course.name}"}
     redirect_to courses_path, flash: flash
   end
+  
 
 
   #-------------------------for both teachers and students----------------------
@@ -162,7 +168,9 @@ class CoursesController < ApplicationController
                                    :course_time, :start_week, :end_week)
   end
 
+
   def get_course_code
     @course.course_code= @course.course_department[0,2] + @course.course_firstlevel[3,1]+@course.teaching_object[0,1]+@course.course_type[0,1]+"#{params[:id].to_i+100}"+@course.campus[0,1]
   end
+
 end

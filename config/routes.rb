@@ -36,6 +36,9 @@ Rails.application.routes.draw do
       get :list
       get :filter
     end
+    collection do
+      get :schedule
+    end
   end
 
   resources :grades, only: [:index, :update]
@@ -86,3 +89,4 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 end
+

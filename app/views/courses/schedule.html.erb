@@ -1,0 +1,72 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2">
+      <%= render "shared/sidenav" %>
+
+    </div>
+    <div class="col-sm-10">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">我的课表</h3>
+        </div>
+        <div class="panel-body" style="min-height: 450px">
+          <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+              <th></th>
+              <th>周一</th>
+              <th>周二</th>
+              <th>周三</th>
+              <th>周四</th>
+              <th>周五</th>
+              <th>周六</th>
+              <th>周日</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% courselist=Array.new(12){Array.new(8)} %>
+                <% @course=current_user.courses %>
+                <% @course.each do |course| %>
+                  <% if course.course_time.length>5 %>
+                    <% temp_str=course.course_time.split %>
+                    <% i=temp_str[0].to_i/100%100  %>
+                    <% j=temp_str[0].to_i/10000  %>
+                    <% courselist[i][j]=course  %>
+                    <% i=temp_str[1].to_i/100%100   %>
+                    <% j=temp_str[1].to_i/10000   %>
+                    <% courselist[i][j]=course   %>
+                  <% end  %>
+                    <% if course.course_time.length<=5 %>
+                    <% i=course.course_time.to_i/100%100 %>
+                    <% j=course.course_time.to_i/10000 %>
+                    <% courselist[i][j]=course %>
+                    <% end %>
+                <% end %>
+            <% b=1 %>
+            <% while b<12 do %>
+              <tr>
+                <td><%="第#{b}节"%></td>
+              <% a=1 %>
+              <% while a<8 do %>
+                <% if courselist[b][a]!=nil %>
+                <% time_str1 = "第#{courselist[b][a].start_week}~#{courselist[b][a].end_week}周" %>
+                <% time_str2 = Hashes.time_to_str(courselist[b][a].course_time) %>
+                <td><%=courselist[b][a].name %><br><%= time_str1 %><br><%= time_str2 %></td>
+                <% else %>
+                <td><% %></td>
+                <% end %>
+                <% a=a+1 %>
+              <% end %>
+              </tr>
+              <% b=b+1 %>
+            <% end %>
+            
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
