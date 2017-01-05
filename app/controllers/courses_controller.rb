@@ -122,9 +122,11 @@ class CoursesController < ApplicationController
     if student_logged_in?
     @course=current_user.courses.paginate(:page=>params[:page],:per_page=>5)
     @courses = current_user.courses
+    @sum_time = 0
     @sum_credit = 0
     @courses.each do |courses|
      @sum_credit += courses.credit[3...4].to_i
+      @sum_time += courses.credit[0...1].to_i
     end
     end
   end
