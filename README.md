@@ -102,6 +102,9 @@ $ rails s
 
 6.运行部署，详情[请戳这里](https://devcenter.heroku.com/articles/getting-started-with-rails4#rails-asset-pipeline)
 
+## Travis CI
+
+...
 
 ## 测试
 
