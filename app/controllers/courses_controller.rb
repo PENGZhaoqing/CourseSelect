@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
 
   before_action :student_logged_in, only: [:select, :quit, :list]
-  before_action :teacher_logged_in, only: [:new, :create, :edit, :destroy, :update]
+  before_action :teacher_logged_in, only: [:new, :create, :edit, :destroy, :update, :open, :close]#add open by qiao
   before_action :logged_in, only: :index
 
   #-------------------------for teachers----------------------
@@ -58,7 +58,8 @@ class CoursesController < ApplicationController
   #-------------------------for students----------------------
 
   def list
-    @course=Course.all
+    #-------QiaoCode--------
+    @course=Course.where(:open=>true)
     @course=@course-current_user.courses
     tmp=[]
     @course.each do |course|
