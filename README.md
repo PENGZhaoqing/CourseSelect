@@ -102,9 +102,6 @@ $ rails s
 
 6.运行部署，详情[请戳这里](https://devcenter.heroku.com/articles/getting-started-with-rails4#rails-asset-pipeline)
 
-## Travis CI
-
-...
 
 ## 测试
 
@@ -202,7 +199,32 @@ class UserLoginTest < ActionDispatch::IntegrationTest
 end
 ```
 
+## Travis CI
 
+上述为本地测试，我们可以使用Travis CI来实现自动测试，首先申请一个Travis CI的账号，然后与自己的github连接起来，然后在自己项目根目录中增加一个新的文件.travis.yml如下，这个文件中指定了测试用的ruby版本，数据库等配置，当你的github发生更新后，Travis CI会自动触发测试（需要你在Travis CI中自己设置自动—／手动触发），然后读取.travis.yml中的配置进行测试
+
+
+```
+language: ruby
+
+rvm:
+  - 2.2
+
+env:
+  - DB=pgsql
+
+services:
+  - postgresql
+
+script:
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare
+  - bundle exec rake
+
+before_script:
+  - cp config/database.yml.travis config/database.yml
+  - psql -c 'create database courseselect_test;' -U postgres
+```
 
 ## How to Contribute
 
