@@ -179,6 +179,29 @@ class UserTest < ActiveSupport::TestCase
 end
 ```
 
+### 视图和控制器测试
+
+以用户登录为例，位于test/integration/user_login_test.rb，首先同样生成一个@user模型，这个@user的用户名和密码可以在test/fixtures/users.yml中指定
+
+```
+class UserLoginTest < ActionDispatch::IntegrationTest
+
+  def setup
+    @user = users(:peng)
+  end
+
+  test "login with valid information" do
+    get sessions_login_path
+    post sessions_login_path(params: {session: {email: @user.email, password: 'password'}})
+    assert_redirected_to controller: :homes, action: :index
+    follow_redirect!
+    assert_template 'homes/index'
+    assert_select "a[href=?]", root_path, count: 2
+    assert_select "a[href=?]", rails_admin_path, count: 0
+  end
+end
+```
+
 
 
 ## How to Contribute
