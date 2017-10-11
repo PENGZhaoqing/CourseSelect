@@ -10,7 +10,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "should be valid" do
-    assert @user.valid?
+    assert  @user.valid?
   end
 
   test "name should be present" do

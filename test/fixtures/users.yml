@@ -5,7 +5,7 @@
 # below each fixture, per the syntax in the comments below
 #
 
-michael:
+peng:
   name: 彭兆卿
-  email: student1@test.com
+  email: admin@test.com
   password_digest: <%= User.digest('password') %>

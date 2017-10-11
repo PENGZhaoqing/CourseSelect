@@ -3,7 +3,7 @@ require 'test_helper'
 class UserLoginTest < ActionDispatch::IntegrationTest
 
   def setup
-    @user = users(:michael)
+    @user = users(:peng)
   end
 
   test "login with valid information" do
@@ -13,6 +13,6 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_template 'homes/index'
     assert_select "a[href=?]", root_path, count: 2
-    assert_select "a[href=?]", courses_path, count: 1
+    assert_select "a[href=?]", rails_admin_path, count: 0
   end
 end
