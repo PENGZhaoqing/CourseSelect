@@ -121,7 +121,8 @@ Finished in 1.202169s, 7.4865 runs/s, 16.6366 assertions/s.
 
 ### 模型测试
 
-以用户模型为例, 位于test/models/user_test.rb, 首先生成一个@user对象，然后assert用户是否有效，这里的调用valid()会去检查你的模型中的相关的validates语句是否正确
+以用户模型为例, 位于`test/models/user_test.rb`, 首先生成一个@user对象，然后assert用户是否有效，这里的调用valid方法会去检查你的模型中的相关的validates语句是否正确，若`@user.valid?`为false, 那么此assert会报错，代表"should be valid"这条测试没有通过, 单独运行此测试文件使用`rake test test/models/user_test.rb`
+
 
 ```
 class UserTest < ActiveSupport::TestCase
@@ -137,48 +138,14 @@ class UserTest < ActiveSupport::TestCase
     assert  @user.valid?
   end
 
-  test "name should be present" do
-    @user.name = "     "
-    assert_not @user.valid?
-  end
-
-  test "email should be present" do
-    @user.email = "     "
-    assert_not @user.valid?
-  end
-
-  test "name should not be too long" do
-    @user.name = "a" * 51
-    assert_not @user.valid?
-  end
-
-  test "email should not be too long" do
-    @user.email = "a" * 244 + "@example.com"
-    assert_not @user.valid?
-  end
-
-  test "email validation should accept valid addresses" do
-    valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org
-                         first.last@foo.jp alice+bob@baz.cn]
-    valid_addresses.each do |valid_address|
-      @user.email = valid_address
-      assert @user.valid?, "#{valid_address.inspect} should be valid"
-    end
-  end
-
-  test "email addresses should be unique and the uppercase will be converted to lowercase" do
-    duplicate_user = @user.dup
-    duplicate_user.email = @user.email.upcase
-    @user.save
-    assert_not duplicate_user.valid?
-  end
+  ...
 
 end
 ```
 
 ### 视图和控制器测试
 
-以用户登录为例，位于test/integration/user_login_test.rb，首先同样生成一个@user模型，这个@user的用户名和密码可以在test/fixtures/users.yml中指定
+以用户登录为例，位于`test/integration/user_login_test.rb`，首先同样生成一个@user模型，这个@user的用户名和密码可以在`test/fixtures/users.yml`中指定, 然后我们用get方法到达登录页面（sessions_login_path），然后使用post方法提交这个@user的账号密码来登录，如果登录成功，当前应该会跳转至homes控制器下的index方法进行处理，`assert_redirected_to`能判断这个跳转过程是否发生，然后调用`follow_redirect！`来紧跟当前的跳转，用`assert_template`来判读跳转后的视图文件是否为`homes/index`, 最后在这个视图文件下做一些测试，比如判断这个视图下连接为root_path的个数等等（根据当前登录的角色不同，当前的页面链接会不同，比如admin用户就会有控制面板的链接rails_admin_path，而普通用户没有，因此可以根据链接的个数来判断当前登录用户的角色）
 
 ```
 class UserLoginTest < ActionDispatch::IntegrationTest
@@ -201,8 +168,7 @@ end
 
 ## Travis CI
 
-上述为本地测试，我们可以使用Travis CI来实现自动测试，首先申请一个Travis CI的账号，然后与自己的github连接起来，然后在自己项目根目录中增加一个新的文件.travis.yml如下，这个文件中指定了测试用的ruby版本，数据库等配置，当你的github发生更新后，Travis CI会自动触发测试（需要你在Travis CI中自己设置自动—／手动触发），然后读取.travis.yml中的配置进行测试
-
+上述为本地测试，我们可以使用Travis CI来实现自动测试，首先申请一个Travis CI的账号，然后与自己的github连接起来，接着在自己项目根目录中增加一个新的文件`.travis.yml`如下，这个文件中指定了测试用的ruby版本，数据库等配置，当你的github发生更新后，Travis CI会自动触发测试（需要你在Travis CI中自己设置自动—／手动触发），然后读取`.travis.yml`中的配置进行测试，其实也就是把本地测试拉到服务器上进行
 
 ```
 language: ruby
