@@ -105,7 +105,7 @@ $ rails s
 
 ## 测试
 
-本项目包含了部分的测试（integration/fixture/model test），测试文件位于/test目录下。运行测试：
+本项目包含了部分的测试（integration/fixture/model test），测试文件位于/test目录下。一键运行所有测试使用`rake test`：
 
 ```
 PENG-MacBook-Pro:IMS_sample PENG-mac$ rake test
@@ -121,7 +121,7 @@ Finished in 1.202169s, 7.4865 runs/s, 16.6366 assertions/s.
 
 ### 模型测试
 
-以用户模型为例, 位于`test/models/user_test.rb`, 首先生成一个@user对象，然后assert用户是否有效，这里的调用valid方法会去检查你的模型中的相关的validates语句是否正确，若`@user.valid?`为false, 那么此assert会报错，代表"should be valid"这条测试没有通过, 单独运行此测试文件使用`rake test test/models/user_test.rb`
+以用户模型为例, 位于`test/models/user_test.rb`, 首先生成一个`@user`对象，然后`assert`用户是否有效，这里的调用`valid`方法会去检查你的模型中的相关的`validates`语句是否正确，若`@user.valid?`为false, 那么此`assert`会报错，代表`"should be valid"`这条测试没有通过, 单独运行此测试文件使用`rake test test/models/user_test.rb`
 
 
 ```
