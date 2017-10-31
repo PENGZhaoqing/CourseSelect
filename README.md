@@ -3,9 +3,9 @@
 ### [中文教程1](http://blog.csdn.net/ppp8300885/article/details/52594839) [中文教程2](http://blog.csdn.net/ppp8300885/article/details/52601560) [中文教程3](http://blog.csdn.net/ppp8300885/article/details/52669749) [Wiki](https://github.com/PENGZhaoqing/CourseSelect/wiki)
 
 
-这个样本系统是基于国科大研究生课程 (高级软件工程) 开发的项目,目的是帮助入门者学习RoR (Ruby on Rails), 如果觉得好,请点颗星来支持这个项目吧
+这个样本系统是基于国科大研究生课程 (高级软件工程) 开发的项目,目的是帮助入门者学习RoR (Ruby on Rails),
 
-着个适合新学者的入手的第一个项目 ([演示Demo戳这里](https://courseselect.herokuapp.com/ ))，入门者可以在这个样本系统上增加更多的功能:
+适合新学者的入手的第一个项目 ([演示Demo戳这里](https://courseselect.herokuapp.com/ ))，入门者可以在这个样本系统上增加更多的功能:
 
 * 处理选课冲突、控制选课人数
 * 统计选课学分，学位课等
@@ -23,6 +23,8 @@
 * 老师动态增加，删除课程
 * 老师对课程下的学生添加、修改成绩
 * 权限控制：老师和学生只能看到自己相关课程信息
+
+#### 如果觉得好，给项目点颗星吧～
 
 ### 截图
 
@@ -228,7 +230,5 @@ before_script:
 先fork此项目，在分支修改后，pull request到主分支
 
 提问请到issues里创建，欢迎contributor！
-
-如果觉得好，给项目点颗星吧～
 
 
