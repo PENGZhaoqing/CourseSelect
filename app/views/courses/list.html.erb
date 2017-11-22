@@ -28,7 +28,7 @@
             </thead>
             <tbody>
 
-            <% @course.each do |course| %>
+            <% @courses.each do |course| %>
                 <tr>
 
                   <td><%= course.course_code %></td>
@@ -46,6 +46,7 @@
             <% end %>
             </tbody>
           </table>
+          <%= will_paginate @courses %>
         </div>
       </div>
     </div>

@@ -39,14 +39,30 @@ GEM
     arel (6.0.3)
     autoprefixer-rails (6.4.0.2)
       execjs
+    axlsx (2.1.0.pre)
+      htmlentities (~> 4.3.1)
+      nokogiri (>= 1.4.1)
+      rubyzip (~> 1.1.7)
+    axlsx_rails (0.5.1)
+      actionpack (>= 3.1)
+      axlsx (>= 2.0.1)
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bootstrap-will_paginate (1.0.0)
+      will_paginate
     builder (3.2.2)
     byebug (9.0.5)
+    carrierwave (1.2.1)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
+    climate_control (0.2.0)
+    cocaine (0.5.8)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.2)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
@@ -68,6 +84,7 @@ GEM
       activesupport (>= 4.1.0)
     haml (4.0.7)
       tilt
+    htmlentities (4.3.4)
     i18n (0.7.0)
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
@@ -90,6 +107,7 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
+    mimemagic (0.3.2)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     multi_json (1.12.1)
@@ -97,6 +115,15 @@ GEM
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
+    paper_trail (8.0.1)
+      activerecord (>= 4.2, < 5.2)
+      request_store (~> 1.1)
+    paperclip (5.1.0)
+      activemodel (>= 4.2.0)
+      activesupport (>= 4.2.0)
+      cocaine (~> 0.5.5)
+      mime-types
+      mimemagic (~> 0.3.0)
     pg (0.18.4)
     pkg-config (1.1.7)
     pry (0.11.2)
@@ -129,6 +156,9 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails-i18n (4.0.9)
+      i18n (~> 0.7)
+      railties (~> 4.0)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
@@ -157,6 +187,16 @@ GEM
     rdoc (4.2.2)
       json (~> 1.4)
     remotipart (1.2.1)
+    request_store (1.3.2)
+    roo (2.7.1)
+      nokogiri (~> 1)
+      rubyzip (~> 1.1, < 2.0.0)
+    roo-xls (1.1.0)
+      nokogiri
+      roo (>= 2.0.0beta1, < 3)
+      spreadsheet (> 0.9.0)
+    ruby-ole (1.2.12.1)
+    rubyzip (1.1.7)
     safe_yaml (1.0.4)
     sass (3.4.22)
     sass-rails (5.0.6)
@@ -173,6 +213,8 @@ GEM
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
+    spreadsheet (1.1.5)
+      ruby-ole (>= 1.0)
     spring (1.7.2)
     sprockets (3.7.0)
       concurrent-ruby (~> 1.0)
@@ -196,23 +238,34 @@ GEM
       binding_of_caller (>= 0.7.2)
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
+    will_paginate (3.1.6)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  axlsx (= 2.1.0.pre)
+  axlsx_rails
   bcrypt (~> 3.1.11)
   bootstrap-sass (~> 3.3.7)
+  bootstrap-will_paginate
   byebug
+  carrierwave
   coffee-rails (~> 4.1.0)
   faker (~> 1.6.3)
   jbuilder (~> 2.0)
   jquery-rails
+  paper_trail
+  paperclip
   pg (~> 0.18.4)
   pry-rails
   rails (= 4.2.5.2)
+  rails-i18n
   rails_12factor
   rails_admin (~> 0.8.1)
+  roo
+  roo-xls
+  rubyzip (~> 1.1.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   simplecov
@@ -220,6 +273,7 @@ DEPENDENCIES
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
+  will_paginate (~> 3.1.6)
 
 BUNDLED WITH
    1.14.6

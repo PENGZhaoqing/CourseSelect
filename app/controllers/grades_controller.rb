@@ -13,11 +13,12 @@ class GradesController < ApplicationController
   end
 
   def index
+    #binding.pry
     if teacher_logged_in?
-      @course=Course.find_by_id(params[:course_id])
-      @grades=@course.grades
+      @course = Course.find_by_id(params[:course_id])
+      @grades = @course.grades.order(created_at: "desc").paginate(page: params[:page], per_page: 4)
     elsif student_logged_in?
-      @grades=current_user.grades
+      @grades=current_user.grades.paginate(page: params[:page], per_page: 4)
     else
       redirect_to root_path, flash: {:warning=>"请先登陆"}
     end
