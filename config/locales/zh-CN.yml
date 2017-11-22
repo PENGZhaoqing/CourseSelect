@@ -1,0 +1,16 @@
+zh-CN:
+  will_paginate:
+    next_label: "下一页"
+    page_entries_info:
+      multi_page: "正显示%{model}的第%{from}至第%{to}条记录(共%{count}条记录)"
+      multi_page_html: "正显示%{model}的第<b>%{from}</b>至第<b>%{to}</b>条记录(共<b>%{count}</b>条记录)"
+      single_page:
+        one: "正显示1条%{model}记录"
+        other: "正显示所有共%{count}条%{model}记录"
+        zero: "暂无%{model}记录"
+      single_page_html:
+        one: "正显示<b>1</b>条%{model}记录"
+        other: "正显示所有共<b>%{count}</b>条%{model}记录"
+        zero: "暂无%{model}记录"
+    page_gap: "…"
+    previous_label: "上一页"
